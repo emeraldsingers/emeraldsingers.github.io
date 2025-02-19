@@ -1,2 +1,2 @@
-*.js   text/javascript
-*.css  text/css
+*.js  text eol=lf
+*.css text eol=lf
