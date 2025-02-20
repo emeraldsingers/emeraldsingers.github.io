@@ -31,57 +31,26 @@ const Gallery = () => {
         };
     }, []);
 
-    const galleryItems = {};
-	/*[
+    const galleryItems = [
         {
-            image: "/images/akizora.png",
+            image: "/images/akizora-2.png",
             description: "Akizora Artwork",
             character: "Akizora",
-            artist: "rxko",
+            artist: "JustKAMAZ",
         },
         {
-            image: "/images/asoqwer.png",
-            description: "Asoqwer Chilling",
-            character: "Asoqwer",
-            artist: "wtyssll",
+            image: "/images/akizora-2.png",
+            description: "Akizora \"pick me\"",
+            character: "Akizora",
+            artist: "KambaL",
         },
         {
-           image: "/images/k3k0.png",
-            description: "K3K0 Model sheet",
+           image: "/images/k3k03.png",
+            description: "K3K0",
             character: "K3K0",
-           artist: "eulliaqzh"
-        },
-        {
-            image: "/images/tilke.png",
-            description: "Tilke in his casual clothes",
-            character: "Tilke",
-            artist: "eulliaqzh"
-        },
-          {
-            image: "/images/simon-weber.png",
-            description: "Simon Weber",
-            character: "Simon",
-            artist: "Dori Meru"
-        },
-         {
-            image: "/images/favicon.png",
-            description: "UtauV logo",
-            character: "UtauV",
-           artist: "Emerald Project"
-        },
-         {
-           image: "/images/UtauVakizora.png",
-           description: "Akizora UtauV banner",
-           character: "Akizora",
-           artist: "Emerald Project"
-        },
-        {
-           image: "/images/UtauVasoqwer.png",
-           description: "Asoqwer UtauV banner",
-            character: "Asoqwer",
-           artist: "Emerald Project"
+           artist: "KambaL"
         }
-    ];*/
+    ];
 
     return (
         <div
