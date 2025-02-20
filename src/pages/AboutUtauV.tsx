@@ -17,21 +17,20 @@ const AboutUtauV = () => {
     const [imageOpacity, setImageOpacity] = useState(1);
     const imageRef = useRef<HTMLImageElement>(null);
 
-    // Placeholder images for the gallery
     const images = [
         "/images/UtauV.png",
         "/images/UtauVakizora.png",
         "/images/UtauVasoqwer.png",
-        "/images/UtauVk3k0.png",
-        "/images/UtauVtilke.png",
+        "/images/UtauVK3K0.png",
+        "/images/UtauVTilke.png",
         //"/images/simon-weber.png",
     ];
     const authors = {
         "/images/UtauV.png": "UtauV Interface",
         "/images/UtauVakizora.png": "Akizora",
         "/images/UtauVasoqwer.png": "asoqwer",
-        "/images/UtauVk3k0.png": "K3K0-01",
-        "/images/UtauVtilke.png": "Tilke",
+        "/images/UtauVK3K0.png": "K3K0-01",
+        "/images/UtauVTilke.png": "Tilke",
         //"/images/simon-weber.png": "Dori Meru"
     };
 
