@@ -4,7 +4,7 @@ import InfiniteScroll from "@/components/InfiniteScroll";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useTheme } from "@/components/ThemeProvider";
-import { Users, HelpCircle, FileText, Origami, BriefcaseBusiness, Album} from "lucide-react";
+import { Users, HelpCircle, FileText, Origami, BriefcaseBusiness, Album, TableOfContents} from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 
 interface LatestWork {
@@ -108,6 +108,15 @@ const Index = () => {
                         >
                             <Link to="/terms">
                                 <FileText className="mr-2" /> Terms of Use
+                            </Link>
+                        </Button>
+                        <Button
+                            variant="outline"
+                            className="border-primary text-primary hover:bg-primary/10 button-glass-gradient"
+                            asChild
+                        >
+                            <Link to="/faq">
+                                <TableOfContents className="mr-2" /> FAQ
                             </Link>
                         </Button>
                         <Button

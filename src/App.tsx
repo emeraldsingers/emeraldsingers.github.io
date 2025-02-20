@@ -14,6 +14,7 @@ import AboutUs from "@/pages/AboutUs";
 import Gallery from "@/pages/Gallery";
 import CommunityWorks from "@/pages/CommunityWorks";
 import Lore from "@/pages/Story";
+import Faq from "@/pages/Faq";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
             <Route path="/terms" element={<Terms />} />
             <Route path="/about-utauv" element={<AboutUtauV />} />
              <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/faq" element={<Faq />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/community-works" element={<CommunityWorks />} />
              <Route path="/lore" element={<Lore />} />

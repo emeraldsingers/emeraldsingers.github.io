@@ -27,6 +27,9 @@ const Navigation = () => {
               <Link to="/terms" className="text-primary hover:text-primary/80 transition-colors">
                 Terms of Use
               </Link>
+              <Link to="/faq" className="text-primary hover:text-primary/80 transition-colors">
+                FAQ
+              </Link>
                  <Link to="/about-us" className="text-primary hover:text-primary/80 transition-colors">
                    About Us
                  </Link>
