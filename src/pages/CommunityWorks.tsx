@@ -31,44 +31,30 @@ const CommunityWorks = () => {
         };
     }, []);
 
-    const communityWorks = [];
-    /* const communityWorks = [
+    
+    const communityWorks = [
         {
-            image: "/images/akizora.png",
-            description: "Akizora Cover Song",
+            image: "/images/identitytilkeasoqwer.jpg",
+            description: "Identity",
+            character: "Tilke x Asoqwer",
+            artist: "mnifl",
+            href: "https://www.youtube.com/watch?v=81F29AUNDAQ"
+        },
+        {
+            image: "/images/akizoralonely.jpg",
+            description: "Lonely Love",
             character: "Akizora",
-            artist: "User 1",
-            href: "https://www.youtube.com/watch?v=example1"
+            artist: "Leshy-P",
+            href: "https://www.youtube.com/watch?v=zqfyw-mbG0A"
         },
         {
-            image: "/images/asoqwer.png",
-            description: "Asoqwer Cover song",
-            character: "Asoqwer",
-            artist: "User 2",
-            href: "https://www.youtube.com/watch?v=example2"
-        },
-        {
-            image: "/images/k3k0.png",
-            description: "K3K0 Remix",
-            character: "K3K0",
-            artist: "User 3",
-            href: "https://www.youtube.com/watch?v=example3"
-        },
-         {
-             image: "/images/tilke.png",
-             description: "Tilke Live",
+            image: "/images/tilkerroulete.jpg",
+            description: "Russian Roulette",
             character: "Tilke",
-            artist: "User 4",
-             href: "https://www.youtube.com/watch?v=example4"
-        },
-         {
-            image: "/images/simon-weber.png",
-             description: "Simon Weber - Cover",
-            character: "Simon Weber",
-             artist: "User 5",
-             href: "https://www.youtube.com/watch?v=example5"
-        } 
-    ];*/
+            artist: "Leshy-P",
+            href: "https://www.youtube.com/watch?v=IaMmtIQW6Ng"}
+
+    ];
 
 
 
@@ -87,13 +73,13 @@ const CommunityWorks = () => {
             <main className="flex-grow container mx-auto px-4 py-20">
                 <div className="max-w-5xl mx-auto glass-morphism rounded-xl p-8">
                     <h1 className="text-4xl font-bold text-primary mb-8 text-center">Community Works</h1>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                         {communityWorks.map((item, index) => (
                             <a href={item.href} target="_blank" rel="noopener noreferrer" key={index} className="neo-blur p-4 rounded-lg hover:bg-primary/5 transition-colors">
-                                 <img src={item.image} alt={item.description} className="w-full rounded-lg mb-4 object-contain h-64 mx-auto"/>
+                                 <img src={item.image} alt={item.description} className="w-full rounded-lg mb-4 object-contain h-55 mx-auto"/>
                                 <p className="text-primary/90 text-center">{item.description}</p>
                                 <p className="text-muted-foreground text-center text-sm">
-                                    {item.character} by {item.artist}
+                                    {item.character} (feat. {item.artist})
                                 </p>
                             </a>
                         ))}
