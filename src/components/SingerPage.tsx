@@ -186,7 +186,7 @@ const singersData = {
                 ]
             },
             "CVVC Virus": {
-                url: "",
+                url: "https://mega.nz/file/eiRgzLqD#P_PP7mEGZmYJ92k1quH5S0SdQtAwPuyxuqTCcnbUnbI",
                 vocalModes: [
                     {name: "Virus Normal", description: "Heavy scream voice", sample: "/samples/k3k0/k3k0-virus.mp3"},
                 ]
