@@ -39,7 +39,7 @@ const Gallery = () => {
             artist: "JustKAMAZ",
         },
         {
-            image: "/images/akizora-2.png",
+            image: "/images/akizora-3.png",
             description: "Akizora \"pick me\"",
             character: "Akizora",
             artist: "KambaL",
