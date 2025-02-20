@@ -55,8 +55,6 @@ const singersData = {
                 url: "https://mega.nz/file/vrYlyQoa#cY-N8DzP3-nKZ9VcfOsaUlhJl98fr2brbfm2TovMegk",
                 vocalModes: [
                     { name: "CVVC Normal", description: "CVVC Balanced and clear vocal tone", sample: "/samples/akizora/akizora-samplecvvc.mp3"},
-                    //{ name: "CVVC Soft", description: "CVVC Gentle and warm tone", sample: "/samples/akizora/akizora-samplecvvcsoft.mp3" },
-                    //{ name: "CVVC Power", description: "CVVC Strong and energetic voice", sample: "/samples/akizora/akizora-samplecvvcpower.mp3" }
                 ]
             },
             //VCV: {
@@ -67,9 +65,9 @@ const singersData = {
             //    ]
             //},
         },
-        videoDemos: [ // Added video demos for Akizora
+        videoDemos: [ 
             {
-                url: "https://www.youtube.com/embed/M_G1bJ8j5H0", // Replace with actual video URL
+                url: "https://www.youtube.com/embed/M_G1bJ8j5H0", 
                 title: "【Akizora CVVC】 JUMPIN' OVER ! 【Emerald Project UTAUカバー】"
             },
         ]
@@ -186,7 +184,7 @@ const singersData = {
                 ]
             },
             "CVVC Virus": {
-                url: "",
+                url: "https://mega.nz/file/eiRgzLqD#P_PP7mEGZmYJ92k1quH5S0SdQtAwPuyxuqTCcnbUnbI",
                 vocalModes: [
                     {name: "Virus Normal", description: "Heavy scream voice", sample: "/samples/k3k0/k3k0-virus.mp3"},
                 ]
@@ -205,10 +203,6 @@ const singersData = {
                     { name: "RVC Normal", description: "100e 6000step 8 batch-size", sample: "/samples/k3k0/k3k0-rvc-sample.mp3" }
                 ]
             }
-
-            // "English CVVC": { // Example of excluding vocalmodes for a voicebank
-            //     url: "https://example.com/k3k0-en-cvvc",
-            // },
         },
         videoDemos: [ 
             {
@@ -274,7 +268,7 @@ const singersData = {
             Height: "187cm",
             Weight: "80kg",
             Birthday: "01.08",
-            Stone: "Placeholder",
+            Stone: "Carneol",
         },
         colors: {
             light: 'rgb(209, 140, 62)', 
