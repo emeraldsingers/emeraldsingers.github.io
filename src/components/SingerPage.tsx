@@ -217,6 +217,10 @@ const singersData = {
                 url: "https://www.youtube.com/embed/r7y7Kx3OWF4",
                 title: "【K3K0-01 POWER】 smart??? | スマート??? - まらしぃ 【Emerald Project UTAUカバー】"
             },
+            {
+                url: "https://www.youtube.com/embed/VIyPRW8Rsc4",
+                title: "【K3K0-01】ELECTRIC WEEKEND ZONE【UTAUカバー】"
+            }
         ]
     },
     tilke: {
