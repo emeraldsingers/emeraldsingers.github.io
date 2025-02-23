@@ -250,6 +250,12 @@ const singersData = {
                     { name: "WHISPER", description: "Whisper CVVC Low voice", sample: "/samples/tilke/3.mp3" },
                     { name: "POWER", description: "Power CVVC Powerful voice", sample: "/samples/tilke/2.mp3" }
                 ]
+            },
+            RVC: {
+                url: "https://www.weights.com/ru/models/cm7hxwvxs93w9my15inermked",
+                vocalModes: [
+                    { name: "RVC Voicebank", description: "100e 8200step 8 batch-size", sample: "/samples/tilke/doremi rvc.mp3" }
+                ]
             }
         },
         videoDemos: [ 
