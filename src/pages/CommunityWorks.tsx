@@ -52,7 +52,13 @@ const CommunityWorks = () => {
             description: "Russian Roulette",
             character: "Tilke",
             artist: "Leshy-P",
-            href: "https://www.youtube.com/watch?v=IaMmtIQW6Ng"}
+            href: "https://www.youtube.com/watch?v=IaMmtIQW6Ng"},
+        {
+            image: "/images/feb23th.jpg",
+            description: "KING",
+            character: "Asoqwer x Tilke x Simon Weber",
+            artist: "mnifl",
+            href: "https://www.youtube.com/watch?v=awOAjlqdPXc"}
 
     ];
 
