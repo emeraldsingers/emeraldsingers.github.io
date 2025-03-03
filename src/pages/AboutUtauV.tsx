@@ -116,9 +116,9 @@ const AboutUtauV = () => {
                                 </p>
                             </div>
                             <div className="glass-morphism p-6 rounded-lg border border-primary/20 shadow-lg">
-                                <h3 className="text-xl font-semibold mb-2 text-primary">Enhanced CVVC Phonemizer</h3>
+                                <h3 className="text-xl font-semibold mb-2 text-primary">New Project Formats support</h3>
                                 <p className="text-muted-foreground">
-                                    Our updated CVVC phonemizer provides improved results and more expressive vocal synthesis.
+                                    We've developed a solution for uploading projects from other engines for convenient cross-platform work.
                                 </p>
                             </div>
                             <div className="glass-morphism p-6 rounded-lg border border-primary/20 shadow-lg">
