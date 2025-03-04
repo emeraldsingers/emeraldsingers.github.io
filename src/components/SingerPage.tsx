@@ -269,7 +269,7 @@ const singersData = {
         name: "Simon Weber",
         cv: "Beaver-P",
         images: ["/images/simon-weber.png"],
-        authors: { "/images/simon-weber.png": "Dori Meru" },
+        authors: { "/images/simon-weber.png": "eulliaqzh" },
         audioSamples: ["/samples/simon/simon-sample1.mp3", "/samples/simon/simon-sample2.mp3"],
         characterData: {
             Species: "Human",

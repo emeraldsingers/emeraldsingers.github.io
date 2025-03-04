@@ -95,7 +95,7 @@ const HowTo = () => {
                 className="bg-primary/90 hover:bg-primary text-primary-foreground button-glass-gradient"
                 asChild
               >
-                <a href="https://github.com/formergen/UtauV/releases/download/v1.0.1.2/UtauV.1.0.1.2.1.Installer.exe" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/emeraldsingers/UtauV/releases/download/v1.0.1.2/UtauV.1.0.1.2.2.Installer.exe" target="_blank" rel="noopener noreferrer">
                   Windows x64
                 </a>
               </Button>
