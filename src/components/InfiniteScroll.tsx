@@ -6,7 +6,7 @@ const singers = [
   { name: "Tilke", image: "/images/tilke.png", slug: "tilke" },
   { name: "K3K0", image: "/images/k3k0.png", slug: "k3k0" },
   { name: "Asoqwer", image: "/images/asoqwer.png", slug: "asoqwer" },
-  { name: "Simon Weber", image: "/images/simon-weber.png", slug: "simon-weber" },
+  { name: "Simon Weber", image: "/images/simon-weber-eu.png", slug: "simon-weber" },
 ];
 
 const InfiniteScroll = () => {

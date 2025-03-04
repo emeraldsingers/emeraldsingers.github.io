@@ -268,8 +268,8 @@ const singersData = {
     "simon-weber": {
         name: "Simon Weber",
         cv: "Beaver-P",
-        images: ["/images/simon-weber.png"],
-        authors: { "/images/simon-weber.png": "eulliaqzh" },
+        images: ["/images/simon-weber-eu.png"],
+        authors: { "/images/simon-weber-eu.png": "eulliaqzh" },
         audioSamples: ["/samples/simon/simon-sample1.mp3", "/samples/simon/simon-sample2.mp3"],
         characterData: {
             Species: "Human",
@@ -286,7 +286,7 @@ const singersData = {
         },
         voicebanks: { 
             CVVC: {
-                //url: "https://example.com/simon-utau-cvvc",
+                url: "https://mega.nz/file/uyRyRBJT#eJm82-F24dcLjxmd_liIrk5MqsPcsY22vHTPMahRgyE",
                 vocalModes: [
                     { name: "CVVC Normal", description: "CVVC Normal tone", sample: "/samples/simon/simon-samplecvvc.mp3" },
                     { name: "CVVC Power", description: "CVVC Strong voice", sample: "/samples/simon/simon-samplecvvcpower.mp3" },

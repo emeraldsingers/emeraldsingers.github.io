@@ -23,7 +23,7 @@ const AboutUtauV = () => {
         "/images/UtauVasoqwer.png",
         "/images/UtauVK3K0.png",
         "/images/UtauVTilke.png",
-        //"/images/simon-weber.png",
+        "/images/UtauVSimon.png",
     ];
     const authors = {
         "/images/UtauV.png": "UtauV Interface",
@@ -31,7 +31,7 @@ const AboutUtauV = () => {
         "/images/UtauVasoqwer.png": "asoqwer",
         "/images/UtauVK3K0.png": "K3K0-01",
         "/images/UtauVTilke.png": "Tilke",
-        //"/images/simon-weber.png": "Dori Meru"
+        "/images/UtauVSimon.png": "Simon Weber"
     };
 
     const currentImagePath = images[currentImageIndex];

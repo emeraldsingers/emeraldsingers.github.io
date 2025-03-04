@@ -28,7 +28,7 @@ const singers = [
   },
   {
     name: "Simon Weber",
-    image: "/images/simon-weber.png",
+    image: "/images/simon-weber-eu.png",
     slug: "simon-weber",
   },
 ];
