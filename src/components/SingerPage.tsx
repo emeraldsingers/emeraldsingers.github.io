@@ -295,10 +295,10 @@ const singersData = {
             }
         },
         videoDemos: [ 
-            /*{
-                url: "", 
-                title: ""
-            }*/
+            {
+                url: "https://www.youtube.com/embed/RoSOpHnrKFo", 
+                title: "【SIMON WEBER DEMO】 WAVE 【Emerald Project UTAUカバー】"
+            }
         ]
     },
 };
