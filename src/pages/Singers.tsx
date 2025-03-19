@@ -21,15 +21,22 @@ const singers = [
     image: "/images/k3k0.png",
     slug: "k3k0",
   },
+
+  {
+    name: "Simon Weber",
+    image: "/images/simon-weber-eu.png",
+    slug: "simon-weber",
+  },
+
   {
     name: "Tilke",
     image: "/images/tilke.png",
     slug: "tilke",
   },
   {
-    name: "Simon Weber",
-    image: "/images/simon-weber-eu.png",
-    slug: "simon-weber",
+    name: "Mitsuo",
+    image: "/images/mitsuo.png",
+    slug: "mitsuo",
   },
 ];
 

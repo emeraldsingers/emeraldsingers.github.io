@@ -301,6 +301,35 @@ const singersData = {
             }
         ]
     },
+    mitsuo: {
+        name: "Mitsuo",
+        cv: "Mitsuo",
+        images: ["/images/mitsuo.png"],
+        authors: { "/images/mitsuo.png": "povidlosecret" },
+        audioSamples: ["/samples/mitsuo/mitsuo-sample1.mp3", "/samples/mitsuo/mitsuo-sample2.mp3"],
+        characterData: {
+            Species: "Human",
+            Gender: "Male",
+            Age: "17 years old",
+            Height: "178cm",
+            Weight: "65kg",
+            Birthday: "19.06",
+            Stone: "Opal",
+        },
+        colors: {
+            light: 'rgb(59,162,228)', 
+            dark: 'rgb(196,90,38)',
+        },
+        voicebanks: {
+            RVC: {
+                url: "https://www.weights.com/ru/models/cm7p25bsz66jto915lydx2sfx",
+                vocalModes: [
+                    { name: "RVC", description: "680e 50 min", sample: "/samples/mitsuo/mitsuorvc.mp3" }
+                ]
+            }
+        },
+        videoDemos: []
+    }
 };
 
 
@@ -738,6 +767,13 @@ const SingerPage: React.FC = () => {
                                     <Link to="/how-to">
                                         <HelpCircle className="mr-2" /> How to Install
                                     </Link>
+                                </Button>
+                                <Button
+                                    variant="outline"
+                                    className={`w-full border-primary/20 hover:bg-primary/10 ${theme === 'light' ? 'text-black' : 'text-white'}`}
+                                    onClick={scrollToVoicebanks}
+                                >
+                                    Download Voicebank
                                 </Button>
                                 {/* Character Data Section */}
                                 <div className="mt-6 p-4 neo-blur rounded-lg">
