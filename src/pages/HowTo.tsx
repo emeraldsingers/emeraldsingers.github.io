@@ -39,7 +39,7 @@ const HowTo = () => {
   const mainBannerPlaceholder = "/images/emerald.png";
 
   const googleDocTutorialLink = "https://docs.google.com/document/d/1Eb43g7Tc616YRtyfLEqrwGKLS5af238-KsGQoY06oBs/edit?usp=sharing";
-  const megaModelsLink = "https://mega.nz/folder/rilkRawA#urkiXGT1SsuJLhquWJegoQ";
+  const megaModelsLink = "https://mega.nz/folder/riIkRawA#urkiXGT1SsuJLhquWJegoQ";
   const trainerGitHubLink = "https://github.com/emeraldsingers/AutoPitchTrainer"; 
 
   return (
@@ -64,7 +64,7 @@ const HowTo = () => {
               className="w-full h-[300px] object-cover"
             />
             <div className="absolute inset-0 neo-blur flex flex-col justify-center items-center px-8">
-              <h1 className="text-5xl font-bold mb-2 text-center text-primary shadow-text">
+              <h1 className="text-5xl font-bold mb-8 text-center text-primary shadow-text">
                 UTAU
               </h1>
               <p className="text-2xl text-primary text-center shadow-text">
