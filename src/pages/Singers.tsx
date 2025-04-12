@@ -29,11 +29,6 @@ const singers = [
   },
 
   {
-    name: "Tilke",
-    image: "/images/tilke.png",
-    slug: "tilke",
-  },
-  {
     name: "Mitsuo",
     image: "/images/mitsuo.png",
     slug: "mitsuo",
