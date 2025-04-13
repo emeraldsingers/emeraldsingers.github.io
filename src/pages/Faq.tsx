@@ -84,6 +84,25 @@ const Faq = () => {
             category: "utauv",
         },
         {
+            id: "utauv4",
+            question: "How to install and use autopitch in UtauV?",
+            answer: (
+                <>
+                    <p>Read the tutorial on the "About UtauV" page or view the Google Docs spreadsheet below.</p>
+                    <p> </p>
+                    <a
+                        href="https://docs.google.com/document/d/1Eb43g7Tc616YRtyfLEqrwGKLS5af238-KsGQoY06oBs/edit?usp=sharing"
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-blue-500 hover:underline" 
+                    >
+                        Click here to view the tutorial!
+                    </a>
+                </>
+            ),
+            category: "utauv",
+        },
+        {
             id: "utauv1",
             question: "Where can I read the tutorial for UtauV?",
             answer: (

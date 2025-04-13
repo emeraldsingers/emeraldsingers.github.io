@@ -48,12 +48,6 @@ const CommunityWorks = () => {
             href: "https://www.youtube.com/watch?v=zqfyw-mbG0A"
         },
         {
-            image: "/images/tilkerroulete.jpg",
-            description: "Russian Roulette",
-            character: "Tilke",
-            artist: "Leshy-P",
-            href: "https://www.youtube.com/watch?v=IaMmtIQW6Ng"},
-        {
             image: "/images/feb23th.jpg",
             description: "KING",
             character: "Asoqwer x Tilke x Simon Weber",

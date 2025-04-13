@@ -22,7 +22,6 @@ const AboutUtauV = () => {
         "/images/UtauVakizora.png",
         "/images/UtauVasoqwer.png",
         "/images/UtauVK3K0.png",
-        "/images/UtauVTilke.png",
         "/images/UtauVSimon.png",
     ];
     const authors = {
@@ -30,7 +29,6 @@ const AboutUtauV = () => {
         "/images/UtauVakizora.png": "Akizora",
         "/images/UtauVasoqwer.png": "asoqwer",
         "/images/UtauVK3K0.png": "K3K0-01",
-        "/images/UtauVTilke.png": "Tilke",
         "/images/UtauVSimon.png": "Simon Weber"
     };
 

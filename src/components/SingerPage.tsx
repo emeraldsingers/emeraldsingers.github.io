@@ -223,48 +223,6 @@ const singersData = {
             }
         ]
     },
-    tilke: {
-        name: "Tilke",
-        cv: "Utakata",
-        images: ["/images/tilke.png"],
-        authors: { "/images/tilke.png": "eulliaqzh"},
-        audioSamples: ["/samples/tilke/tilke-sample1.mp3", "/samples/tilke/tilke-sample2.mp3"],
-        characterData: {
-            Species: "Human",
-            Gender: "Male",
-            Age: "17 years old",
-            Height: "173cm",
-            Weight: "Healthy",
-            Birthday: "25.07",
-            Stone: "Tanzanite",
-        },
-        colors: {
-            light: 'rgb(151,159,182)', 
-            dark: 'rgb(72,79,133)',
-        },
-        voicebanks: {
-            "TILKE CVVC -1-": {
-                url: "https://mega.nz/file/qq4k2LRB#h8y7ZFIG0Nzjar7jabCFOfawWqj-CNcYhdEBxCy-IGQ",
-                vocalModes: [
-                    { name: "NATURAL", description: "Natural CVVC Steady and confident tone", sample: "/samples/tilke/1.mp3" },
-                    { name: "WHISPER", description: "Whisper CVVC Low voice", sample: "/samples/tilke/3.mp3" },
-                    { name: "POWER", description: "Power CVVC Powerful voice", sample: "/samples/tilke/2.mp3" }
-                ]
-            },
-            RVC: {
-                url: "https://www.weights.com/ru/models/cm7hxwvxs93w9my15inermked",
-                vocalModes: [
-                    { name: "RVC Voicebank", description: "100e 8200step 8 batch-size", sample: "/samples/tilke/doremi rvc.mp3" }
-                ]
-            }
-        },
-        videoDemos: [ 
-            {
-               url: "https://www.youtube.com/embed/fYvjIW3xfLo?si=2J95kwg45QnzWAPC", 
-               title: "【TILKE -1- DEMO】 花に風 【Emerald Project UTAUカバー】"
-            }
-        ]
-    },
     "simon-weber": {
         name: "Simon Weber",
         cv: "Beaver-P",
