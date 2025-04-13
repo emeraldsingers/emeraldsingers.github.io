@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-center space-x-8">
           <a
-            href="https://www.youtube.com/@EmeraldProject1"
+            href="https://www.youtube.com/@EmeraldProjectUtau"
             target="_blank"
             rel="noopener noreferrer"
             className="text-primary hover:text-primary/80 transition-colors"
@@ -29,13 +29,13 @@ const Footer = () => {
             </svg>
           </a>
           <a
-            href="mailto:emeraldproject13@gmail.com"
+            href="mailto:emeraldprojectutau@gmail.com"
             className="text-primary hover:text-primary/80 transition-colors"
           >
             <Mail className="w-6 h-6" />
           </a>
           <a
-            href="https://x.com/emerald_pj"
+            href="https://x.com/emeraldpjutau"
             target="_blank"
             rel="noopener noreferrer"
             className="text-primary hover:text-primary/80 transition-colors"
