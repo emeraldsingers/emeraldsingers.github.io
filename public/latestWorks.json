@@ -6,15 +6,15 @@
         "description": "Simon is finally in Emerald Project! 💚✨..."
     },
     {
-        "youtubeVideoId": "fYvjIW3xfLo",
-        "image": "/images/Tilke Prev.png",
-        "title": "【TILKE -1- DEMO】 花に風 ",
-        "description": "Tilke is finally in Emerald Project! 💚✨..."
-    },
-    {
         "youtubeVideoId": "r7y7Kx3OWF4",
         "image": "/images/smartk3k0.jpg",
         "title": "【K3K0-01 POWER】 smart???",
         "description": "K3K0-01 is finally in Emerald Project! 💚✨..."
+    },
+    {
+        "youtubeVideoId": "M_G1bJ8j5H0",
+        "image": "/images/jumpingover.jpg",
+        "title": "【Akizora CVVC】 JUMPIN' OVER ! ",
+        "description": "Akizora is finally in Emerald Project! 💚✨..."
     }
 ]
