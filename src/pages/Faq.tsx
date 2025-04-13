@@ -108,7 +108,7 @@ const Faq = () => {
             answer: (
                 <>
                     <p>You can read the tutorial in our Google Document spreadsheet. 
-                        Learn more about our fork of OpenUTAU on the "About UtauV" page.</p>
+                        Learn more about our fork of OpenUTAU on the "How To" page.</p>
                     <p>
                     <a
                         href="https://docs.google.com/document/d/1hmajs70535jEZKlXbf8B_fS9CtiE5fh9BijMmwuxlp0/edit?usp=sharing"
