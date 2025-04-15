@@ -142,8 +142,8 @@ const singersData = {
     k3k0: {
         name: "K3K0",
         cv: "Dori Meru",
-        images: ["/images/k3k0.png", "/images/k3k02.png", "/images/k3k03.png"],
-        authors: { "/images/k3k0.png": "eulliaqzh", "/images/k3k02.png": "Dori Meru", "/images/k3k03.png": "KambaL" },
+        images: ["/images/k3k02.png"],
+        authors: { "/images/k3k02.png": "Dori Meru"},
         audioSamples: ["/samples/k3k0/k3k0-sample1.mp3", "/samples/k3k0/k3k0-sample2.mp3"],
         characterData: {
             Species: "Android",
