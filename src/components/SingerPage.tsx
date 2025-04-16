@@ -67,7 +67,7 @@ const singersData = {
         },
         videoDemos: [ 
             {
-                url: "https://www.youtube.com/embed/M_G1bJ8j5H0", 
+                url: "https://www.youtube.com/embed/70_UaoD5J5c", 
                 title: "【Akizora CVVC】 JUMPIN' OVER ! 【Emerald Project UTAUカバー】"
             },
         ]
@@ -142,8 +142,8 @@ const singersData = {
     k3k0: {
         name: "K3K0",
         cv: "Dori Meru",
-        images: ["/images/k3k02.png"],
-        authors: { "/images/k3k02.png": "Dori Meru"},
+        images: ["/images/k3k0.png"],
+        authors: { "/images/k3k0.png": "Dori Meru"},
         audioSamples: ["/samples/k3k0/k3k0-sample1.mp3", "/samples/k3k0/k3k0-sample2.mp3"],
         characterData: {
             Species: "Android",
@@ -214,7 +214,7 @@ const singersData = {
                 title: "【K3K0-01】Okaasan/おかあさん【UTAUカバー】"
             },
             {
-                url: "https://www.youtube.com/embed/r7y7Kx3OWF4",
+                url: "https://www.youtube.com/embed/iby7gkL7DmM",
                 title: "【K3K0-01 POWER】 smart??? | スマート??? - まらしぃ 【Emerald Project UTAUカバー】"
             },
             {
@@ -254,7 +254,7 @@ const singersData = {
         },
         videoDemos: [ 
             {
-                url: "https://www.youtube.com/embed/RoSOpHnrKFo", 
+                url: "https://www.youtube.com/embed/F2JMYiLiNIk", 
                 title: "【SIMON WEBER DEMO】 WAVE 【Emerald Project UTAUカバー】"
             }
         ]
