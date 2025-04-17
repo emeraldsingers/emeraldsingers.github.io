@@ -69,7 +69,7 @@ const AboutUs = () => {
                         <ul className="flex justify-center space-x-4">
                             <li>
                                 <a
-                                    href="https://www.youtube.com/@EmeraldProject1"
+                                    href="https://www.youtube.com/@EmeraldProjectUtau"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="text-primary hover:text-primary/80 transition-colors"
@@ -89,7 +89,7 @@ const AboutUs = () => {
                             </li>
                             <li>
                                 <a
-                                    href="https://x.com/emerald_pj"
+                                    href="https://x.com/emeraldpjutau"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="text-primary hover:text-primary/80 transition-colors"
