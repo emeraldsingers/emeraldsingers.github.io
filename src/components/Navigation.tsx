@@ -33,9 +33,6 @@ const Navigation = () => {
                  <Link to="/about-us" className="text-primary hover:text-primary/80 transition-colors">
                    About Us
                  </Link>
-                  <Link to="/lore" className="text-primary hover:text-primary/80 transition-colors">
-                   Lore
-                 </Link>
             </div>
             <Button
               variant="ghost"

@@ -44,12 +44,6 @@ const Gallery = () => {
             character: "Akizora",
             artist: "KambaL",
         },
-        {
-           image: "/images/k3k03.png",
-            description: "K3K0",
-            character: "K3K0",
-           artist: "KambaL"
-        }
     ];
 
     return (

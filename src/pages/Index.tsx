@@ -133,11 +133,6 @@ const Index = () => {
                             <BriefcaseBusiness className="mr-1" /> About Us
                         </Link>
                     </Button>
-                    <Button variant="outline" className="border-primary text-primary hover:bg-primary/10 button-glass-gradient"  asChild>
-                        <Link to="/lore">
-                            <Album className="mr-1" /> Lore
-                        </Link>
-                    </Button>
                     </div>
                 </div>
                 <InfiniteScroll />

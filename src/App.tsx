@@ -13,7 +13,6 @@ import AboutUtauV from "@/pages/AboutUtauV";
 import AboutUs from "@/pages/AboutUs";
 import Gallery from "@/pages/Gallery";
 import CommunityWorks from "@/pages/CommunityWorks";
-import Lore from "@/pages/Story";
 import Faq from "@/pages/Faq";
 
 const queryClient = new QueryClient();
@@ -36,7 +35,6 @@ const App = () => (
             <Route path="/faq" element={<Faq />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/community-works" element={<CommunityWorks />} />
-             <Route path="/lore" element={<Lore />} />
           </Routes>
         </HashRouter>
       </TooltipProvider>

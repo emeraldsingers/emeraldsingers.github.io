@@ -130,30 +130,8 @@ const Faq = () => {
             question: "Can I use the Emerald Singers commercially?",
             answer:
                 <>
-                    <p>No. Contact us to emeraldproject13@gmail.com</p>
+                    <p>No. Contact us to emeraldprojectutau@gmail.com</p>
                 </>,
-            category: "singers",
-        },
-        {
-            id: "k3k0virus",
-            question: "How to use K3K0-01 VIRUS?",
-            answer: (
-                <>
-                    <p>Use "u" parameter in resampler.</p>
-                    <p>Here's a video example:</p>
-                    
-
-                    <video
-                        controls
-                        className="w-full my-4 rounded-lg cursor-pointer"
-                        onClick={() => setMediaViewer({ type: "video", src: "/video/k3k0virus.mp4" })}
-                    >
-                        <source src="/video/k3k0virus.mp4" type="video/mp4" />
-                        Your browser does not support the video element.
-                    </video>
-                <p>Note: moresampler is required for this.</p>
-                </>
-            ),
             category: "singers",
         },
     ];

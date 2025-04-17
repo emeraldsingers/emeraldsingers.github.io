@@ -21,14 +21,12 @@ const AboutUtauV = () => {
         "/images/UtauV.png",
         "/images/UtauVakizora.png",
         "/images/UtauVasoqwer.png",
-        "/images/UtauVK3K0.png",
         "/images/UtauVSimon.png",
     ];
     const authors = {
         "/images/UtauV.png": "UtauV Interface",
         "/images/UtauVakizora.png": "Akizora",
         "/images/UtauVasoqwer.png": "asoqwer",
-        "/images/UtauVK3K0.png": "K3K0-01",
         "/images/UtauVSimon.png": "Simon Weber"
     };
 

@@ -17,12 +17,6 @@ const singers = [
     slug: "asoqwer",
   },
   {
-    name: "K3K0",
-    image: "/images/k3k0.png",
-    slug: "k3k0",
-  },
-
-  {
     name: "Simon Weber",
     image: "/images/simon-weber-eu.png",
     slug: "simon-weber",
