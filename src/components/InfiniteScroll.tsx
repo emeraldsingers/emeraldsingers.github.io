@@ -53,7 +53,7 @@ const InfiniteScroll = () => {
 
   return (
     <div className="w-full overflow-hidden">
-      <h2 className="text-3xl font-bold text-white text-center mb-6">Featured Singers</h2>
+      <h2 className="text-3xl font-bold text-black dark:text-white text-center mb-6">Featured Singers</h2>
       <div
         ref={scrollRef}
         className="flex animate-infinite-scroll"
