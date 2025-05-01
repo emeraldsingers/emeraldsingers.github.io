@@ -27,6 +27,7 @@ import {
     Pause,
 } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
+import { motion } from "framer-motion";
 
 import Footer from "@/components/Footer";
 
@@ -221,73 +222,65 @@ const AudioVisualization: React.FC<AudioVisualizationProps> = ({ audioRef, isPla
     const audioContextRef = useRef<AudioContext | null>(null);
     const analyserRef = useRef<AnalyserNode | null>(null);
     const sourceRef = useRef<MediaElementAudioSourceNode | null>(null);
-    const [audioReady, setAudioReady] = useState(false);
 
     useEffect(() => {
-        if (!audioRef.current) {
-            return;
-        }
-
         const audio = audioRef.current;
 
-        const handleCanPlayThrough = () => {
-            setAudioReady(true);
-        };
-
-        audio.addEventListener('canplaythrough', handleCanPlayThrough);
-
-        return () => {
-            audio.removeEventListener('canplaythrough', handleCanPlayThrough);
-        };
-    }, [audioRef, src]); 
-
-
-    useEffect(() => {
-      if(!isPlaying){
-        setAudioReady(false);
-      }
-    }, [isPlaying])
-
-
-    useEffect(() => {
-        if (!isPlaying || !audioRef.current) {
-            if (sourceRef.current) {
-                sourceRef.current.disconnect();
-                sourceRef.current = null;
+        if (!isPlaying || !audio) {
+            if (animationFrameRef.current) {
+                cancelAnimationFrame(animationFrameRef.current);
+                animationFrameRef.current = 0;
             }
             return;
         }
 
-        if(!audioReady) return;
-
-        if (!audioContextRef.current) {
-            audioContextRef.current = new (window.AudioContext)();
-        }
-        if (!analyserRef.current) {
-            analyserRef.current = audioContextRef.current.createAnalyser();
-            analyserRef.current.fftSize = 2048;
-        }
-
-        const audioContext = audioContextRef.current;
-        const analyser = analyserRef.current;
-
-        if (sourceRef.current) {
-            sourceRef.current.disconnect();
-            sourceRef.current = null;
-        }
-
+        let localAudioContext: AudioContext | null = null;
         try {
-            const mediaElementSource = audioContext.createMediaElementSource(audioRef.current);
-            sourceRef.current = mediaElementSource;
-            sourceRef.current.connect(analyser);
-            analyser.connect(audioContext.destination);
-        } catch (error) {
+            if (!audioContextRef.current) {
+                audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+            }
+            localAudioContext = audioContextRef.current;
+
+            if (localAudioContext.state === 'suspended') {
+                localAudioContext.resume().catch(e => console.error("Error resuming AudioContext:", e));
+            }
+        } catch (e) {
+            console.error("Web Audio API is not supported or context creation failed:", e);
             return;
         }
 
-        const bufferLength = analyser.frequencyBinCount;
-        const dataArray = new Uint8Array(bufferLength);
+        let localAnalyser: AnalyserNode | null = null;
+        if (localAudioContext && !analyserRef.current) {
+             try {
+                analyserRef.current = localAudioContext.createAnalyser();
+                analyserRef.current.fftSize = 2048;
+             } catch (e) {
+                 console.error("Error creating AnalyserNode:", e);
+                 return;
+             }
+        }
+        localAnalyser = analyserRef.current;
+        if (!localAnalyser) return;
 
+        try {
+            if (sourceRef.current && sourceRef.current.mediaElement !== audio) {
+                try { sourceRef.current.disconnect(); } catch (e) {}
+                sourceRef.current = null;
+            }
+
+            if (!sourceRef.current && localAudioContext) {
+                sourceRef.current = localAudioContext.createMediaElementSource(audio);
+                sourceRef.current.connect(localAnalyser); 
+                localAnalyser.connect(localAudioContext.destination);
+            }
+        } catch(error) {
+             console.error('Error creating/connecting media element source:', error);
+             if (sourceRef.current) { try {sourceRef.current.disconnect();} catch(e){} sourceRef.current = null; }
+             return;
+        }
+        
+        const bufferLength = localAnalyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
         const canvas = canvasRef.current;
         const canvasCtx = canvas?.getContext('2d');
         if (!canvasCtx || !canvas) return;
@@ -296,68 +289,78 @@ const AudioVisualization: React.FC<AudioVisualizationProps> = ({ audioRef, isPla
         canvas.height = canvas.offsetHeight;
 
         const draw = () => {
+            if (!analyserRef.current || !isPlaying) {
+                cancelAnimationFrame(animationFrameRef.current);
+                animationFrameRef.current = 0;
+                return;
+            }
             animationFrameRef.current = requestAnimationFrame(draw);
 
-            analyser.getByteTimeDomainData(dataArray);
+            analyserRef.current.getByteTimeDomainData(dataArray);
 
-            canvasCtx.fillStyle = 'rgba(0, 0, 0, 0)';
             canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
-            canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
-
-            canvasCtx.lineWidth = 1;
+            canvasCtx.lineWidth = 2;
             canvasCtx.strokeStyle = theme === 'light' ? singerColors.dark : singerColors.light;
             canvasCtx.beginPath();
 
-            const sliceWidth = canvas.width / bufferLength;
+            const sliceWidth = canvas.width * 1.0 / bufferLength;
             let x = 0;
 
             for (let i = 0; i < bufferLength; i++) {
                 const v = dataArray[i] / 128.0;
-                const y = v * canvas.height / 2;
-
+                const y = (v * canvas.height / 2);
                 if (i === 0) {
                     canvasCtx.moveTo(x, y);
                 } else {
                     canvasCtx.lineTo(x, y);
                 }
-
                 x += sliceWidth;
             }
-
             canvasCtx.lineTo(canvas.width, canvas.height / 2);
             canvasCtx.stroke();
         };
 
+        if (animationFrameRef.current) {
+            cancelAnimationFrame(animationFrameRef.current);
+        }
         draw();
 
         return () => {
-            cancelAnimationFrame(animationFrameRef.current);
-
+            if (animationFrameRef.current) {
+                cancelAnimationFrame(animationFrameRef.current);
+                animationFrameRef.current = 0;
+            }
         };
-    }, [isPlaying, audioRef, theme, singerColors, audioReady, src]);
-
+    }, [isPlaying, src, audioRef, theme, singerColors]);
 
     useEffect(() => {
+        const currentAudioContext = audioContextRef.current;
         return () => {
+            console.log("Cleaning up AudioVisualization component completely.")
+            if (animationFrameRef.current) {
+                 cancelAnimationFrame(animationFrameRef.current);
+            }
             if (sourceRef.current) {
-                sourceRef.current.disconnect();
+                try { sourceRef.current.disconnect(); } catch(e) { console.warn("Error disconnecting source:", e); }
                 sourceRef.current = null;
             }
-            if (analyserRef.current) {
-                analyserRef.current.disconnect();
+            if (analyserRef.current && currentAudioContext) {
+                try { analyserRef.current.disconnect(); } catch(e) { console.warn("Error disconnecting analyser:", e); }
                 analyserRef.current = null;
             }
-            if (audioContextRef.current) {
-                audioContextRef.current.close();
+            if (currentAudioContext && currentAudioContext.state !== 'closed') {
+                 try {
+                    currentAudioContext.close().catch(e => console.warn("Error closing AudioContext:", e));
+                 } catch (e) {
+                     console.error("Exception closing AudioContext:", e);
+                 }
+                 audioContextRef.current = null;
             }
-            audioContextRef.current = null;
-            analyserRef.current = null;
-
         };
     }, []);
 
     return (
-        <div className={`w-full h-12 overflow-hidden transition-all duration-300`} style={{ height: isPlaying ? '30px' : '0px' }}>
+        <div className={`w-full overflow-hidden transition-all duration-300`} style={{ height: isPlaying ? '30px' : '0px' }}>
             <canvas ref={canvasRef} className="w-full h-full" style={{ opacity: isPlaying ? 1 : 0, transition: 'opacity 0.3s ease' }} />
         </div>
     );
@@ -381,9 +384,28 @@ const SingerPage: React.FC = () => {
     const [currentSampleUrl, setCurrentSampleUrl] = useState<string | null>(null);
     const [currentVocalModeSampleUrl, setCurrentVocalModeSampleUrl] = useState<string | null>(null);
     const audioRef = useRef<HTMLAudioElement | null>(null);
-    const [isVisualizationVisible, setIsVisualizationVisible] = useState(false);
     const [selectedVoicebankFormat, setSelectedVoicebankFormat] = useState<string | null>(null);
 
+    // Add animation variants
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: { 
+            opacity: 1,
+            transition: { 
+                staggerChildren: 0.1,
+                delayChildren: 0.2
+            }
+        }
+    };
+    
+    const itemVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: { 
+            y: 0, 
+            opacity: 1,
+            transition: { type: "spring", stiffness: 300, damping: 24 }
+        }
+    };
 
     useEffect(() => {
         const handleMouseMove = (event: MouseEvent) => {
@@ -469,42 +491,45 @@ const SingerPage: React.FC = () => {
     const singerDarkColor = singer.colors?.dark || 'rgb(0, 0, 0)';
 
     const handlePlaySample = useCallback((sampleUrl: string) => {
-        if (audioRef.current && currentSampleUrl === sampleUrl) {
-            if (isPlaying) {
-                audioRef.current.pause();
-                setIsPlaying(false);
-                setIsVisualizationVisible(false);
-                setCurrentVocalModeSampleUrl(null);
-            } else {
-                audioRef.current.play();
-                setIsPlaying(true);
-                setIsVisualizationVisible(true);
-                setCurrentVocalModeSampleUrl(sampleUrl);
-            }
-        } else {
-            if (audioRef.current) {
-                audioRef.current.pause();
-                audioRef.current.currentTime = 0;
-            }
-            audioRef.current = new Audio(sampleUrl);
-            setCurrentSampleUrl(sampleUrl);
-            setCurrentVocalModeSampleUrl(sampleUrl);
-            setIsPlaying(true);
-            setIsVisualizationVisible(true);
-            audioRef.current.play();
-            audioRef.current.onended = () => {
-                setIsPlaying(false);
-                setIsVisualizationVisible(false);
-                setCurrentVocalModeSampleUrl(null);
-            };
+        if (audioRef.current) {
+            audioRef.current.pause();
+            audioRef.current.onended = null;
         }
+
+        if (currentSampleUrl === sampleUrl && isPlaying) {
+            audioRef.current?.pause();
+            setIsPlaying(false);
+            setCurrentSampleUrl(null);
+            audioRef.current = null;
+            return;
+        }
+
+        const newAudio = new Audio(sampleUrl);
+        audioRef.current = newAudio;
+        setCurrentSampleUrl(sampleUrl);
+
+        newAudio.onended = () => {
+            setIsPlaying(false);
+            setCurrentSampleUrl(null);
+            audioRef.current = null;
+        };
+
+        newAudio.play()
+            .then(() => {
+                setIsPlaying(true);
+            })
+            .catch(error => {
+                console.error("Error playing audio:", error);
+                setIsPlaying(false);
+                setCurrentSampleUrl(null);
+                audioRef.current = null;
+            });
     }, [isPlaying, currentSampleUrl]);
 
     const handlePauseSample = useCallback(() => {
         if (audioRef.current && isPlaying) {
             audioRef.current.pause();
             setIsPlaying(false);
-            setIsVisualizationVisible(false);
             setCurrentVocalModeSampleUrl(null);
         }
     }, [isPlaying]);
@@ -522,265 +547,272 @@ const SingerPage: React.FC = () => {
 
     return (
         <div
-            className="min-h-screen flex flex-col bg-gradient-to-br from-background to-secondary/50"
+            className="min-h-screen flex flex-col"
             style={{
                 backgroundImage: theme === "light"
-                    ? `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%,${singerLightColor}, #FFFFFF)`
-                    : `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%,${singerDarkColor} , #000000)`,
+                    ? `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, ${singerLightColor}, #FFFFFF)`
+                    : `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, ${singerDarkColor} , #000000)`,
                 transition: 'background-image 0.3s ease',
             }}
             ref={containerRef}
         >
-            <main className="flex-grow container mx-auto px-4 py-20">
-                <div className="flex gap-2 mb-4">
-                    <Button
-                        variant="outline"
-                        className="border-primary/20 text-primary"
-                        onClick={() => navigate(-1)}
-                    >
-                        <ChevronLeft className="mr-1" /> Back
-                    </Button>
-                    <Button variant="outline" className="border-primary/20 text-primary" asChild>
-                        <Link to="/">
-                            <Home className="mr-1" /> Home
-                        </Link>
-                    </Button>
-                    <Button variant="outline" className="border-primary/20 text-primary" asChild>
-                        <Link to="/singers">
-                            <Users className="mr-1" /> Singers
-                        </Link>
-                    </Button>
-                    <Button variant="outline" className="border-primary/20 text-primary" asChild>
-                        <Link to="/how-to">
-                            <HelpCircle className="mr-1" /> How To Use
-                        </Link>
-                    </Button>
-                    <Button variant="outline" className="border-primary/20 text-primary" asChild>
-                        <Link to="/terms">
-                            <FileText className="mr-1" /> Terms of Use
-                        </Link>
-                    </Button>
-                    <Button variant="outline" className="border-primary/20 text-primary" asChild>
-                        <Link to="/about-us">
-                            <BriefcaseBusiness className="mr-1" /> About Us
-                        </Link>
-                    </Button>
-                    <Button variant="outline" className="border-primary/20 text-primary" asChild>
-                        <Link to="/lore">
-                            <Album className="mr-1" /> Lore
-                        </Link>
-                    </Button>
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-                        className="ml-auto rounded-full"
-                    >
-                        <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                        <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                        <span className="sr-only">Toggle theme</span>
-                    </Button>
-                </div>
-
-
-                {/* Singer Image and Info Section */}
-                <div className="glass-morphism p-8 mb-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div className="relative">
-                            <div className="relative w-[28rem] h-[28rem] overflow-hidden rounded-lg mx-auto transition-opacity duration-300">
-                                <img
-                                    ref={imageRef}
-                                    key={currentImagePath}
-                                    src={currentImagePath}
-                                    alt={`${singer.name} artwork`}
-                                    className="w-full h-full object-contain"
-                                    style={{ opacity: imageOpacity }}
-                                />
+            <nav className="fixed top-0 left-0 right-0 bg-white/10 dark:bg-black/20 backdrop-blur-sm z-50 border-b border-white/20">
+                <div className="container mx-auto px-4">
+                    <div className="flex items-center justify-between h-16">
+                        <div className="flex items-center space-x-4">
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={() => navigate(-1)}
+                                className="text-primary hover:text-primary/80 transition-colors"
+                            >
+                                <ChevronLeft className="h-5 w-5" />
+                            </Button>
+                            <div className="flex items-center space-x-4">
+                                <Link to="/" className="text-primary hover:text-primary/80 transition-colors">
+                                    <Home className="h-5 w-5" />
+                                </Link>
+                                <Link to="/singers" className="text-primary hover:text-primary/80 transition-colors">
+                                    <Users className="h-5 w-5" />
+                                </Link>
                             </div>
-                            <div className="flex flex-row items-center justify-center mt-2 text-primary/80">
-                                <Brush className="w-5 h-5 mr-1" />
-                                <p className="text-sm mr-2">{singer.name}</p>
-                                {currentImageAuthor && (
-                                    <p className="text-xs italic">by {currentImageAuthor}</p>
-                                )}
-                            </div>
-                            {singer.images.length > 1 && (
-                                <>
-                                    <div className="absolute top-1/2 -translate-y-1/2 left-4">
-                                        <Button
-                                            onClick={handlePrevImage}
-                                            className="p-2 neo-blur rounded-full text-primary hover:bg-primary/10"
-                                            aria-label="Previous Image"
-                                        >
-                                            <ChevronLeft className="w-4 h-4" />
-                                        </Button>
-                                    </div>
-                                    <div className="absolute top-1/2 -translate-y-1/2 right-4">
-                                        <Button
-                                            onClick={handleNextImage}
-                                            className="p-2 neo-blur rounded-full text-primary hover:bg-primary/10"
-                                            aria-label="Next Image"
-                                        >
-                                            <ChevronRight className="w-4 h-4" />
-                                        </Button>
-                                    </div>
-                                </>
-                            )}
                         </div>
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                            className="rounded-full"
+                        >
+                            <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                            <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                            <span className="sr-only">Toggle theme</span>
+                        </Button>
+                    </div>
+                </div>
+            </nav>
 
-                        {/* Singer Information */}
-                        <div>
-                            <h1 className="text-4xl font-bold text-primary mb-2">{singer.name}</h1>
-                            <p className="text-primary/80 mb-6">CV: {singer.cv}</p>
-                            <div className="space-y-4 mb-8">
-                                <Button
-                                    variant="outline"
-                                    className="w-full border-primary/20 text-primary hover:bg-primary/10"
-                                    asChild
-                                >
-                                    <Link to="/how-to">
-                                        <HelpCircle className="mr-2" /> How to Install
-                                    </Link>
-                                </Button>
-                                <Button
-                                    variant="outline"
-                                    className={`w-full border-primary/20 hover:bg-primary/10 ${theme === 'light' ? 'text-black' : 'text-white'}`}
-                                    onClick={scrollToVoicebanks}
-                                >
-                                    Download Voicebank
-                                </Button>
-                                {/* Character Data Section */}
-                                <div className="mt-6 p-4 neo-blur rounded-lg">
-                                    <h3 className="text-xl font-bold text-primary mb-4 text-center">Character Data</h3>
-                                    <div className="grid grid-cols-2 gap-2">
-                                        {Object.entries(singer.characterData).map(([key, value]) => (
-                                            <div key={key} className="flex items-center">
-                                                <span className="font-semibold text-primary mr-1">{key}:</span>
-                                                <span className="text-primary/80">{value}</span>
-                                                {key === "Species" && getSpeciesIcon(value)}
-                                                {key === "Gender" && getGenderIcon(value)}
-                                                {key === "Age" && <Cake className="inline-block ml-1 h-4 w-41" />}
-                                                {key === "Height" && <Ruler className="inline-block ml-1 h-4 w-41" />}
-                                                {key === "Weight" && <Weight className="inline-block ml-1 h-4 w-41" />}
-                                                {key === "Birthday" && <Cake className="inline-block ml-1 h-4 w-41" />}
-                                                {key === "Stone" && <Gem className="inline-block ml-1 h-4 w-41" />}
+            <motion.main 
+                className="flex-grow container mx-auto px-4 py-20"
+                initial="hidden"
+                animate="visible"
+                variants={containerVariants}
+            >
+                {singer && (
+                    <>
+                        {/* Singer header section */}
+                        <motion.div 
+                            variants={itemVariants}
+                            className="flex flex-col md:flex-row gap-8 mt-8 mb-12 items-center"
+                        >
+                            <div className="w-full md:w-1/2 max-w-[450px] flex justify-center">
+                                <div className="relative">
+                                    <div className="relative w-[28rem] h-[28rem] overflow-hidden rounded-lg mx-auto transition-opacity duration-300 shadow-lg">
+                                        <img
+                                            ref={imageRef}
+                                            key={currentImagePath}
+                                            src={currentImagePath}
+                                            alt={`${singer.name} artwork`}
+                                            className="w-full h-full object-contain bg-black/5 dark:bg-white/5"
+                                            style={{ opacity: imageOpacity }}
+                                        />
+                                    </div>
+                                    <div className="flex flex-row items-center justify-center mt-2 text-primary/80">
+                                        <Brush className="w-5 h-5 mr-1" />
+                                        {currentImageAuthor && (
+                                            <p className="text-xs italic">Art by {currentImageAuthor}</p>
+                                        )}
+                                    </div>
+                                    {singer.images.length > 1 && (
+                                        <>
+                                            <div className="absolute top-1/2 -translate-y-1/2 left-4">
+                                                <Button
+                                                    variant="outline"
+                                                    size="icon"
+                                                    onClick={handlePrevImage}
+                                                    className="bg-white/80 dark:bg-black/50 hover:bg-white dark:hover:bg-black/80 rounded-full"
+                                                    aria-label="Previous Image"
+                                                >
+                                                    <ChevronLeft className="h-4 w-4" />
+                                                </Button>
+                                            </div>
+                                            <div className="absolute top-1/2 -translate-y-1/2 right-4">
+                                                <Button
+                                                    variant="outline"
+                                                    size="icon"
+                                                    onClick={handleNextImage}
+                                                    className="bg-white/80 dark:bg-black/50 hover:bg-white dark:hover:bg-black/80 rounded-full"
+                                                    aria-label="Next Image"
+                                                >
+                                                    <ChevronRight className="h-4 w-4" />
+                                                </Button>
+                                            </div>
+                                        </>
+                                    )}
+                                </div>
+                            </div>
+
+                            <div className="w-full md:w-1/2">
+                                <h1 className="text-4xl font-bold text-primary mb-2">{singer.name}</h1>
+                                <p className="text-muted-foreground mb-6">CV: {singer.cv}</p>
+
+                                <div className="mb-6">
+                                    <h2 className="text-2xl font-semibold text-primary mb-4">Character Info</h2>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        {singer.characterData && Object.entries(singer.characterData).map(([key, value]) => (
+                                            <div key={key} className="flex items-center gap-3">
+                                                {key === "Species" && getSpeciesIcon(value as string)}
+                                                {key === "Gender" && getGenderIcon(value as string)}
+                                                {key === "Age" && <Cake className="h-6 w-6 text-primary" />}
+                                                {key === "Height" && <Ruler className="h-6 w-6 text-primary" />}
+                                                {key === "Weight" && <Weight className="h-6 w-6 text-primary" />}
+                                                {key === "Birthday" && <Cake className="h-6 w-6 text-primary" />}
+                                                {key === "Stone" && <Gem className="h-6 w-6 text-primary" />}
+                                                <div>
+                                                    <span className="text-muted-foreground font-medium">{key}:</span>{" "}
+                                                    <span className="text-primary font-medium">{value as string}</span>
+                                                </div>
                                             </div>
                                         ))}
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                 {/* Video Demonstrations Section */}
-                {videoDemos.length > 0 && (
-                    <div className="glass-morphism p-8 mb-8">
-                        <h2 className="text-2xl font-bold text-primary mb-6 text-center">Video demonstrations</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-center">
-                            {videoDemos.map((video, index) => (
-                                <div key={index} className="rounded-lg overflow-hidden neo-blur">
-                                    <iframe
-                                        width="100%"
-                                        height="360"
-                                        src={video.url}
-                                        title={video.title}
-                                        frameBorder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                        referrerPolicy="strict-origin-when-cross-origin"
-                                        allowFullScreen
-                                    ></iframe>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                )}
+                        </motion.div>
 
-                {/* Voicebanks Section */}
-                <div className="glass-morphism p-8" id="voicebanks-section" ref={voicebanksSectionRef}>
-                    <h2 className="text-2xl font-bold text-primary mb-6 text-center">Voicebanks</h2>
-                    <div className="flex flex-col items-center space-y-4 mb-8">
-                        <div className="flex flex-row flex-wrap justify-center gap-2 mb-4"> 
-                            {voicebankFormats.map((format) => (
-                                <Button
-                                    key={format}
-                                    variant={selectedVoicebankFormat === format ? "default" : "outline"} 
-                                    className={`border-primary/20 text-primary hover:bg-primary/10 ${selectedVoicebankFormat === format ? 'bg-primary/90 text-primary-foreground hover:bg-primary' : ''}`}
-                                    onClick={() => handleVoicebankFormatClick(format)}
-                                >
-                                    {format} Voicebank
-                                </Button>
-                            ))}
-                        </div>
-                        {voicebankFormats.length === 0 && (
-                            <p className="text-primary/80 text-center">No voicebanks available yet.</p>
-                        )}
-                        {currentVoicebank && currentVoicebank.url && (
-                            <Button
-                                asChild
-                                className="w-50 bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-bold shadow-md"
-                                disabled={!currentVoicebank?.url}
+                        {/* Voicebanks section */}
+                        {voicebankFormats.length > 0 && (
+                            <motion.div
+                                variants={itemVariants}
+                                className="mb-16 border border-primary/10 rounded-lg p-6 bg-white/5 dark:bg-black/20 backdrop-blur-sm"
                             >
-                                <Link
-                                    to={currentVoicebank.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    <Download className="mr-2 h-4 w-4" /> Download {currentVoicebankFormat} Voicebank
-                                </Link>
-                            </Button>
-                        )}
-                    </div>
-
-                    {/* Vocal Modes Section */}
-                    {currentVoicebank && currentVoicebank.vocalModes && (
-                        <div className="glass-morphism p-8 relative overflow-hidden transition-all duration-300" style={{ maxHeight: isVisualizationVisible ? '500px' : 'auto' }}>
-                            <h2 className="text-2xl font-bold text-primary mb-6">Available Vocal Modes ({currentVoicebankFormat})</h2>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                {vocalModesToDisplay.map((mode) => (
-                                    <div
-                                        key={mode.name}
-                                        className="neo-blur p-6 hover:bg-primary/5 transition-colors rounded-lg flex flex-col"
+                                <h2 className="text-2xl font-semibold text-primary mb-6">Voicebanks</h2>
+                                
+                                {/* Voicebank format selector buttons */}
+                                <div className="flex flex-wrap gap-2 mb-6">
+                                    {voicebankFormats.map((format) => (
+                                        <Button
+                                            key={format}
+                                            variant={selectedVoicebankFormat === format ? "default" : "outline"}
+                                            className={selectedVoicebankFormat === format 
+                                                ? "bg-primary text-primary-foreground" 
+                                                : "border-primary/20 text-primary"}
+                                            onClick={() => handleVoicebankFormatClick(format)}
+                                        >
+                                            {format}
+                                        </Button>
+                                    ))}
+                                </div>
+                                
+                                {/* Current voicebank details */}
+                                {currentVoicebank && (
+                                    <motion.div 
+                                        variants={itemVariants}
+                                        className="bg-white/10 dark:bg-black/20 rounded-lg p-6"
                                     >
-                                        <div className="flex justify-between items-center mb-2">
-                                            <h3 className="text-xl font-bold text-primary ">{mode.name}</h3>
-                                            <Button
-                                                variant="ghost"
-                                                size="icon"
-                                                onClick={() => handlePlaySample(mode.sample)}
-                                                className="rounded-full text-primary hover:bg-primary/10"
-                                                aria-label={isPlaying && currentSampleUrl === mode.sample ? "Pause Sample" : "Play Sample"}
+                                        <div className="flex flex-wrap items-center justify-between mb-6">
+                                            <h3 className="text-xl font-medium text-primary">{currentVoicebankFormat}</h3>
+                                            <a
+                                                href={currentVoicebank.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="btn-primary flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-md transition-colors"
                                             >
-                                                {isPlaying && currentSampleUrl === mode.sample ? (
-                                                    <Pause className="h-5 w-5" />
-                                                ) : (
-                                                    <Play className="h-5 w-5" />
-                                                )}
-                                            </Button>
+                                                <Download className="h-4 w-4" />
+                                                {currentVoicebankFormat.toLowerCase().includes('rvc') 
+                                                    ? "View on Weights.gg" 
+                                                    : "Download"}
+                                            </a>
                                         </div>
-                                        <p className="text-primary/80">{mode.description}</p>
-                                        {isPlaying && currentVocalModeSampleUrl === mode.sample && (
-                                            <div className="mt-2">
-                                                <AudioVisualization
-                                                    audioRef={audioRef}
-                                                    isPlaying={isPlaying}
-                                                    theme={theme}
-                                                    singerColors={singer.colors}
-                                                    src={mode.sample}
-                                                />
+
+                                        {currentVoicebank.vocalModes && currentVoicebank.vocalModes.length > 0 && (
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                {currentVoicebank.vocalModes.map((mode, index) => (
+                                                    <div key={index} className="bg-white/5 dark:bg-black/20 rounded-lg p-4">
+                                                        <div className="flex flex-wrap items-center justify-between mb-2">
+                                                            <div>
+                                                                <h4 className="text-lg font-medium text-primary">{mode.name}</h4>
+                                                                {mode.description && (
+                                                                    <p className="text-sm text-muted-foreground">{mode.description}</p>
+                                                                )}
+                                                            </div>
+                                                            {mode.sample && (
+                                                                <div className="flex items-center gap-2 mt-2 md:mt-0">
+                                                                    <Button
+                                                                        variant="outline"
+                                                                        size="sm"
+                                                                        className="text-xs"
+                                                                        onClick={() => handlePlaySample(mode.sample)}
+                                                                    >
+                                                                        {isPlaying && currentSampleUrl === mode.sample ? (
+                                                                            <>
+                                                                                <Pause className="h-3 w-3 mr-1" /> Pause
+                                                                            </>
+                                                                        ) : (
+                                                                            <>
+                                                                                <Play className="h-3 w-3 mr-1" /> Play Sample
+                                                                            </>
+                                                                        )}
+                                                                    </Button>
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                        {mode.sample && currentSampleUrl === mode.sample && (
+                                                            <div className="mt-2 h-16 bg-black/10 dark:bg-white/10 rounded-lg overflow-hidden">
+                                                                <AudioVisualization
+                                                                    audioRef={audioRef as React.RefObject<HTMLAudioElement>}
+                                                                    isPlaying={isPlaying}
+                                                                    theme={theme as 'light' | 'dark'}
+                                                                    singerColors={singer.colors}
+                                                                    src={currentSampleUrl}
+                                                                />
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                ))}
                                             </div>
                                         )}
+                                    </motion.div>
+                                )}
+                            </motion.div>
+                        )}
+
+                        {/* Demo videos section - updated grid layout */}
+                        {singer.videoDemos && singer.videoDemos.length > 0 && (
+                            <motion.div 
+                                variants={itemVariants}
+                                className="mt-8 mb-16"
+                            >
+                                <h2 className="text-2xl font-semibold text-primary mb-6 text-center">Demo Videos</h2>
+                                <div className="max-w-4xl mx-auto">
+                                    <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 ${singer.videoDemos.length % 2 !== 0 ? 'md:last:col-span-2 md:last:mx-auto md:last:max-w-xl' : ''}`}>
+                                        {singer.videoDemos.map((demo, index) => (
+                                            <motion.div 
+                                                key={index}
+                                                variants={itemVariants}
+                                                className={`aspect-video overflow-hidden rounded-lg shadow-lg ${
+                                                    singer.videoDemos.length % 2 !== 0 && index === singer.videoDemos.length - 1 
+                                                    ? 'md:col-span-2 md:mx-auto md:max-w-xl' : ''
+                                                }`}
+                                            >
+                                                <iframe
+                                                    width="100%"
+                                                    height="100%"
+                                                    src={demo.url}
+                                                    title={demo.title}
+                                                    frameBorder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowFullScreen
+                                                ></iframe>
+                                                <h3 className="text-lg font-medium text-primary mt-2">{demo.title}</h3>
+                                            </motion.div>
+                                        ))}
                                     </div>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-                     {voicebankFormats.length > 0 && (!currentVoicebank || !currentVoicebank.vocalModes || currentVoicebank.vocalModes.length === 0) && (
-                         <div className="glass-morphism p-8 relative overflow-hidden transition-all duration-300">
-                            <p className="text-primary/80 text-center">No vocal modes available for {currentVoicebankFormat} voicebank yet.</p>
-                         </div>
-                     )}
-                </div>
-            </main>
+                                </div>
+                            </motion.div>
+                        )}
+                    </>
+                )}
+            </motion.main>
+
             <Footer />
         </div>
     );

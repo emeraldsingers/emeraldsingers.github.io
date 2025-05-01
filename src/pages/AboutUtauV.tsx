@@ -8,14 +8,35 @@ import {
     Brush,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: { staggerChildren: 0.08, delayChildren: 0.1 }
+    }
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+        opacity: 1, 
+        y: 0,
+        transition: { type: "spring", stiffness: 100, damping: 15 }
+    }
+};
 
 const AboutUtauV = () => {
     const { theme } = useTheme();
-    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const containerRef = useRef<HTMLDivElement>(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [imageOpacity, setImageOpacity] = useState(1);
     const imageRef = useRef<HTMLImageElement>(null);
+    const [offsetX, setOffsetX] = useState(0);
+    const [offsetY, setOffsetY] = useState(0);
 
     const images = [
         "/images/UtauV.png",
@@ -33,28 +54,21 @@ const AboutUtauV = () => {
     const currentImagePath = images[currentImageIndex];
     const currentImageAuthor = authors[currentImagePath];
 
-    useEffect(() => {
-        const handleMouseMove = (event: MouseEvent) => {
-            if (containerRef.current) {
-                const rect = containerRef.current.getBoundingClientRect();
-                const x = event.clientX - rect.left;
-                const y = event.clientY - rect.top;
+    const handleMouseMove = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        if (containerRef.current) {
+            const rect = containerRef.current.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            const width = rect.width;
+            const height = rect.height;
 
-                const containerWidth = rect.width;
-                const containerHeight = rect.height;
-                const centerXPercentage = (x / containerWidth) * 100;
-                const centerYPercentage = (y / containerHeight) * 100;
+            const moveX = ((x / width) - 0.5) * 20;
+            const moveY = ((y / height) - 0.5) * 20;
 
-                setMousePos({ x: centerXPercentage, y: centerYPercentage });
-            }
-        };
-
-        document.addEventListener('mousemove', handleMouseMove);
-
-        return () => {
-            document.removeEventListener('mousemove', handleMouseMove);
-        };
-    }, []);
+            setOffsetX(moveX);
+            setOffsetY(moveY);
+        }
+    };
 
     const handlePrevImage = useCallback(() => {
         setImageOpacity(0);
@@ -76,65 +90,77 @@ const AboutUtauV = () => {
         }, 300);
     }, [images.length]);
 
+    const googleDocTutorialLink = "https://docs.google.com/document/d/1Eb43g7Tc616YRtyfLEqrwGKLS5af238-KsGQoY06oBs/edit?usp=sharing";
+
+    const megaModelsLink = "https://mega.nz/folder/riIkRawA#urkiXGT1SsuJLhquWJegoQ";
 
     return (
         <div
-            className="min-h-screen flex flex-col bg-gradient-to-br from-background to-secondary/50"
-            style={{
-                backgroundImage: theme === "light"
-                    ? `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, rgb(159, 223, 159), #FFFFFF)`
-                    : `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, #004040, #000000)`,
-                transition: 'background-image 0.3s ease',
-            }}
+            className={cn(
+                "min-h-screen flex flex-col overflow-hidden animated-background-container",
+                theme === 'dark' 
+                    ? "dark-theme-background" 
+                    : "light-theme-background"
+            )}
+            onMouseMove={handleMouseMove}
             ref={containerRef}
         >
+            <div 
+                className="background-shapes"
+                style={{ transform: `translate(${offsetX}px, ${offsetY}px)` }}
+            ></div>
             <Navigation />
-            <main className="flex-grow container mx-auto px-4 py-20">
-                <div className="max-w-5xl mx-auto glass-morphism rounded-xl p-8">
-                    <h1 className="text-4xl font-bold text-primary mb-8 text-center">About UtauV Emerald Edition</h1>
+            <main className="flex-grow container mx-auto px-4 py-20 relative">
+                <motion.div 
+                    className="max-w-5xl mx-auto glass-morphism rounded-xl p-8"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                >
+                    <motion.h1 variants={itemVariants} className="text-4xl font-bold text-primary mb-8 text-center">About UtauV Emerald Edition</motion.h1>
 
-                    <section className="mb-8 text-center">
+                    <motion.section variants={itemVariants} className="mb-8 text-center">
                         <p className="text-xl text-muted-foreground mb-4">
                             UtauV Emerald Edition is a fork of the open-source UTAU editor, OpenUtau, designed to provide enhanced features and a more polished experience for our Emerald Singers.
                         </p>
                         <p className="text-xl text-muted-foreground mb-4">
-                            We've taken the solid foundation of OpenUtau and built upon it with unique styling, an updated CVVC phonemizer, and other improvements tailored specifically to our project.
+                            We've taken the solid foundation of OpenUtau and built upon it with unique styling, AutoPitch and Auto Harmonies, and other improvements tailored specifically to our project.
                         </p>
-                    </section>
+                    </motion.section>
 
-                    <section className="mb-8">
-                        <h2 className="text-2xl font-bold text-primary mb-6 text-center">Key Features</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div className="glass-morphism p-6 rounded-lg border border-primary/20 shadow-lg">
+                    <motion.section variants={itemVariants} className="mb-8">
+                        <motion.h2 variants={itemVariants} className="text-2xl font-bold text-primary mb-6 text-center">Key Features</motion.h2>
+                        <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <motion.div variants={itemVariants} className="glass-morphism p-6 rounded-lg border border-primary/20 shadow-lg">
                                 <h3 className="text-xl font-semibold mb-2 text-primary">Unique Styling</h3>
                                 <p className="text-muted-foreground">
                                     We've implemented a distinctive visual style that compliments our Emerald Singers and provides a modern, sleek look.
                                 </p>
-                            </div>
-                            <div className="glass-morphism p-6 rounded-lg border border-primary/20 shadow-lg">
+                            </motion.div>
+                            <motion.div variants={itemVariants} className="glass-morphism p-6 rounded-lg border border-primary/20 shadow-lg">
                                 <h3 className="text-xl font-semibold mb-2 text-primary">New Project Formats support</h3>
                                 <p className="text-muted-foreground">
                                     We've developed a solution for uploading projects from other engines for convenient cross-platform work.
                                 </p>
-                            </div>
-                            <div className="glass-morphism p-6 rounded-lg border border-primary/20 shadow-lg">
+                            </motion.div>
+                            <motion.div variants={itemVariants} className="glass-morphism p-6 rounded-lg border border-primary/20 shadow-lg">
                                 <h3 className="text-xl font-semibold mb-2 text-primary">New Features</h3>
                                 <p className="text-muted-foreground">
-                                    We've added new features to make UtauV Emerald Edition even more user-friendly and enjoyable.
+                                We've added new features, such as AutoPitch and Auto Harmonies, to make UtauV Emerald Edition even more user-friendly and enjoyable.
                                 </p>
-                            </div>
-                            <div className="glass-morphism p-6 rounded-lg border border-primary/20 shadow-lg">
+                            </motion.div>
+                            <motion.div variants={itemVariants} className="glass-morphism p-6 rounded-lg border border-primary/20 shadow-lg">
                                 <h3 className="text-xl font-semibold mb-2 text-primary">Focus on Emerald Singers</h3>
                                 <p className="text-muted-foreground">
                                     UtauV Emerald Edition is designed to work seamlessly with our Emerald Singers, ensuring a consistent and high-quality experience.
                                 </p>
-                            </div>
-                        </div>
-                    </section>
+                            </motion.div>
+                        </motion.div>
+                    </motion.section>
 
-                   <section className="mb-8">
-                        <h2 className="text-2xl font-bold text-primary mb-6 text-center">Emerald Singers Showcase</h2>
-                        <div className="relative flex flex-col items-center"> 
+                   <motion.section variants={itemVariants} className="mb-8">
+                        <motion.h2 variants={itemVariants} className="text-2xl font-bold text-primary mb-6 text-center">Emerald Singers Showcase</motion.h2>
+                        <motion.div variants={itemVariants} className="relative flex flex-col items-center"> 
                             <div className="relative w-[42rem] h-[23rem] overflow-hidden rounded-xl mx-auto transition-opacity duration-300 shadow-2xl">
                                 <img
                                     ref={imageRef}
@@ -174,14 +200,14 @@ const AboutUtauV = () => {
                                     </div>
                                 </>
                             )}
-                        </div>
-                    </section>
-                    <section className="mb-8 text-center">
+                        </motion.div>
+                    </motion.section>
+                    <motion.section variants={itemVariants} className="mb-8 text-center">
                         <p className="text-muted-foreground">
                             We're constantly evolving and improving. Stay tuned for more updates and features!
                         </p>
-                    </section>
-                </div>
+                    </motion.section>
+                </motion.div>
             </main>
             <Footer />
         </div>

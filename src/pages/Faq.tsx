@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { useTheme } from "@/components/ThemeProvider";
 import {
     ChevronDown,
     Loader2,
@@ -9,6 +10,8 @@ import {
     Minus
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface FaqItem {
     question: string;
@@ -23,7 +26,45 @@ interface MediaViewerProps {
     alt?: string;
 }
 
-const Faq = () => {
+interface FaqPageProps {
+    initialFaqs?: FaqItem[];
+}
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.08, delayChildren: 0.1 }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 15 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { type: "spring", stiffness: 100, damping: 15 }
+  }
+};
+
+const accordionVariants = {
+  collapsed: {
+    opacity: 0,
+    height: 0,
+    marginTop: 0,
+    transition: { duration: 0.2, ease: [0.4, 0.0, 0.2, 1] } 
+  },
+  open: {
+    opacity: 1,
+    height: "auto",
+    marginTop: "0.5rem", 
+    transition: { duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }
+  }
+};
+
+const Faq = ({ initialFaqs = [] }: FaqPageProps) => {
+    const { theme } = useTheme();
+    const containerRef = useRef<HTMLDivElement>(null);
     const [activeCategory, setActiveCategory] = useState<FaqItem["category"]>("general");
     const [expandedItems, setExpandedItems] = useState<string[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -31,7 +72,12 @@ const Faq = () => {
     const [zoomLevel, setZoomLevel] = useState(1);
     const viewerRef = useRef<HTMLDivElement>(null);
     const imageRef = useRef<HTMLImageElement>(null);
-
+    
+    const baseDark = '#051F20';
+    const baseLight = '#0B2B26';
+    const wispColor = 'rgba(145, 184, 157, 0.08)';
+    const wispColorSlightlyStronger = 'rgba(145, 184, 157, 0.12)';
+    
     const faqData: FaqItem[] = [
         {
             id: "gen1",
@@ -102,28 +148,6 @@ const Faq = () => {
             ),
             category: "utauv",
         },
-        {
-            id: "utauv1",
-            question: "Where can I read the tutorial for UtauV?",
-            answer: (
-                <>
-                    <p>You can read the tutorial in our Google Document spreadsheet. 
-                        Learn more about our fork of OpenUTAU on the "How To" page.</p>
-                    <p>
-                    <a
-                        href="https://docs.google.com/document/d/1hmajs70535jEZKlXbf8B_fS9CtiE5fh9BijMmwuxlp0/edit?usp=sharing"
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-blue-500 hover:underline" 
-                    >
-                        Click here to view the tutorial!
-                    </a>
-                </p>
-
-                </>
-            ),
-            category: "utauv",
-        },
 
         {
             id: "singers2",
@@ -189,14 +213,24 @@ const Faq = () => {
     }
 
     return (
-        <div className="min-h-screen flex flex-col bg-background">
+        <div
+            className={cn(
+                "min-h-screen flex flex-col overflow-hidden animated-background-container",
+                theme === 'dark' ? "dark-theme-background" : "light-theme-background"
+            )}
+            ref={containerRef}
+        >
             <Navigation />
-            <main className="flex-grow container mx-auto px-4 py-20">
-                <div className="max-w-5xl mx-auto  rounded-xl p-8">
-                    <h1 className="text-4xl font-bold text-primary mb-8 text-center">Frequently Asked Questions</h1>
+            <main className="flex-grow container mx-auto px-4 py-20 relative">
+                <motion.div 
+                    className="max-w-5xl mx-auto glass-morphism rounded-xl p-8 overflow-hidden"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                >
+                    <motion.h1 variants={itemVariants} className="text-4xl font-bold text-primary mb-8 text-center">Frequently Asked Questions</motion.h1>
 
-                    {/* Category Filter Buttons */}
-                    <div className="flex justify-center space-x-4 mb-8">
+                    <motion.div variants={itemVariants} className="flex justify-center space-x-4 mb-8">
                         <Button
                             variant={activeCategory === "general" ? "default" : "outline"}
                             onClick={() => setActiveCategory("general")}
@@ -219,32 +253,41 @@ const Faq = () => {
                             Singers
                         </Button>
 
-                    </div>
+                    </motion.div>
 
-                    {/* FAQ Accordion */}
-                    <div className="space-y-4">
+                    <motion.div variants={itemVariants} className="space-y-4">
                         {filteredFaqData.map((item) => (
-                            <div key={item.id} className="border border-primary/20 rounded-lg p-4 glass-morphism">
+                            <div key={item.id} className="border border-primary/20 rounded-lg p-4 glass-morphism overflow-hidden">
                                 <button
                                     className="flex items-center justify-between w-full text-left"
                                     onClick={() => toggleAccordion(item.id)}
+                                    aria-expanded={expandedItems.includes(item.id)}
+                                    aria-controls={`faq-content-${item.id}`}
                                 >
                                     <span className="text-xl font-semibold text-primary">{item.question}</span>
-                                    <ChevronDown
-                                        className={`w-6 h-6 text-primary transition-transform ${expandedItems.includes(item.id) ? "rotate-180" : ""
-                                            }`}
-                                    />
+                                    <motion.div animate={{ rotate: expandedItems.includes(item.id) ? 180 : 0 }}>
+                                        <ChevronDown className={`w-6 h-6 text-primary transition-transform`} />
+                                    </motion.div>
                                 </button>
-                                <div
-                                    className={`mt-2 overflow-hidden transition-all duration-30110 ${expandedItems.includes(item.id) ? "max-h-196" : "max-h-0"
-                                        }`}
-                                >
-                                    <div className="text-muted-foreground">{item.answer}</div>
-                                </div>
+                                <AnimatePresence initial={false}>
+                                    {expandedItems.includes(item.id) && (
+                                        <motion.div
+                                            id={`faq-content-${item.id}`}
+                                            key="content"
+                                            variants={accordionVariants}
+                                            initial="collapsed"
+                                            animate="open"
+                                            exit="collapsed"
+                                            style={{ overflow: 'hidden' }}
+                                        >
+                                            <div className="pt-2 text-muted-foreground">{item.answer}</div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
                             </div>
                         ))}
-                    </div>
-                </div>
+                    </motion.div>
+                </motion.div>
             </main>
 
             {mediaViewer.type && (

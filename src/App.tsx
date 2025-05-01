@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Index from "./pages/Index";
 import SingerPage from "./components/SingerPage";
@@ -12,8 +12,8 @@ import Singers from "./pages/Singers";
 import AboutUtauV from "@/pages/AboutUtauV";
 import AboutUs from "@/pages/AboutUs";
 import Gallery from "@/pages/Gallery";
-import CommunityWorks from "@/pages/CommunityWorks";
 import Faq from "@/pages/Faq";
+import Roadmap from "@/pages/Roadmap";
 
 const queryClient = new QueryClient();
 
@@ -31,10 +31,11 @@ const App = () => (
             <Route path="/how-to" element={<HowTo />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/about-utauv" element={<AboutUtauV />} />
-             <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/about-us" element={<AboutUs />} />
             <Route path="/faq" element={<Faq />} />
             <Route path="/gallery" element={<Gallery />} />
-            <Route path="/community-works" element={<CommunityWorks />} />
+            <Route path="/roadmap" element={<Roadmap />} />
+            <Route path="/community-works" element={<Navigate to="/gallery" replace />} />
           </Routes>
         </HashRouter>
       </TooltipProvider>
