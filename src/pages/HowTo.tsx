@@ -361,22 +361,21 @@ const HowTo = () => {
                               variants={childItemVariants}
                               whileHover={{ scale: 1.02 }}
                               whileTap={{ scale: 0.98 }}
-                              className="aspect-video overflow-hidden rounded-lg shadow-lg mb-2"
+                              className="aspect-video overflow-hidden rounded-lg shadow-lg mb-2 h-full flex flex-col"
                             >
-                              <div className="relative">
+                              <div className="relative w-full h-full flex-1">
                                 <iframe
-                                  width="100%"
-                                  height="100%"
                                   src="https://www.youtube.com/embed/Sb9KlqyIHz8"
                                   title="AutoPitch Tutorial"
                                   frameBorder="0"
                                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                   allowFullScreen
+                                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
                                 ></iframe>
                                 <Button
                                   variant="outline"
                                   size="icon"
-                                  className="absolute top-2 right-2 bg-white/70 dark:bg-black/70 hover:bg-white dark:hover:bg-black/90"
+                                  className="absolute top-2 right-2 bg-white/70 dark:bg-black/70 hover:bg-white dark:hover:bg-black/90 z-10"
                                   onClick={() => setExpandedVideo({ 
                                     url: "https://www.youtube.com/embed/Sb9KlqyIHz8", 
                                     title: "AutoPitch Tutorial" 

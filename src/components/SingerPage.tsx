@@ -264,7 +264,6 @@ interface AudioVisualizationProps {
     src: string;
 }
 
-// Update the AudioVisualization component with these changes
 
 const AudioVisualization: React.FC<AudioVisualizationProps> = ({ audioRef, isPlaying, theme, singerColors, src }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -273,42 +272,34 @@ const AudioVisualization: React.FC<AudioVisualizationProps> = ({ audioRef, isPla
     const analyserRef = useRef<AnalyserNode | null>(null);
     const sourceRef = useRef<MediaElementAudioSourceNode | null>(null);
     
-    // Create a ref to track if setup has been completed
     const setupCompletedRef = useRef<boolean>(false);
 
-    // Function to set up audio context and analyzer
     const setupAudioAnalyzer = useCallback(() => {
         const audio = audioRef.current;
         if (!audio) return false;
         
         try {
-            // Create audio context if it doesn't exist
             if (!audioContextRef.current) {
                 audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
             }
             
-            // Resume audio context if suspended
             if (audioContextRef.current.state === 'suspended') {
                 audioContextRef.current.resume().catch(e => console.error("Error resuming AudioContext:", e));
             }
             
-            // Create analyzer if it doesn't exist
             if (!analyserRef.current) {
                 analyserRef.current = audioContextRef.current.createAnalyser();
                 analyserRef.current.fftSize = 2048;
             }
             
-            // Check if source needs to be created or reconnected
             const needNewSource = !sourceRef.current || sourceRef.current.mediaElement !== audio;
             
             if (needNewSource) {
-                // Disconnect old source if it exists
                 if (sourceRef.current) {
                     try { sourceRef.current.disconnect(); } catch (e) {}
                     sourceRef.current = null;
                 }
                 
-                // Create and connect new source
                 sourceRef.current = audioContextRef.current.createMediaElementSource(audio);
                 sourceRef.current.connect(analyserRef.current);
                 analyserRef.current.connect(audioContextRef.current.destination);
@@ -321,7 +312,6 @@ const AudioVisualization: React.FC<AudioVisualizationProps> = ({ audioRef, isPla
         }
     }, [audioRef]);
     
-    // Draw function for visualization
     const draw = useCallback(() => {
         if (!analyserRef.current || !isPlaying || !canvasRef.current) {
             if (animationFrameRef.current) {
@@ -338,13 +328,11 @@ const AudioVisualization: React.FC<AudioVisualizationProps> = ({ audioRef, isPla
         const bufferLength = analyserRef.current.frequencyBinCount;
         const dataArray = new Uint8Array(bufferLength);
         
-        // Make sure canvas dimensions match its displayed size
         if (canvas.width !== canvas.offsetWidth || canvas.height !== canvas.offsetHeight) {
             canvas.width = canvas.offsetWidth;
             canvas.height = canvas.offsetHeight;
         }
         
-        // Draw visualization frame
         analyserRef.current.getByteTimeDomainData(dataArray);
         canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
         canvasCtx.lineWidth = 2;
@@ -369,7 +357,6 @@ const AudioVisualization: React.FC<AudioVisualizationProps> = ({ audioRef, isPla
         canvasCtx.lineTo(canvas.width, canvas.height / 2);
         canvasCtx.stroke();
         
-        // Continue animation loop
         animationFrameRef.current = requestAnimationFrame(draw);
     }, [isPlaying, theme, singerColors]);
     
@@ -382,19 +369,15 @@ const AudioVisualization: React.FC<AudioVisualizationProps> = ({ audioRef, isPla
             return;
         }
         
-        // Set up audio analyzer if not already done
         if (!setupCompletedRef.current) {
             setupCompletedRef.current = setupAudioAnalyzer();
         }
         
-        // Only start visualization if setup is complete
         if (setupCompletedRef.current) {
-            // Cancel any existing animation frame
             if (animationFrameRef.current) {
                 cancelAnimationFrame(animationFrameRef.current);
             }
             
-            // Start a new animation
             draw();
         }
     
@@ -1140,20 +1123,19 @@ const SingerPage: React.FC = () => {
                                                         ? 'md:col-span-2 md:mx-auto md:max-w-xl' : ''
                                                     }`}
                                                 >
-                                                    <div className="relative">
+                                                    <div className="relative h-full">
                                                         <iframe
-                                                            width="100%"
-                                                            height="100%"
                                                             src={demo.url}
                                                             title={demo.title}
                                                             frameBorder="0"
                                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                                             allowFullScreen
+                                                            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
                                                         ></iframe>
                                                         <Button
                                                             variant="outline"
                                                             size="icon"
-                                                            className="absolute top-2 right-2 bg-white/70 dark:bg-black/70 hover:bg-white dark:hover:bg-black/90"
+                                                            className="absolute top-2 right-2 bg-white/70 dark:bg-black/70 hover:bg-white dark:hover:bg-black/90 z-10"
                                                             onClick={() => setExpandedVideo(demo)}
                                                         >
                                                             <Maximize2 className="h-4 w-4" />
@@ -1197,15 +1179,14 @@ const SingerPage: React.FC = () => {
                                         <Minimize2 className="h-5 w-5" />
                                     </Button>
                                 </div>
-                                <div className="w-full aspect-video">
+                                <div className="w-full aspect-video relative">
                                     <iframe
-                                        width="100%"
-                                        height="100%"
                                         src={expandedVideo.url}
                                         title={expandedVideo.title}
                                         frameBorder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowFullScreen
+                                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
                                     ></iframe>
                                 </div>
                             </motion.div>
