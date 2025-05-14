@@ -30,7 +30,7 @@ const SingerCard = ({ name, image, slug, tags }: SingerCardProps) => {
             className="absolute top-0 left-0 w-full h-full object-contain p-2 rounded-xl"
           />
         </div>
-        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
           <h3 className="text-white text-xl font-bold text-center">{name}</h3>
           {tags && (
             <p className="text-white/70 text-xs text-center mt-1 line-clamp-1">{tags}</p>

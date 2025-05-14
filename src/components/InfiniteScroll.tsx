@@ -8,14 +8,14 @@ const SimpleSingerCard = ({ name, image, slug }: { name: string; image: string; 
       to={`/singer/${slug}`}
       className="block relative rounded-2xl overflow-hidden w-full h-full transform transition-transform hover:scale-105"
     >
-      <div className="absolute inset-0 bg-black/20 hover:bg-black/30 transition-colors rounded-2xl" />
+      <div className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-colors rounded-2xl" />
       <img
         src={image}
         alt={name}
         className="w-full h-full object-contain p-2"
       />
-      <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80 to-transparent">
-        <h3 className="text-white text-lg font-medium text-center">{name}</h3>
+      <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/20 dark:from-black/80 to-transparent">
+        <h3 className="text-white dark:text-white text-lg font-medium text-center">{name}</h3>
       </div>
     </Link>
   );
