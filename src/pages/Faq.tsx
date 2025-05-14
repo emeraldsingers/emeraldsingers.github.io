@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 
 interface FaqItem {
     question: string;
@@ -67,7 +68,7 @@ const Faq = ({ initialFaqs = [] }: FaqPageProps) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [activeCategory, setActiveCategory] = useState<FaqItem["category"]>("general");
     const [expandedItems, setExpandedItems] = useState<string[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [mediaViewer, setMediaViewer] = useState<MediaViewerProps>({ type: null, src: "" });
     const [zoomLevel, setZoomLevel] = useState(1);
     const viewerRef = useRef<HTMLDivElement>(null);
@@ -220,6 +221,11 @@ const Faq = ({ initialFaqs = [] }: FaqPageProps) => {
             )}
             ref={containerRef}
         >
+            <Helmet>
+                <title>FAQ - Emerald Singers</title>
+                <meta name="description" content="Find answers to frequently asked questions about the Emerald Project, our UTAU singers, UtauV Emerald Edition, and how to get involved." />
+                <link rel="canonical" href="https://emeraldsingers.github.io/faq" />
+            </Helmet>
             <Navigation />
             <main className="flex-grow container mx-auto px-4 py-20 relative">
                 <motion.div 

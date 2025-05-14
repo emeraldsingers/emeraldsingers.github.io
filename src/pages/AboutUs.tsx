@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -36,6 +37,11 @@ const AboutUs = () => {
             )}
             ref={containerRef}
         >
+            <Helmet>
+                <title>About Us - Emerald Singers</title>
+                <meta name="description" content="Learn about the Emerald Project's mission to create high-quality UTAU virtual singers and tools. Meet our team and find our social media links." />
+                <link rel="canonical" href="https://emeraldsingers.github.io/about-us" />
+            </Helmet>
             <Navigation />
             <main className="flex-grow container mx-auto px-4 py-20 relative">
                 <motion.div 

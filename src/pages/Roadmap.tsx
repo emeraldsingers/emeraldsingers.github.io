@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { useTheme } from "@/components/ThemeProvider";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { Helmet } from "react-helmet-async";
 
 const roadmapData = {
   inPlans: [
@@ -72,7 +73,6 @@ const Roadmap = () => {
   const { theme } = useTheme();
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { 
@@ -112,6 +112,11 @@ const Roadmap = () => {
       )}
       ref={containerRef}
     >
+      <Helmet>
+        <title>Project Roadmap - Emerald Singers</title>
+        <meta name="description" content="Track the development progress and upcoming features for the Emerald Project, including new singers, voicebanks, and site updates." />
+        <link rel="canonical" href="https://emeraldsingers.github.io/roadmap" />
+      </Helmet>
       <Navigation />
       
       <motion.div 

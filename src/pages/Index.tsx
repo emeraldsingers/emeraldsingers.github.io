@@ -4,6 +4,7 @@ import InfiniteScroll from "@/components/InfiniteScroll";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useTheme } from "@/components/ThemeProvider";
+import { Helmet } from 'react-helmet-async';
 import { Users, HelpCircle, FileText, Origami, BriefcaseBusiness, Brush, ArrowRight, TableOfContents } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
@@ -104,241 +105,270 @@ const Index = () => {
         }
       };
 
+    const pageTitle = "Emerald Project - Home Of Virtual Singers";
+    const pageDescription = "Welcome to the Emerald Project, your home for discovering unique virtual singers. Browse our collection, listen to demos, and find voicebanks for your creative projects.";
+    const canonicalUrl = "https://emeraldsingers.github.io/#/";
+
+    const organizationJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Emerald Project",
+        "url": "https://emeraldsingers.github.io/#/",
+        "logo": "https://emeraldsingers.github.io/images/favicon.png",
+        "description": pageDescription,
+        "member": latestWorks.map(work => ({
+            "@type": "MusicRecording",
+            "name": work.title,
+            "url": `https://www.youtube.com/watch?v=${work.youtubeVideoId}`,
+            "thumbnailUrl": `https://emeraldsingers.github.io${work.image}`
+        }))
+    };
+
     return (
-        <div
-            className={cn(
-                "min-h-screen flex flex-col overflow-hidden animated-background-container",
-                theme === 'dark' 
-                  ? "dark-theme-background" 
-                  : "light-theme-background"
-            )}
-            ref={containerRef}
-        >
-            <Navigation />
-            <main className="flex-grow container mx-auto px-4 py-20 relative">
-                <motion.div
-                    initial="hidden"
-                    animate="visible"
-                    variants={containerVariants}
-                    className="py-16"
-                >
-                    <motion.h1 
-                        variants={itemVariants}
-                        className="text-5xl font-bold text-primary text-center mb-4"
+        <>
+            <Helmet>
+                <title>{pageTitle}</title>
+                <meta name="description" content={pageDescription} />
+                <link rel="canonical" href={canonicalUrl} />
+                <script type="application/ld+json">
+                    {JSON.stringify(organizationJsonLd)}
+                </script>
+            </Helmet>
+            <div
+                className={cn(
+                    "min-h-screen flex flex-col overflow-hidden animated-background-container",
+                    theme === 'dark' 
+                      ? "dark-theme-background" 
+                      : "light-theme-background"
+                )}
+                ref={containerRef}
+            >
+                <Navigation />
+                <main className="flex-grow container mx-auto px-4 py-20 relative">
+                    <motion.div
+                        initial="hidden"
+                        animate="visible"
+                        variants={containerVariants}
+                        className="py-16"
                     >
-                        Welcome to Emerald Project
-                    </motion.h1>
-                    
-                    <motion.p 
-                        variants={itemVariants}
-                        className="text-xl text-muted-foreground text-center mb-10"
+                        <motion.h1 
+                            variants={itemVariants}
+                            className="text-5xl font-bold text-primary text-center mb-4"
+                        >
+                            Welcome to Emerald Project
+                        </motion.h1>
+                        
+                        <motion.p 
+                            variants={itemVariants}
+                            className="text-xl text-muted-foreground text-center mb-10"
+                        >
+                            Discover our collection of virtual singers
+                        </motion.p>
+                        
+                        <motion.div 
+                            variants={itemVariants}
+                            className="flex flex-wrap justify-center gap-6 mb-12"
+                        >
+                            <Button
+                                variant="default"
+                                className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-md transition-all duration-300 transform hover:scale-105"
+                                asChild
+                            >
+                                <Link to="/singers">
+                                    <Users className="mr-2" /> Browse Singers
+                                </Link>
+                            </Button>
+                            <Button
+                                variant="outline"
+                                className="border-primary text-primary hover:bg-primary/10 shadow-md transition-all duration-300 transform hover:scale-105"
+                                asChild
+                            >
+                                <Link to="/how-to">
+                                    <HelpCircle className="mr-2" /> How To Use
+                                </Link>
+                            </Button>
+                        </motion.div>
+                    </motion.div>
+
+                    <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-100px" }}
+                        variants={scrollAppearVariants}
                     >
-                        Discover our collection of virtual singers
-                    </motion.p>
-                    
+                        <InfiniteScroll />
+                    </motion.div>
+
                     <motion.div 
-                        variants={itemVariants}
-                        className="flex flex-wrap justify-center gap-6 mb-12"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.6 }}
+                        className="flex justify-center mt-4 mb-16"
                     >
                         <Button
                             variant="default"
-                            className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-md transition-all duration-300 transform hover:scale-105"
+                            className="bg-primary hover:bg-primary/10 shadow-md transition-all duration-300 transform hover:scale-105"
                             asChild
                         >
-                            <Link to="/singers">
-                                <Users className="mr-2" /> Browse Singers
-                            </Link>
-                        </Button>
-                        <Button
-                            variant="outline"
-                            className="border-primary text-primary hover:bg-primary/10 shadow-md transition-all duration-300 transform hover:scale-105"
-                            asChild
-                        >
-                            <Link to="/how-to">
-                                <HelpCircle className="mr-2" /> How To Use
+                            <Link to="/singers" className="flex items-center gap-2">
+                                View All Singers
+                                <ArrowRight className="w-4 h-4" />
                             </Link>
                         </Button>
                     </motion.div>
-                </motion.div>
 
-                <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-100px" }}
-                    variants={scrollAppearVariants}
-                >
-                    <InfiniteScroll />
-                </motion.div>
-
-                <motion.div 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.6 }}
-                    className="flex justify-center mt-4 mb-16"
-                >
-                    <Button
-                        variant="default"
-                        className="bg-primary hover:bg-primary/10 shadow-md transition-all duration-300 transform hover:scale-105"
-                        asChild
-                    >
-                        <Link to="/singers" className="flex items-center gap-2">
-                            View All Singers
-                            <ArrowRight className="w-4 h-4" />
-                        </Link>
-                    </Button>
-                </motion.div>
-
-                {/* Featured Cards Section */}
-                <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-100px" }}
-                    variants={containerVariants}
-                    className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24"
-                >
-                    <Link to="/terms" className="block">
-                        <motion.div
-                            variants={cardVariants}
-                            className="flex flex-col p-8 rounded-xl border border-primary/20 hover:border-primary/50 transition-colors cursor-pointer h-full"
-                        >
-                            <FileText className="h-10 w-10 mb-4 text-primary" />
-                            <h3 className="text-2xl font-semibold text-primary mb-3">Terms of Use</h3>
-                            <p className="text-muted-foreground mb-6">Guidelines and policies for using our virtual singers in your creative projects.</p>
-                            <Button 
-                                variant="ghost" 
-                                className="text-primary hover:bg-primary/10 mt-auto"
-                            >
-                                Read More
-                            </Button>
-                        </motion.div>
-                    </Link>
-
-                    <Link to="/about-us" className="block">
-                        <motion.div
-                            variants={cardVariants}
-                            className="flex flex-col p-8 rounded-xl border border-primary/20 hover:border-primary/50 transition-colors cursor-pointer h-full"
-                        >
-                            <BriefcaseBusiness className="h-10 w-10 mb-4 text-primary" />
-                            <h3 className="text-2xl font-semibold text-primary mb-3">About Us</h3>
-                            <p className="text-muted-foreground mb-6">Learn about the team and mission behind the Emerald Project.</p>
-                            <Button 
-                                variant="ghost" 
-                                className="text-primary hover:bg-primary/10 mt-auto"
-                            >
-                                Read More
-                            </Button>
-                        </motion.div>
-                    </Link>
-
-                    <Link to="/about-utauv" className="block">
-                        <motion.div
-                            variants={cardVariants}
-                            className="flex flex-col p-8 rounded-xl border border-primary/20 hover:border-primary/50 transition-colors cursor-pointer h-full"
-                        >
-                            <Origami className="h-10 w-10 mb-4 text-primary" />
-                            <h3 className="text-2xl font-semibold text-primary mb-3">About UtauV</h3>
-                            <p className="text-muted-foreground mb-6">Explore the technology behind UTAU and voice synthesis.</p>
-                            <Button 
-                                variant="ghost" 
-                                className="text-primary hover:bg-primary/10 mt-auto"
-                            >
-                                Read More
-                            </Button>
-                        </motion.div>
-                    </Link>
-                </motion.div>
-
-                {/* Community Content Section */}
-                <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-100px" }}
-                    variants={containerVariants}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24"
-                >
-                    <Link to="/gallery" className="block">
-                        <motion.div
-                            variants={cardVariants}
-                            className="flex flex-col p-8 rounded-xl border border-primary/20 hover:border-primary/50 transition-colors cursor-pointer h-full"
-                        >
-                            <Brush className="h-10 w-10 mb-4 text-primary" />
-                            <h3 className="text-2xl font-semibold text-primary mb-3">Community Works</h3>
-                            <p className="text-muted-foreground mb-6">Discover amazing creations from our talented community members.</p>
-                            <Button 
-                                variant="ghost" 
-                                className="text-primary hover:bg-primary/10 mt-auto"
-                            >
-                                Explore
-                            </Button>
-                        </motion.div>
-                    </Link>
-
-                    <Link to="/faq" className="block">
-                        <motion.div
-                            variants={cardVariants}
-                            className="flex flex-col p-8 rounded-xl border border-primary/20 hover:border-primary/50 transition-colors cursor-pointer h-full"
-                        >
-                            <TableOfContents className="h-10 w-10 mb-4 text-primary" />
-                            <h3 className="text-2xl font-semibold text-primary mb-3">FAQ</h3>
-                            <p className="text-muted-foreground mb-6">Frequently Asked Questions</p>
-                            <Button 
-                                variant="ghost" 
-                                className="text-primary hover:bg-primary/10 mt-auto"
-                            >
-                                View FAQ Page
-                            </Button>
-                        </motion.div>
-                    </Link>
-                </motion.div>
-
-                {/* Latest Works Section */} 
-                {latestWorks.length > 0 && (
+                    {/* Featured Cards Section */}
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, margin: "-100px" }}
                         variants={containerVariants}
-                        className="mt-12 mb-24"
+                        className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24"
                     >
-                        <motion.h2
-                            variants={itemVariants}
-                            className="text-3xl font-bold text-primary mb-6 text-center"
-                        >
-                            Latest works
-                        </motion.h2>
-                        <div className="flex justify-center">
-                            <div className={`grid grid-cols-1 ${latestWorks.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'} gap-8 max-w-5xl mx-auto`}>
-                                {latestWorks.map((work, index) => (
-                                    <motion.div 
-                                        key={index}
-                                        variants={cardVariants}
-                                        className="p-4 rounded-xl border border-primary/20 hover:border-primary/50 transition-colors max-w-[20rem] w-full mx-auto"
-                                    >
-                                        <a
-                                            href={`https://www.youtube.com/watch?v=${work.youtubeVideoId}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="block transform transition-transform hover:scale-105"
-                                        >
-                                            <div className="mb-4 relative w-full h-[12rem] overflow-hidden rounded-xl">
-                                                <img
-                                                    src={work.image}
-                                                    alt={work.title}
-                                                    className="w-full h-full object-contain"
-                                                />
-                                            </div>
-                                                <h3 className="text-xl font-semibold text-primary text-center">{work.title}</h3>
-                                        </a>
-                                        <p className="text-muted-foreground text-center mt-2">{work.description}</p>
-                                    </motion.div>
-                                ))}
-                            </div>
-                        </div>
+                        <Link to="/terms" className="block">
+                            <motion.div
+                                variants={cardVariants}
+                                className="flex flex-col p-8 rounded-xl border border-primary/20 hover:border-primary/50 transition-colors cursor-pointer h-full"
+                            >
+                                <FileText className="h-10 w-10 mb-4 text-primary" />
+                                <h3 className="text-2xl font-semibold text-primary mb-3">Terms of Use</h3>
+                                <p className="text-muted-foreground mb-6">Guidelines and policies for using our virtual singers in your creative projects.</p>
+                                <Button 
+                                    variant="ghost" 
+                                    className="text-primary hover:bg-primary/10 mt-auto"
+                                >
+                                    Read More
+                                </Button>
+                            </motion.div>
+                        </Link>
+
+                        <Link to="/about-us" className="block">
+                            <motion.div
+                                variants={cardVariants}
+                                className="flex flex-col p-8 rounded-xl border border-primary/20 hover:border-primary/50 transition-colors cursor-pointer h-full"
+                            >
+                                <BriefcaseBusiness className="h-10 w-10 mb-4 text-primary" />
+                                <h3 className="text-2xl font-semibold text-primary mb-3">About Us</h3>
+                                <p className="text-muted-foreground mb-6">Learn about the team and mission behind the Emerald Project.</p>
+                                <Button 
+                                    variant="ghost" 
+                                    className="text-primary hover:bg-primary/10 mt-auto"
+                                >
+                                    Read More
+                                </Button>
+                            </motion.div>
+                        </Link>
+
+                        <Link to="/about-utauv" className="block">
+                            <motion.div
+                                variants={cardVariants}
+                                className="flex flex-col p-8 rounded-xl border border-primary/20 hover:border-primary/50 transition-colors cursor-pointer h-full"
+                            >
+                                <Origami className="h-10 w-10 mb-4 text-primary" />
+                                <h3 className="text-2xl font-semibold text-primary mb-3">About UtauV</h3>
+                                <p className="text-muted-foreground mb-6">Explore the technology behind UTAU and voice synthesis.</p>
+                                <Button 
+                                    variant="ghost" 
+                                    className="text-primary hover:bg-primary/10 mt-auto"
+                                >
+                                    Read More
+                                </Button>
+                            </motion.div>
+                        </Link>
                     </motion.div>
-                )}
-            </main>
-            <Footer />
-        </div>
+
+                    {/* Community Content Section */}
+                    <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-100px" }}
+                        variants={containerVariants}
+                        className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24"
+                    >
+                        <Link to="/gallery" className="block">
+                            <motion.div
+                                variants={cardVariants}
+                                className="flex flex-col p-8 rounded-xl border border-primary/20 hover:border-primary/50 transition-colors cursor-pointer h-full"
+                            >
+                                <Brush className="h-10 w-10 mb-4 text-primary" />
+                                <h3 className="text-2xl font-semibold text-primary mb-3">Community Works</h3>
+                                <p className="text-muted-foreground mb-6">Discover amazing creations from our talented community members.</p>
+                                <Button 
+                                    variant="ghost" 
+                                    className="text-primary hover:bg-primary/10 mt-auto"
+                                >
+                                    Explore
+                                </Button>
+                            </motion.div>
+                        </Link>
+
+                        <Link to="/faq" className="block">
+                            <motion.div
+                                variants={cardVariants}
+                                className="flex flex-col p-8 rounded-xl border border-primary/20 hover:border-primary/50 transition-colors cursor-pointer h-full"
+                            >
+                                <TableOfContents className="h-10 w-10 mb-4 text-primary" />
+                                <h3 className="text-2xl font-semibold text-primary mb-3">FAQ</h3>
+                                <p className="text-muted-foreground mb-6">Frequently Asked Questions</p>
+                                <Button 
+                                    variant="ghost" 
+                                    className="text-primary hover:bg-primary/10 mt-auto"
+                                >
+                                    View FAQ Page
+                                </Button>
+                            </motion.div>
+                        </Link>
+                    </motion.div>
+
+                    {/* Latest Works Section */} 
+                    {latestWorks.length > 0 && (
+                        <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-100px" }}
+                            variants={containerVariants}
+                            className="mt-12 mb-24"
+                        >
+                            <motion.h2
+                                variants={itemVariants}
+                                className="text-3xl font-bold text-primary mb-6 text-center"
+                            >
+                                Latest works
+                            </motion.h2>
+                            <div className="flex justify-center">
+                                <div className={`grid grid-cols-1 ${latestWorks.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'} gap-8 max-w-5xl mx-auto`}>
+                                    {latestWorks.map((work, index) => (
+                                        <motion.div 
+                                            key={index}
+                                            variants={cardVariants}
+                                            className="p-4 rounded-xl border border-primary/20 hover:border-primary/50 transition-colors max-w-[20rem] w-full mx-auto"
+                                        >
+                                            <a
+                                                href={`https://www.youtube.com/watch?v=${work.youtubeVideoId}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="block transform transition-transform hover:scale-105"
+                                            >
+                                                <div className="mb-4 relative w-full h-[12rem] overflow-hidden rounded-xl">
+                                                    <img
+                                                        src={work.image}
+                                                        alt={work.title}
+                                                        className="w-full h-full object-contain"
+                                                    />
+                                                </div>
+                                                    <h3 className="text-xl font-semibold text-primary text-center">{work.title}</h3>
+                                            </a>
+                                            <p className="text-muted-foreground text-center mt-2">{work.description}</p>
+                                        </motion.div>
+                                    ))}
+                                </div>
+                            </div>
+                        </motion.div>
+                    )}
+                </main>
+                <Footer />
+            </div>
+        </>
     );
 }; 
 

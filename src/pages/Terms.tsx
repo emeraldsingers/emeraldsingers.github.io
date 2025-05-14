@@ -4,6 +4,7 @@ import { useTheme } from "@/components/ThemeProvider";
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { Helmet } from "react-helmet-async";
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -26,6 +27,11 @@ const Terms = () => {
       )}
       ref={containerRef}
     >
+      <Helmet>
+        <title>Terms of Use - Emerald Singers</title>
+        <meta name="description" content="Read the terms and conditions for using the Emerald Project's virtual singers, software, and website. Understand usage guidelines, disclaimers, and commercial use policies." />
+        <link rel="canonical" href="https://emeraldsingers.github.io/terms" />
+      </Helmet>
       <Navigation />
       <main className="flex-grow container mx-auto px-4 py-20 relative">
         <motion.div 

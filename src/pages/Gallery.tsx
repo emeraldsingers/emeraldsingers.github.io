@@ -5,6 +5,7 @@ import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
+import { Helmet } from "react-helmet-async";
 
 const itemAppearVariants = {
     hidden: { opacity: 0, y: 15 },
@@ -79,6 +80,11 @@ const Gallery = () => {
             )}
             ref={containerRef}
         >
+            <Helmet>
+                <title>Gallery - Emerald Singers</title>
+                <meta name="description" content="View official artworks and community creations featuring the Emerald Project singers. Discover fan art and music videos." />
+                <link rel="canonical" href="https://emeraldsingers.github.io/gallery" />
+            </Helmet>
             <Navigation />
             <main className="flex-grow container mx-auto px-4 py-20 relative">
                 <motion.div 

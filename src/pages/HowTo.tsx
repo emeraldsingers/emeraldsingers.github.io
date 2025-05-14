@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import "../tab-animations.css"; // Update the path to match the file location
+import { Helmet } from "react-helmet-async";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -136,7 +137,7 @@ const HowTo = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeTab, setActiveTab] = useState("installation");
   const [prevTab, setPrevTab] = useState("installation");
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   
   const handleTabChange = (value: string) => {
     setPrevTab(activeTab);
@@ -144,7 +145,6 @@ const HowTo = () => {
   };
 
   useEffect(() => {
-    // Simulate loading state for animations
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 100);
@@ -182,6 +182,11 @@ const HowTo = () => {
       )}
       ref={containerRef}
     >
+      <Helmet>
+        <title>How To Use - Emerald Singers</title>
+        <meta name="description" content="Learn how to install UtauV Emerald Edition, use AutoPitch, and find resources for the Emerald Project singers." />
+        <link rel="canonical" href="https://emeraldsingers.github.io/how-to" />
+      </Helmet>
       <Navigation />
       <motion.main 
         className="flex-grow container mx-auto px-4 py-20 relative"

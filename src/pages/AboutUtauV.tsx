@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { Helmet } from "react-helmet-async";
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -105,6 +106,11 @@ const AboutUtauV = () => {
             onMouseMove={handleMouseMove}
             ref={containerRef}
         >
+            <Helmet>
+                <title>About UtauV Emerald Edition - Emerald Singers</title>
+                <meta name="description" content="Learn about UtauV Emerald Edition, our enhanced fork of OpenUtau, featuring unique styling, AutoPitch, Auto Harmonies, and tailored for Emerald Project singers." />
+                <link rel="canonical" href="https://emeraldsingers.github.io/about-utauv" />
+            </Helmet>
             <div 
                 className="background-shapes"
                 style={{ transform: `translate(${offsetX}px, ${offsetY}px)` }}

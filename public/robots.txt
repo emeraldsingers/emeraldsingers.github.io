@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://emeraldsingers.github.io/sitemap.xml 
