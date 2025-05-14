@@ -8,7 +8,7 @@ const SimpleSingerCard = ({ name, image, slug }: { name: string; image: string; 
       to={`/singer/${slug}`}
       className="block relative rounded-2xl overflow-hidden w-full h-full transform transition-transform hover:scale-105"
     >
-      <div className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-colors rounded-2xl" />
+      <div className="absolute inset-0 bg-black/5 dark:bg-black/20 hover:bg-black/10 transition-colors rounded-2xl" />
       <img
         src={image}
         alt={name}
