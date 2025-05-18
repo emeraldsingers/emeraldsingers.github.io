@@ -250,7 +250,12 @@ const singersData = {
                 ]
             }
         },
-        videoDemos: []
+        videoDemos: [
+            {
+                url: "https://www.youtube.com/embed/fRvdPqekcAY",
+                title: "【MITSUO DEMO】 虚無さん | Nihil-san - ¿?shimon 【Emerald Project Russian UTAUカバー】"
+            }
+        ]
     },
     
 };
