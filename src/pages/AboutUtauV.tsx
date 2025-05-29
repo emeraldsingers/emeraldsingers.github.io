@@ -40,16 +40,16 @@ const AboutUtauV = () => {
     const [offsetY, setOffsetY] = useState(0);
 
     const images = [
-        "/images/UtauV.png",
-        "/images/UtauVakizora.png",
-        "/images/UtauVasoqwer.png",
-        "/images/UtauVSimon.png",
+        "/images/UtauV.webp",
+        "/images/UtauVakizora.webp",
+        "/images/UtauVasoqwer.webp",
+        "/images/UtauVSimon.webp",
     ];
     const authors = {
-        "/images/UtauV.png": "UtauV Interface",
-        "/images/UtauVakizora.png": "Akizora",
-        "/images/UtauVasoqwer.png": "asoqwer",
-        "/images/UtauVSimon.png": "Simon Weber"
+        "/images/UtauV.webp": "UtauV Interface",
+        "/images/UtauVakizora.webp": "Akizora",
+        "/images/UtauVasoqwer.webp": "asoqwer",
+        "/images/UtauVSimon.webp": "Simon Weber"
     };
 
     const currentImagePath = images[currentImageIndex];

@@ -154,7 +154,7 @@ const HowTo = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const utauVInterfacePlaceholder = "/images/UtauV.png";
+  const utauVInterfacePlaceholder = "/images/UtauV.webp";
   const googleDocTutorialLink = "https://docs.google.com/document/d/1Eb43g7Tc616YRtyfLEqrwGKLS5af238-KsGQoY06oBs/edit?usp=sharing";
   const megaModelsLink = "https://mega.nz/folder/riIkRawA#urkiXGT1SsuJLhquWJegoQ";
   const trainerGitHubLink = "https://github.com/emeraldsingers/AutoPitchTrainer"; 

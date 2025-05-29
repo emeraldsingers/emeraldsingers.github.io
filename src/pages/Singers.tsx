@@ -63,31 +63,31 @@ const tagDisplay: Record<SingerTag, { label: string, color: string }> = {
 const singers = [
   {
     name: "Akizora",
-    image: "/images/akizora_thumb.png",
+    image: "/images/akizora_thumb.webp",
     slug: "akizora",
     tags: ['female', 'utau', 'ja', 'cvvc'] as SingerTag[]
   },
   {
     name: "Asoqwer",
-    image: "/images/asoqwer_thumb.png",
+    image: "/images/asoqwer_thumb.webp",
     slug: "asoqwer",
     tags: ['male', 'utau', 'ja', 'vcv', "cvvc", "rvc"] as SingerTag[]
   },
   {
     name: "Emerald",
-    image: "/images/Emerald2025NoLogo_thumb.png",
+    image: "/images/Emerald2025NoLogo_thumb.webp",
     slug: "emerald",
     tags: ['male', 'utau', 'ja', 'rus', 'cvvc', 'cvc'] as SingerTag[]
   },
   {
     name: "Simon Weber",
-    image: "/images/simon-weber-eu_thumb.png",
+    image: "/images/simon-weber-eu_thumb.webp",
     slug: "simon-weber",
     tags: ['male', 'utau', 'ja', 'cvvc'] as SingerTag[]
   },
   {
     name: "Mitsuo",
-    image: "/images/mitsuo_thumb.png",
+    image: "/images/mitsuo_thumb.webp",
     slug: "mitsuo",
     tags: ['male', 'rvc', 'ja'] as SingerTag[]
   },

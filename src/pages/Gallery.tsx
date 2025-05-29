@@ -55,14 +55,14 @@ const Gallery = () => {
     }
 
     const galleryItems = [
-        { image: "/images/akizora-2.png", description: "Akizora Artwork", character: "Akizora", artist: "JustKAMAZ" },
-        { image: "/images/akizora-3.png", description: "Akizora \"pick me\"", character: "Akizora", artist: "KambaL" },
+        { image: "/images/akizora-2.webp", description: "Akizora Artwork", character: "Akizora", artist: "JustKAMAZ" },
+        { image: "/images/akizora-3.webp", description: "Akizora \"pick me\"", character: "Akizora", artist: "KambaL" },
     ];
 
     const communityWorks = [
-        { image: "/images/identitytilkeasoqwer.jpg", description: "Identity", character: "Tilke x Asoqwer", artist: "mnifl", href: "https://www.youtube.com/watch?v=81F29AUNDAQ" },
-        { image: "/images/akizoralonely.jpg", description: "Lonely Love", character: "Akizora", artist: "Leshy-P", href: "https://www.youtube.com/watch?v=zqfyw-mbG0A" },
-        { image: "/images/feb23th.jpg", description: "KING", character: "Asoqwer x Tilke x Simon Weber", artist: "mnifl", href: "https://www.youtube.com/watch?v=awOAjlqdPXc" },
+        { image: "/images/identitytilkeasoqwer.webp", description: "Identity", character: "Tilke x Asoqwer", artist: "mnifl", href: "https://www.youtube.com/watch?v=81F29AUNDAQ" },
+        { image: "/images/akizoralonely.webp", description: "Lonely Love", character: "Akizora", artist: "Leshy-P", href: "https://www.youtube.com/watch?v=zqfyw-mbG0A" },
+        { image: "/images/feb23th.webp", description: "KING", character: "Asoqwer x Tilke x Simon Weber", artist: "mnifl", href: "https://www.youtube.com/watch?v=awOAjlqdPXc" },
     ];
 
     const tabs = ["artworks", "community"];

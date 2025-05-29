@@ -110,10 +110,10 @@ const Faq = ({ initialFaqs = [] }: FaqPageProps) => {
                 <>
                     <p>UtauV Emerald Edition is a fork of OpenUtau, specifically optimized for our Emerald Singers.</p>
                     <img
-                        src="/images/UtauV.png"
+                        src="/images/UtauV.webp"
                         alt="UtauV Interface"
                         className="my-4 rounded-lg cursor-pointer"
-                        onClick={() => setMediaViewer({ type: "image", src: "/images/UtauV.png", alt: "UtauV Interface" })}
+                        onClick={() => setMediaViewer({ type: "image", src: "/images/UtauV.webp", alt: "UtauV Interface" })}
                     />
                     <p>It features a unique visual style and an enhanced CVVC phonemizer.</p>
                 </>

@@ -39,8 +39,8 @@ const singersData = {
     akizora: {
         name: "Akizora",
         cv: "Seejiu",
-        images: ["/images/akizora.png", "/images/akizora-2.png", "/images/akizora-3.png"],
-        authors: { "/images/akizora.png": "rxko", "/images/akizora-2.png": "JustKAMAZ", "/images/akizora-3.png": "KambaL" },
+        images: ["/images/akizora.webp", "/images/akizora-2.webp", "/images/akizora-3.webp"],
+        authors: { "/images/akizora.webp": "rxko", "/images/akizora-2.webp": "JustKAMAZ", "/images/akizora-3.webp": "KambaL" },
         audioSamples: ["/samples/akizora/akizora-sample1.mp3", "/samples/akizora/akizora-sample2.mp3"],
         description: "Akizora is a versatile human female virtual singer known for her clear and balanced vocal tone.",
         characterData: {
@@ -74,8 +74,8 @@ const singersData = {
     asoqwer: {
         name: "Asoqwer",
         cv: "Asoqwer",
-        images: ["/images/asoqwer.png"],
-        authors: { "/images/asoqwer.png": "wtyssll" },
+        images: ["/images/asoqwer.webp"],
+        authors: { "/images/asoqwer.webp": "wtyssll" },
         description: "Asoqwer is a Neko male virtual singer with a range of voicebanks including CVVC and VCV, offering normal, whisper, and power tones.",
         characterData: {
             Species: "Neko",
@@ -142,8 +142,8 @@ const singersData = {
     "emerald": {
         name: "Emerald",
         cv: "SouЯ",
-        images: ["/images/Emerald2025NoLogo.png"],
-        authors: { "/images/Emerald2025NoLogo.png": "SouЯ" },
+        images: ["/images/Emerald2025NoLogo.webp"],
+        authors: { "/images/Emerald2025NoLogo.webp": "SouЯ" },
         description: "Emerald is a Devil male virtual singer with versatile CVVC and CVC RUS voicebanks, featuring normal, childish, dark, and soft tones.",
         characterData: {
             Species: "Devil",
@@ -188,8 +188,8 @@ const singersData = {
     "simon-weber": {
         name: "Simon Weber",
         cv: "Beaver-P",
-        images: ["/images/simon-weber-eu.png"],
-        authors: { "/images/simon-weber-eu.png": "eulliaqzh" },
+        images: ["/images/simon-weber-eu.webp"],
+        authors: { "/images/simon-weber-eu.webp": "eulliaqzh" },
         description: "Simon Weber is a human male virtual singer with CVVC voicebanks, offering normal and power vocal tones.",
         audioSamples: ["/samples/simon/simon-sample1.mp3", "/samples/simon/simon-sample2.mp3"],
         characterData: {
@@ -225,8 +225,8 @@ const singersData = {
     mitsuo: {
         name: "Mitsuo",
         cv: "Mitsuo",
-        images: ["/images/mitsuo.png"],
-        authors: { "/images/mitsuo.png": "povidlosecret" },
+        images: ["/images/mitsuo.webp"],
+        authors: { "/images/mitsuo.webp": "povidlosecret" },
         description: "Mitsuo is a human male virtual singer primarily available as an RVC model.",
         audioSamples: ["/samples/mitsuo/mitsuo-sample1.mp3", "/samples/mitsuo/mitsuo-sample2.mp3"],
         characterData: {

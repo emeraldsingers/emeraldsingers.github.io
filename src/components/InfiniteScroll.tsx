@@ -22,11 +22,11 @@ const SimpleSingerCard = ({ name, image, slug }: { name: string; image: string; 
 };
 
 const singers = [
-  { name: "Akizora", image: "/images/akizora_thumb.png", slug: "akizora" },
-  { name: "Asoqwer", image: "/images/asoqwer_thumb.png", slug: "asoqwer" },
-  { name: "Simon Weber", image: "/images/simon-weber-eu_thumb.png", slug: "simon-weber" },
-  { name: "Mitsuo", image: "/images/mitsuo_thumb.png", slug: "mitsuo" },
-  { name: "Emerald", image: "/images/Emerald2025NoLogo_thumb.png", slug: "emerald" },
+  { name: "Akizora", image: "/images/akizora_thumb.webp", slug: "akizora" },
+  { name: "Asoqwer", image: "/images/asoqwer_thumb.webp", slug: "asoqwer" },
+  { name: "Simon Weber", image: "/images/simon-weber-eu_thumb.webp", slug: "simon-weber" },
+  { name: "Mitsuo", image: "/images/mitsuo_thumb.webp", slug: "mitsuo" },
+  { name: "Emerald", image: "/images/Emerald2025NoLogo_thumb.webp", slug: "emerald" },
 ];
 
 const itemWidthPx = 224 + 24; 
