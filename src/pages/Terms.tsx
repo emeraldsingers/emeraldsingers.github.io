@@ -5,6 +5,8 @@ import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Helmet } from "react-helmet-async";
+import { AnimatedBackground, FloatingElements } from "@/components/AnimatedBackgrounds";
+import { Scroll } from "lucide-react";
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -21,10 +23,7 @@ const Terms = () => {
 
   return (
     <div
-      className={cn(
-        "min-h-screen flex flex-col overflow-hidden animated-background-container",
-        theme === 'dark' ? "dark-theme-background" : "light-theme-background"
-      )}
+      className="min-h-screen flex flex-col overflow-hidden"
       ref={containerRef}
     >
       <Helmet>
@@ -32,6 +31,10 @@ const Terms = () => {
         <meta name="description" content="Read the terms and conditions for using the Emerald Project's virtual singers, software, and website. Understand usage guidelines, disclaimers, and commercial use policies." />
         <link rel="canonical" href="https://emeraldsingers.github.io/terms" />
       </Helmet>
+      
+      <AnimatedBackground theme={theme} />
+      <FloatingElements theme={theme} />
+      
       <Navigation />
       <main className="flex-grow container mx-auto px-4 py-20 relative">
         <motion.div 
@@ -40,7 +43,17 @@ const Terms = () => {
           animate="visible"
           variants={itemVariants}
         >
-          <h1 className="text-4xl font-bold text-primary mb-8 text-center">Terms of Use</h1>
+          <div className="flex items-center justify-center mb-6">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", stiffness: 100, delay: 0.3 }}
+            >
+              <Scroll className="h-10 w-10 text-primary mr-3" />
+            </motion.div>
+            <h1 className="text-4xl font-bold text-primary text-center">Terms of Use</h1>
+          </div>
+          
           <p className="text-muted-foreground mb-4">
             Welcome to the Emerald Project! By using our virtual singers, software, and website, you agree to the following terms and conditions. Please read them carefully.
           </p>

@@ -13,7 +13,6 @@
   animation: ripple 0.8s ease-out forwards;
 }
 
-/* Tab transition animations */
 .tab-list-container {
   position: relative;
   overflow: hidden;
@@ -32,7 +31,6 @@
   z-index: 1;
 }
 
-/* Custom tab trigger effect */
 [data-state="active"] {
   position: relative;
   transition: all 0.3s ease;
@@ -63,14 +61,12 @@
   }
 }
 
-/* 3D perspective on tab panel transitions */
 [role="tabpanel"] {
   transition: transform 0.4s ease, opacity 0.4s ease;
   transform-style: preserve-3d;
   perspective: 1000px;
 }
 
-/* Smooth opacity transitions for tab panels */
 .tab-content-enter {
   opacity: 0;
   transform: translateY(10px) scale(0.98);

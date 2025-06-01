@@ -4,12 +4,13 @@ import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/ThemeProvider";
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import "../tab-animations.css";
 import { Helmet } from "react-helmet-async";
 import { Maximize2, Minimize2 } from "lucide-react";
+import { AnimatedBackground, FloatingElements, StarryBackground } from "@/components/AnimatedBackgrounds";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -178,10 +179,7 @@ const HowTo = () => {
 
   return (
     <div
-      className={cn(
-        "min-h-screen flex flex-col overflow-hidden animated-background-container",
-        theme === 'dark' ? "dark-theme-background" : "light-theme-background"
-      )}
+      className="min-h-screen flex flex-col overflow-hidden"
       ref={containerRef}
     >
       <Helmet>
@@ -189,7 +187,14 @@ const HowTo = () => {
         <meta name="description" content="Learn how to install UtauV Emerald Edition, use AutoPitch, and find resources for the Emerald Project singers." />
         <link rel="canonical" href="https://emeraldsingers.github.io/how-to" />
       </Helmet>
+
+      {/* Add the background components */}
+      <AnimatedBackground theme={theme} />
+      <FloatingElements theme={theme} />
+      <StarryBackground theme={theme} />
+
       <Navigation />
+
       <motion.main 
         className="flex-grow container mx-auto px-4 py-20 relative"
         initial="hidden"

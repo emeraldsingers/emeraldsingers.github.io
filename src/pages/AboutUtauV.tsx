@@ -9,9 +9,10 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Helmet } from "react-helmet-async";
+import { AnimatedBackground, FloatingElements } from "@/components/AnimatedBackgrounds";
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -97,12 +98,7 @@ const AboutUtauV = () => {
 
     return (
         <div
-            className={cn(
-                "min-h-screen flex flex-col overflow-hidden animated-background-container",
-                theme === 'dark' 
-                    ? "dark-theme-background" 
-                    : "light-theme-background"
-            )}
+            className="min-h-screen flex flex-col overflow-hidden"
             onMouseMove={handleMouseMove}
             ref={containerRef}
         >
@@ -111,10 +107,11 @@ const AboutUtauV = () => {
                 <meta name="description" content="Learn about UtauV Emerald Edition, our enhanced fork of OpenUtau, featuring unique styling, AutoPitch, Auto Harmonies, and tailored for Emerald Project singers." />
                 <link rel="canonical" href="https://emeraldsingers.github.io/about-utauv" />
             </Helmet>
-            <div 
-                className="background-shapes"
-                style={{ transform: `translate(${offsetX}px, ${offsetY}px)` }}
-            ></div>
+
+            {/* Add the background components */}
+            <AnimatedBackground theme={theme} />
+            <FloatingElements theme={theme} />
+            
             <Navigation />
             <main className="flex-grow container mx-auto px-4 py-20 relative">
                 <motion.div 
@@ -208,10 +205,49 @@ const AboutUtauV = () => {
                             )}
                         </motion.div>
                     </motion.section>
-                    <motion.section variants={itemVariants} className="mb-8 text-center">
-                        <p className="text-muted-foreground">
-                            We're constantly evolving and improving. Stay tuned for more updates and features!
-                        </p>
+
+                    <motion.section variants={itemVariants} className="mb-8">
+                        <motion.h2 variants={itemVariants} className="text-2xl font-bold text-primary mb-6 text-center">Get Started</motion.h2>
+                        <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <motion.div variants={itemVariants} className="text-center">
+                                <Button variant="default" size="lg" className="w-full" asChild>
+                                    <a href="https://github.com/emeraldsingers/UtauV/releases/download/v1.1.0.0/UtauV.1.1.0.0.1.Installer.exe" target="_blank" rel="noopener noreferrer">
+                                        Download UtauV (Windows)
+                                    </a>
+                                </Button>
+                                <p className="text-sm text-muted-foreground mt-2">Windows 10/11 Installer</p>
+                            </motion.div>
+                            <motion.div variants={itemVariants} className="text-center">
+                                <Button variant="outline" size="lg" className="w-full" asChild>
+                                    <a href="https://github.com/emeraldsingers/UtauV/releases" target="_blank" rel="noopener noreferrer">
+                                        Other Downloads
+                                    </a>
+                                </Button>
+                                <p className="text-sm text-muted-foreground mt-2">MacOS, Linux, and more</p>
+                            </motion.div>
+                        </motion.div>
+                    </motion.section>
+
+                    <motion.section variants={itemVariants} className="mb-8">
+                        <motion.h2 variants={itemVariants} className="text-2xl font-bold text-primary mb-6 text-center">Additional Resources</motion.h2>
+                        <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <motion.div variants={itemVariants} className="text-center">
+                                <Button variant="outline" size="lg" className="w-full" asChild>
+                                    <a href={googleDocTutorialLink} target="_blank" rel="noopener noreferrer">
+                                        User Guide
+                                    </a>
+                                </Button>
+                                <p className="text-sm text-muted-foreground mt-2">Comprehensive tutorial for UtauV</p>
+                            </motion.div>
+                            <motion.div variants={itemVariants} className="text-center">
+                                <Button variant="outline" size="lg" className="w-full" asChild>
+                                    <a href={megaModelsLink} target="_blank" rel="noopener noreferrer">
+                                        AutoPitch Models
+                                    </a>
+                                </Button>
+                                <p className="text-sm text-muted-foreground mt-2">Download models for AutoPitch</p>
+                            </motion.div>
+                        </motion.div>
                     </motion.section>
                 </motion.div>
             </main>

@@ -5,8 +5,9 @@ import React, { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Helmet } from "react-helmet-async";
+import { AnimatedBackground, FloatingElements } from "@/components/AnimatedBackgrounds";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -31,10 +32,7 @@ const AboutUs = () => {
     
     return (
         <div
-            className={cn(
-                "min-h-screen flex flex-col overflow-hidden animated-background-container",
-                theme === 'dark' ? "dark-theme-background" : "light-theme-background"
-            )}
+            className="min-h-screen flex flex-col overflow-hidden"
             ref={containerRef}
         >
             <Helmet>
@@ -42,6 +40,10 @@ const AboutUs = () => {
                 <meta name="description" content="Learn about the Emerald Project's mission to create high-quality UTAU virtual singers and tools. Meet our team and find our social media links." />
                 <link rel="canonical" href="https://emeraldsingers.github.io/about-us" />
             </Helmet>
+
+            <AnimatedBackground theme={theme} />
+            <FloatingElements theme={theme} />
+            
             <Navigation />
             <main className="flex-grow container mx-auto px-4 py-20 relative">
                 <motion.div 

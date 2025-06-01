@@ -23,7 +23,7 @@ const SingerCard = ({ name, image, slug, tags }: SingerCardProps) => {
         className="group block relative w-full rounded-xl overflow-hidden"
       >
         <div className="absolute inset-0 bg-white/5 group-hover:bg-white/10 backdrop-blur-sm transition-colors rounded-xl border border-white/20" />
-        <div className="relative w-full pt-[100%]"> {/* 1:1 aspect ratio */}
+        <div className="relative w-full pt-[100%]">
           <img
             src={image}
             alt={name}

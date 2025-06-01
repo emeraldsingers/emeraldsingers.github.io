@@ -11,8 +11,9 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Helmet } from "react-helmet-async";
+import { AnimatedBackground, FloatingElements, StarryBackground } from "@/components/AnimatedBackgrounds";
 
 interface FaqItem {
     question: string;
@@ -215,18 +216,22 @@ const Faq = ({ initialFaqs = [] }: FaqPageProps) => {
 
     return (
         <div
-            className={cn(
-                "min-h-screen flex flex-col overflow-hidden animated-background-container",
-                theme === 'dark' ? "dark-theme-background" : "light-theme-background"
-            )}
+            className="min-h-screen flex flex-col overflow-hidden"
             ref={containerRef}
         >
             <Helmet>
                 <title>FAQ - Emerald Singers</title>
-                <meta name="description" content="Find answers to frequently asked questions about the Emerald Project, our UTAU singers, UtauV Emerald Edition, and how to get involved." />
+                <meta name="description" content="Frequently asked questions about the Emerald Project, UtauV, and Emerald Singers. Find answers about installation, usage, and licensing." />
                 <link rel="canonical" href="https://emeraldsingers.github.io/faq" />
             </Helmet>
+            
+            {/* Add the background components */}
+            <AnimatedBackground theme={theme} />
+            <FloatingElements theme={theme} />
+            <StarryBackground theme={theme} />
+            
             <Navigation />
+            
             <main className="flex-grow container mx-auto px-4 py-20 relative">
                 <motion.div 
                     className="max-w-5xl mx-auto glass-morphism rounded-xl p-8 overflow-hidden"
