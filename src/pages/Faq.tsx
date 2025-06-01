@@ -7,13 +7,20 @@ import {
     Loader2,
     X,
     Plus,
-    Minus
+    Minus,
+    HelpCircle,
+    Settings,
+    Music,
+    Search,
+    Info,
+    ExternalLink
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import { AnimatedBackground, FloatingElements, StarryBackground } from "@/components/AnimatedBackgrounds";
+import { Input } from "@/components/ui/input";
 
 interface FaqItem {
     question: string;
@@ -74,11 +81,14 @@ const Faq = ({ initialFaqs = [] }: FaqPageProps) => {
     const [zoomLevel, setZoomLevel] = useState(1);
     const viewerRef = useRef<HTMLDivElement>(null);
     const imageRef = useRef<HTMLImageElement>(null);
-    
-    const baseDark = '#051F20';
-    const baseLight = '#0B2B26';
-    const wispColor = 'rgba(145, 184, 157, 0.08)';
-    const wispColorSlightlyStronger = 'rgba(145, 184, 157, 0.12)';
+    const [searchQuery, setSearchQuery] = useState("");
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start start", "end start"]
+    });
+
+    const headerOpacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
+    const headerY = useTransform(scrollYProgress, [0, 0.25], [0, -50]);
     
     const faqData: FaqItem[] = [
         {
@@ -86,7 +96,7 @@ const Faq = ({ initialFaqs = [] }: FaqPageProps) => {
             question: "What is the Emerald Project?",
             answer: (
                 <>
-                    <p>Emerald Project is a team that develops singers on the UTAU engine! </p>
+                    <p className="mb-2">Emerald Project is a team that develops singers on the UTAU engine!</p>
                     <p>We are focused on creating high-quality voicebanks and tools.</p>
                 </>
             ),
@@ -97,36 +107,61 @@ const Faq = ({ initialFaqs = [] }: FaqPageProps) => {
             question: "How can I get involved?",
             answer: (
                 <>
-                    <p>We are not currently looking for new members to join our team.</p>
+                    <p className="mb-2">We are not currently looking for new members to join our team.</p>
                     <p>Stay tuned to our Telegram channel for more news.</p>
                 </>
             ),
             category: "general",
         },
-
         {
-            id: "utauv2",
+            id: "gen3",
+            question: "How can I contact the team?",
+            answer: (
+                <>
+                    <p className="mb-2">You can reach us at emeraldprojectutau@gmail.com or through our Telegram channel.</p>
+                    <p>For more details, check the Connect section on our About Us page.</p>
+                </>
+            ),
+            category: "general",
+        },
+        {
+            id: "utauv1",
             question: "What is UtauV Emerald Edition?",
             answer: (
                 <>
-                    <p>UtauV Emerald Edition is a fork of OpenUtau, specifically optimized for our Emerald Singers.</p>
-                    <img
-                        src="/images/UtauV.webp"
-                        alt="UtauV Interface"
-                        className="my-4 rounded-lg cursor-pointer"
-                        onClick={() => setMediaViewer({ type: "image", src: "/images/UtauV.webp", alt: "UtauV Interface" })}
-                    />
-                    <p>It features a unique visual style and an enhanced CVVC phonemizer.</p>
+                    <p className="mb-4">UtauV Emerald Edition is a fork of OpenUtau, specifically optimized for our Emerald Singers.</p>
+                    <div className="relative rounded-lg overflow-hidden mb-4">
+                        <img
+                            src="/images/UtauV.webp"
+                            alt="UtauV Interface"
+                            className="w-full rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+                            onClick={() => setMediaViewer({ type: "image", src: "/images/UtauV.webp", alt: "UtauV Interface" })}
+                        />
+                        <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/70 to-transparent">
+                            <p className="text-white text-xs">Click to enlarge</p>
+                        </div>
+                    </div>
+                </>
+            ),
+            category: "utauv",
+        },
+        {
+            id: "utauv2",
+            question: "Is UtauV compatible with other UTAU voices?",
+            answer: (
+                <>
+                    <p className="mb-2">Yes, UtauV is compatible with all standard UTAU voicebanks.</p>
                 </>
             ),
             category: "utauv",
         },
         {
             id: "utauv3",
-            question: "How to install Emerald Singer?",
+            question: "How to install Emerald Singers?",
             answer: (
                 <>
-                    <p>Just drag'n'drop zip file with singer into OpenUtau window.</p>
+                    <p className="mb-2">Just drag and drop the zip file with the singer into the OpenUtau or UtauV window.</p>
+                    <p>The software will automatically extract and install the voicebank for you.</p>
                 </>
             ),
             category: "utauv",
@@ -136,28 +171,72 @@ const Faq = ({ initialFaqs = [] }: FaqPageProps) => {
             question: "How to install and use autopitch in UtauV?",
             answer: (
                 <>
-                    <p>Read the tutorial on the "About UtauV" page or view the Google Docs spreadsheet below.</p>
-                    <p> </p>
-                    <a
-                        href="https://docs.google.com/document/d/1Eb43g7Tc616YRtyfLEqrwGKLS5af238-KsGQoY06oBs/edit?usp=sharing"
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-blue-500 hover:underline" 
-                    >
-                        Click here to view the tutorial!
-                    </a>
+                    <p className="mb-3">Read the tutorial on the "About UtauV" page or view the Google Docs spreadsheet below.</p>
+                    <div className="flex items-center">
+                        <a
+                            href="https://docs.google.com/document/d/1Eb43g7Tc616YRtyfLEqrwGKLS5af238-KsGQoY06oBs/edit?usp=sharing"
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center text-primary hover:text-primary/80 transition-colors" 
+                        >
+                            <ExternalLink className="h-4 w-4 mr-1" />
+                            View the tutorial
+                        </a>
+                    </div>
                 </>
             ),
             category: "utauv",
         },
-
+        {
+            id: "utauv5",
+            question: "Is UtauV available for Mac or Linux?",
+            answer: (
+                <>
+                    <p>Currently, UtauV Emerald Edition is only available for Windows. We don't have immediate plans for Mac or Linux versions.</p>
+                </>
+            ),
+            category: "utauv",
+        },
+        {
+            id: "singers1",
+            question: "Are the Emerald Singers free to use?",
+            answer: (
+                <>
+                    <p>Yes, all Emerald Singers are free to use for non-commercial purposes.</p>
+                </>
+            ),
+            category: "singers",
+        },
         {
             id: "singers2",
             question: "Can I use the Emerald Singers commercially?",
-            answer:
+            answer: (
                 <>
-                    <p>No. Contact us to emeraldprojectutau@gmail.com</p>
-                </>,
+                    <p className="mb-2">No, our singers are not available for commercial use.</p>
+                    <p>For commercial inquiries, please contact us at emeraldprojectutau@gmail.com.</p>
+                </>
+            ),
+            category: "singers",
+        },
+        {
+            id: "singers3",
+            question: "What languages do the Emerald Singers support?",
+            answer: (
+                <>
+                    <p>Most of our singers support Japanese. Some voicebanks may have additional language support.</p>
+                </>
+            ),
+            category: "singers",
+        },
+        {
+            id: "singers4",
+            question: "Where can I download Emerald Singers?",
+            answer: (
+                <>
+                    <p className="mb-2">You can download all Emerald Singers from our Singers page.</p>
+                    <p>Each singer has their own dedicated page with download links and usage information.</p>
+                </>
+            ),
             category: "singers",
         },
     ];
@@ -174,7 +253,6 @@ const Faq = ({ initialFaqs = [] }: FaqPageProps) => {
         setMediaViewer({ type: null, src: "" });
         setZoomLevel(1);
     }, []);
-
 
     const handleOutsideClick = useCallback((event: React.MouseEvent) => {
         if (viewerRef.current && !viewerRef.current.contains(event.target as Node)) {
@@ -195,7 +273,6 @@ const Faq = ({ initialFaqs = [] }: FaqPageProps) => {
         }
     }, [zoomLevel, mediaViewer.type]);
 
-
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsLoading(false);
@@ -203,8 +280,38 @@ const Faq = ({ initialFaqs = [] }: FaqPageProps) => {
         return () => clearTimeout(timer);
     }, []);
 
+    const filteredFaqData = faqData
+        .filter((item) => {
+            // Filter by category
+            const categoryMatch = item.category === activeCategory;
+            
+            // Filter by search query if one exists
+            if (!searchQuery) return categoryMatch;
+            
+            const questionMatch = item.question.toLowerCase().includes(searchQuery.toLowerCase());
+            const answerMatch = typeof item.answer === 'string' 
+                ? item.answer.toLowerCase().includes(searchQuery.toLowerCase())
+                : React.Children.toArray(item.answer).some(child => 
+                    typeof child === 'string' && child.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    React.isValidElement(child) && typeof child.props.children === 'string' && 
+                    child.props.children.toLowerCase().includes(searchQuery.toLowerCase())
+                );
+                
+            return categoryMatch && (questionMatch || answerMatch);
+        });
 
-    const filteredFaqData = faqData.filter((item) => item.category === activeCategory);
+    const getCategoryIcon = (category: FaqItem["category"]) => {
+        switch (category) {
+            case "general":
+                return <Info className="h-4 w-4 mr-2" />;
+            case "utauv":
+                return <Settings className="h-4 w-4 mr-2" />;
+            case "singers":
+                return <Music className="h-4 w-4 mr-2" />;
+            default:
+                return <HelpCircle className="h-4 w-4 mr-2" />;
+        }
+    };
 
     if (isLoading) {
         return (
@@ -222,82 +329,154 @@ const Faq = ({ initialFaqs = [] }: FaqPageProps) => {
             <Helmet>
                 <title>FAQ - Emerald Singers</title>
                 <meta name="description" content="Frequently asked questions about the Emerald Project, UtauV, and Emerald Singers. Find answers about installation, usage, and licensing." />
-                <link rel="canonical" href="https://emeraldsingers.github.io/faq" />
+                <link rel="canonical" href="https://emeraldsingers.github.io/#/faq" />
             </Helmet>
             
-            {/* Add the background components */}
             <AnimatedBackground theme={theme} />
             <FloatingElements theme={theme} />
             <StarryBackground theme={theme} />
             
             <Navigation />
             
-            <main className="flex-grow container mx-auto px-4 py-20 relative">
+            {/* Hero Section */}
+            <motion.header 
+                className="relative h-[35vh] flex items-center justify-center overflow-hidden pt-8"
+                style={{ opacity: headerOpacity, y: headerY }}
+            >
+                <div className="container relative z-10 text-center">
+                    <motion.div 
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.2 }}
+                        className={`inline-flex items-center justify-center p-4 rounded-full mb-6 mt-3 ${
+                            theme === 'dark' ? 'bg-emerald-500/20' : 'bg-emerald-100'
+                        }`}
+                    >
+                        <HelpCircle className="h-8 w-8 text-primary" />
+                    </motion.div>
+                    
+                    <motion.h1 
+                        className="text-5xl md:text-6xl font-bold mb-4 text-primary"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3, duration: 0.6 }}
+                    >
+                        Frequently Asked <span className="text-emerald-500">Questions</span>
+                    </motion.h1>
+                    
+                    <motion.p 
+                        className="text-xl text-muted-foreground max-w-2xl mx-auto"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.5, duration: 0.6 }}
+                    >
+                        Find answers to common questions about Emerald Project
+                    </motion.p>
+                </div>
+            </motion.header>
+            <main className="container mx-auto px-4 py-10 relative z-10">
                 <motion.div 
                     className="max-w-5xl mx-auto glass-morphism rounded-xl p-8 overflow-hidden"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
                 >
-                    <motion.h1 variants={itemVariants} className="text-4xl font-bold text-primary mb-8 text-center">Frequently Asked Questions</motion.h1>
-
-                    <motion.div variants={itemVariants} className="flex justify-center space-x-4 mb-8">
-                        <Button
-                            variant={activeCategory === "general" ? "default" : "outline"}
-                            onClick={() => setActiveCategory("general")}
-                            className="button-glass-gradient"
-                        >
-                            General
-                        </Button>
-                        <Button
-                            variant={activeCategory === "utauv" ? "default" : "outline"}
-                            onClick={() => setActiveCategory("utauv")}
-                            className="button-glass-gradient"
-                        >
-                            UtauV
-                        </Button>
-                        <Button
-                            variant={activeCategory === "singers" ? "default" : "outline"}
-                            onClick={() => setActiveCategory("singers")}
-                            className="button-glass-gradient"
-                        >
-                            Singers
-                        </Button>
-
+                    <motion.div variants={itemVariants} className="flex flex-col md:flex-row justify-between mb-8 gap-4">
+                        <div className="flex flex-wrap justify-center md:justify-start gap-2">
+                            <Button
+                                variant={activeCategory === "general" ? "default" : "outline"}
+                                onClick={() => setActiveCategory("general")}
+                                className={`button-glass-gradient ${activeCategory === "general" ? 'bg-primary/20' : ''}`}
+                            >
+                                <Info className="h-4 w-4 mr-2" />
+                                General
+                            </Button>
+                            <Button
+                                variant={activeCategory === "utauv" ? "default" : "outline"}
+                                onClick={() => setActiveCategory("utauv")}
+                                className={`button-glass-gradient ${activeCategory === "utauv" ? 'bg-primary/20' : ''}`}
+                            >
+                                <Settings className="h-4 w-4 mr-2" />
+                                UtauV
+                            </Button>
+                            <Button
+                                variant={activeCategory === "singers" ? "default" : "outline"}
+                                onClick={() => setActiveCategory("singers")}
+                                className={`button-glass-gradient ${activeCategory === "singers" ? 'bg-primary/20' : ''}`}
+                            >
+                                <Music className="h-4 w-4 mr-2" />
+                                Singers
+                            </Button>
+                        </div>
+                        
+                        <div className="relative w-full md:w-64">
+                            <Input
+                                type="text"
+                                placeholder="Search questions..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                className="w-full pl-10 glass-morphism border-primary/20"
+                            />
+                            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        </div>
                     </motion.div>
 
-                    <motion.div variants={itemVariants} className="space-y-4">
-                        {filteredFaqData.map((item) => (
-                            <div key={item.id} className="border border-primary/20 rounded-lg p-4 glass-morphism overflow-hidden">
-                                <button
-                                    className="flex items-center justify-between w-full text-left"
-                                    onClick={() => toggleAccordion(item.id)}
-                                    aria-expanded={expandedItems.includes(item.id)}
-                                    aria-controls={`faq-content-${item.id}`}
-                                >
-                                    <span className="text-xl font-semibold text-primary">{item.question}</span>
-                                    <motion.div animate={{ rotate: expandedItems.includes(item.id) ? 180 : 0 }}>
-                                        <ChevronDown className={`w-6 h-6 text-primary transition-transform`} />
-                                    </motion.div>
-                                </button>
-                                <AnimatePresence initial={false}>
-                                    {expandedItems.includes(item.id) && (
-                                        <motion.div
-                                            id={`faq-content-${item.id}`}
-                                            key="content"
-                                            variants={accordionVariants}
-                                            initial="collapsed"
-                                            animate="open"
-                                            exit="collapsed"
-                                            style={{ overflow: 'hidden' }}
-                                        >
-                                            <div className="pt-2 text-muted-foreground">{item.answer}</div>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
+                    {filteredFaqData.length === 0 ? (
+                        <motion.div 
+                            variants={itemVariants}
+                            className="text-center py-10 text-muted-foreground"
+                        >
+                            <div className="flex justify-center mb-4">
+                                <HelpCircle className="h-12 w-12 text-primary/50" />
                             </div>
-                        ))}
-                    </motion.div>
+                            <h3 className="text-lg font-medium text-primary mb-2">No questions found</h3>
+                            <p>Try adjusting your search query or category</p>
+                        </motion.div>
+                    ) : (
+                        <motion.div variants={itemVariants} className="space-y-4">
+                            <AnimatePresence initial={false}>
+                                {filteredFaqData.map((item, index) => (
+                                    <motion.div 
+                                        key={item.id} 
+                                        className="border border-primary/20 rounded-lg p-4 glass-morphism overflow-hidden"
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.05 * index }}
+                                    >
+                                        <button
+                                            className="flex items-center justify-between w-full text-left"
+                                            onClick={() => toggleAccordion(item.id)}
+                                            aria-expanded={expandedItems.includes(item.id)}
+                                            aria-controls={`faq-content-${item.id}`}
+                                        >
+                                            <div className="flex items-center">
+                                                {getCategoryIcon(item.category)}
+                                                <span className="text-xl font-semibold text-primary">{item.question}</span>
+                                            </div>
+                                            <motion.div animate={{ rotate: expandedItems.includes(item.id) ? 180 : 0 }}>
+                                                <ChevronDown className={`w-6 h-6 text-primary transition-transform`} />
+                                            </motion.div>
+                                        </button>
+                                        <AnimatePresence initial={false}>
+                                            {expandedItems.includes(item.id) && (
+                                                <motion.div
+                                                    id={`faq-content-${item.id}`}
+                                                    key="content"
+                                                    variants={accordionVariants}
+                                                    initial="collapsed"
+                                                    animate="open"
+                                                    exit="collapsed"
+                                                    style={{ overflow: 'hidden' }}
+                                                >
+                                                    <div className="pt-2 text-muted-foreground border-t border-primary/10 mt-4">{item.answer}</div>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                    </motion.div>
+                                ))}
+                            </AnimatePresence>
+                        </motion.div>
+                    )}
                 </motion.div>
             </main>
 
@@ -349,7 +528,6 @@ const Faq = ({ initialFaqs = [] }: FaqPageProps) => {
                                     style={{ transition: 'transform 0.2s ease' }}
                                 />
                             </>
-
                         )}
                         {mediaViewer.type === "video" && (
                             <video controls className="max-h-[90vh] max-w-[90vw]" autoPlay>
