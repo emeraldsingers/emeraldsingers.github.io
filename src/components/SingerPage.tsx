@@ -122,16 +122,16 @@ const singersData = {
         },
         videoDemos: [ 
             {
+                url: "https://www.youtube.com/embed/QRIUFGFhuKk",
+                title: "【Asoqwer VCV】 Hello Worker - KEI 【Emerald Project UTAUカバー】"
+            },
+            {
                 url: "https://www.youtube.com/embed/vBb_PVDeP9c",
                 title: "【Asoqwer VCV】 1000年生きてる | living millennium - いよわ【UTAUカバー】"
             },
             {
                 url: "https://www.youtube.com/embed/xHtAsrCGc_k",
                 title: "【asoqwer VCV】うらぽしゃ | Urapocere - Iyowa 【UTAUカバー】 + UST"
-            },
-            {
-                url: "https://www.youtube.com/embed/RjKX723j_ws",
-                title: "【Asoqwer VCV】 たぶん終わり | Almost Ended - いよわ【UTAUカバー】"
             },
             {
                 url: "https://www.youtube.com/embed/v6ZwyaaHlkw",

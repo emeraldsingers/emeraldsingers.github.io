@@ -1,5 +1,11 @@
 [
     {
+        "youtubeVideoId": "QRIUFGFhuKk",
+        "image": "/images/helloworker.webp",
+        "title": "【Asoqwer VCV】 Hello Worker",
+        "description": "Asoqwer is finally in the Emerald Project! 💚✨..."
+    },
+    {
         "youtubeVideoId": "fRvdPqekcAY",
         "image": "/images/nihilsanru.webp",
         "title": "【MITSUO DEMO】 Nihil-san ",
@@ -10,11 +16,5 @@
         "image": "/images/wavesimon.webp",
         "title": "【SIMON WEBER DEMO】 WAVE ",
         "description": "Simon is finally in Emerald Project! 💚✨..."
-    },
-    {
-        "youtubeVideoId": "70_UaoD5J5c",
-        "image": "/images/jumpingover.webp",
-        "title": "【Akizora CVVC】 JUMPIN' OVER ! ",
-        "description": "Akizora is finally in Emerald Project! 💚✨..."
     }
 ]
