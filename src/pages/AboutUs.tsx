@@ -30,7 +30,8 @@ import {
   FileCode,
   Settings,
   Layers,
-  Send
+  Send,
+  Video
 } from "lucide-react";
 
 const containerVariants = {
@@ -64,12 +65,25 @@ const cardVariants = {
   }
 };
 
-const teamMembers = [
+interface TeamMember {
+  name: string;
+  role: string;
+  avatar: string;
+  description: string;
+  social?: {
+    youtube?: string;
+    twitter?: string;
+    telegram?: string;
+    tiktok?: string;
+  };
+}
+
+const teamMembers: TeamMember[] = [
   {
     name: "asoqwer",
     role: "Founder & Voice Provider",
     avatar: "/images/asoqwerwtyssll.webp",
-    description: "Creator of Emerald Project, website designer, UtauV developer.",
+    description: "Creator of Emerald Project, voice provider of asoqwer, website designer, UtauV developer.",
     social: {
       youtube: "https://www.youtube.com/@asoqwer",
       twitter: "https://x.com/p_former38064",
@@ -79,7 +93,7 @@ const teamMembers = [
     name: "Seejiu-C",
     role: "Founder & Voice Provider",
     avatar: "/images/akizora-3.webp",
-    description: "Creator of Emerald Project, voice provider, and the driving force behind the project.",
+    description: "Creator of Emerald Project, Voice provider of Akizora, and the driving force behind the project.",
     social: {
       twitter: "https://x.com/hjfgrtij",
       youtube: "https://www.youtube.com/@Seejiu-C",
@@ -89,40 +103,58 @@ const teamMembers = [
     name: "Beaver-P",
     role: "Voice Provider",
     avatar: "/images/beaverp.webp",
-    description: "Voice provider, talented artist behind many of our visual assets.",
+    description: "Voice provider of Simon Weber, talented artist behind many of our visual assets.",
     social: {
       youtube: "https://www.youtube.com/@BeaverPr",
-      telegram: "https://t.me/BeaverProdMusic"
+      telegram: "https://t.me/BeaverProdMusic",
+      tiktok: "https://www.tiktok.com/@beaver_pr"
     }
   },
   {
     name: "mnifl",
     role: "Voice Provider",
     avatar: "/images/mnifl.webp",
-    description: "Voice provider, talented artist behind many of our visual assets.",
+    description: "Voice provider of Mitsuo, talented artist behind many of our visual assets.",
     social: {
       youtube: "https://www.youtube.com/@mnifl8878",
-      telegram: "https://t.me/mihynchikkc"
+      telegram: "https://t.me/mihynchikkc",
+      tiktok: "https://www.tiktok.com/@aichai25"
     }
   },
   {
     name: "SouЯ",
     role: "Voice Provider & Artist",
     avatar: "/images/souR.webp",
-    description: "Voice provider, talented artist behind many of our visual assets.",
+    description: "Voice provider of Emerald, talented artist behind many of our visual assets.",
     social: {
       youtube: "https://www.youtube.com/@SouRR01",
-      telegram: "https://t.me/SouRR001"
+      telegram: "https://t.me/SouRR001",
+      tiktok: "https://www.tiktok.com/@sourr001"
     }
   },
   {
-    name: "eulliaq",
-    role: "Artist",
-    avatar: "/images/eulliaq.webp",
-    description: "Talented artist behind many of our visual assets.",
+    name: "DIVON",
+    role: "Voice Provider & Artist",
+    avatar: "/images/divon.webp",
+    description: "Voice provider of SHIN, talented artist behind many of our visual assets.",
     social: {
-      youtube: "https://www.youtube.com/@EmeraldProjectUtau",
-      telegram: "https://t.me/falconyeulliaq"
+      youtube: "https://www.youtube.com/@V2DIVON",
+      tiktok: "https://www.tiktok.com/@v2divon",
+      twitter: "https://x.com/V2DIVON",
+      telegram: "https://t.me/v2divon"
+    }
+  },
+  {
+    name: "Leshy-P",
+    role: "Voice Provider",
+    avatar: "/images/leshy.webp",
+    description: "Voice provider of a future voicebank currently in development, talented artist behind many of our visual assets.",
+
+    social: {
+      youtube: "https://youtube.com/@LeshyP",
+      telegram: "https://t.me/leshy_music",
+      twitter: "https://x.com/leshy_music",
+      tiktok: "https://www.tiktok.com/@leshy_music"
     }
   },
   {
@@ -132,6 +164,28 @@ const teamMembers = [
     description: "Talented artist behind many of our visual assets.",
     social: {
       twitter: "https://x.com/shiroiakura",
+      tiktok: "https://www.tiktok.com/@shiroi_akura"
+    }
+  },
+  {
+    name: "eulliaq",
+    role: "Artist",
+    avatar: "/images/eulliaq.webp",
+    description: "Talented artist and silly KAITO lover.",
+    social: {
+      youtube: "https://www.youtube.com/@EmeraldProjectUtau",
+      telegram: "https://t.me/falconyeulliaq",
+      twitter: "https://x.com/Eulliaq",
+      tiktok: "https://www.tiktok.com/@eulliaqzh"
+    }
+  },
+  {
+    name: "shui_kai",
+    role: "Artist",
+    avatar: "/images/shui_kai.webp",
+    description: "Talented artist behind many of our visual assets.",
+    social: {
+      twitter: "https://x.com/shui_kai0112",
     }
   },
 ];
@@ -167,7 +221,7 @@ const AboutUs = () => {
       
       {/* Hero Section without Banner */}
       <motion.header 
-        className="relative h-[35vh] flex items-center justify-center overflow-hidden pt-8"
+        className="relative h-[35vh] flex items-center justify-center overflow-hidden pt-16 sm:pt-8"
         style={{ opacity: headerOpacity, y: headerY }}
       >
         <div className="container relative z-10 text-center">
@@ -211,21 +265,21 @@ const AboutUs = () => {
           className="max-w-5xl mx-auto"
         >
           <div className="flex justify-center mb-4">
-            <TabsList className="grid grid-cols-2 md:grid-cols-4 gap-2 glass-morphism">
-              <TabsTrigger value="about" className="data-[state=active]:bg-primary/20">
-                <Rocket className="h-4 w-4 mr-2" />
+            <TabsList className="w-full max-w-md grid grid-cols-4 gap-0 glass-morphism overflow-hidden">
+              <TabsTrigger value="about" className="data-[state=active]:bg-primary/20 px-1 py-1.5 text-xs sm:text-sm">
+                <Rocket className="h-4 w-4 sm:mr-1 flex-shrink-0" />
                 <span className="hidden sm:inline">Mission</span>
               </TabsTrigger>
-              <TabsTrigger value="team" className="data-[state=active]:bg-primary/20">
-                <Users className="h-4 w-4 mr-2" />
+              <TabsTrigger value="team" className="data-[state=active]:bg-primary/20 px-1 py-1.5 text-xs sm:text-sm">
+                <Users className="h-4 w-4 sm:mr-1 flex-shrink-0" />
                 <span className="hidden sm:inline">Team</span>
               </TabsTrigger>
-              <TabsTrigger value="utauv" className="data-[state=active]:bg-primary/20">
-                <Terminal className="h-4 w-4 mr-2" />
+              <TabsTrigger value="utauv" className="data-[state=active]:bg-primary/20 px-1 py-1.5 text-xs sm:text-sm">
+                <Terminal className="h-4 w-4 sm:mr-1 flex-shrink-0" />
                 <span className="hidden sm:inline">UtauV</span>
               </TabsTrigger>
-              <TabsTrigger value="connect" className="data-[state=active]:bg-primary/20">
-                <MessageCircle className="h-4 w-4 mr-2" />
+              <TabsTrigger value="connect" className="data-[state=active]:bg-primary/20 px-1 py-1.5 text-xs sm:text-sm">
+                <MessageCircle className="h-4 w-4 sm:mr-1 flex-shrink-0" />
                 <span className="hidden sm:inline">Connect</span>
               </TabsTrigger>
             </TabsList>
@@ -390,12 +444,12 @@ const AboutUs = () => {
                             <p className="text-muted-foreground text-center text-sm mb-4">{member.description}</p>
                             
                             {/* Social links */}
-                            <div className="flex gap-3 mt-2">
+                            <div className="flex gap-3 mt-2 flex-wrap justify-center">
                               {member.social?.youtube && (
                                 <motion.a
                                   href={member.social.youtube}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
                                   className={`p-2 rounded-full ${
                                     theme === 'dark' ? 'bg-red-500/20' : 'bg-red-100'
                                   } hover:bg-red-500/30 transition-colors`}
@@ -409,8 +463,8 @@ const AboutUs = () => {
                               {member.social?.twitter && (
                                 <motion.a
                                   href={member.social.twitter}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
                                   className={`p-2 rounded-full ${
                                     theme === 'dark' ? 'bg-slate-500/20' : 'bg-slate-100'
                                   } hover:bg-slate-500/30 transition-colors`}
@@ -433,6 +487,21 @@ const AboutUs = () => {
                                   whileTap={{ scale: 0.9 }}
                                 >
                                   <Send className="h-4 w-4 text-blue-500" />
+                                </motion.a>
+                              )}
+
+                              {member.social?.tiktok && (
+                                <motion.a
+                                  href={member.social.tiktok}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className={`p-2 rounded-full ${
+                                    theme === 'dark' ? 'bg-purple-500/20' : 'bg-purple-100'
+                                  } hover:bg-purple-500/30 transition-colors`}
+                                  whileHover={{ scale: 1.1 }}
+                                  whileTap={{ scale: 0.9 }}
+                                >
+                                  <Video className="h-4 w-4 text-purple-500" />
                                 </motion.a>
                               )}
                             </div>
@@ -545,21 +614,23 @@ const AboutUs = () => {
                         transition={{ delay: 0.7 }}
                         className="pt-4"
                       >
-                        <Button variant="default" className="mr-2" asChild>
-                          <a 
-                            href="https://github.com/emeraldsingers/UtauV/releases/download/v1.1.0.0/UtauV.1.1.0.0.1.Installer.exe" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                          >
-                            <Download className="h-4 w-4 mr-2" />
-                            Download UtauV
-                          </a>
-                        </Button>
-                        <Button variant="outline" asChild>
-                          <Link to="/about-utauv">
-                            Learn More
-                          </Link>
-                        </Button>
+                        <div className="flex flex-wrap gap-2 mt-2">
+                          <Button variant="default" size="sm" className="w-full sm:w-auto" asChild>
+                            <a 
+                              href="https://github.com/emeraldsingers/UtauV/releases/download/v1.1.0.0/UtauV.1.1.0.0.1.Installer.exe" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                            >
+                              <Download className="h-4 w-4 mr-2" />
+                              Download UtauV
+                            </a>
+                          </Button>
+                          <Button variant="outline" size="sm" className="w-full sm:w-auto" asChild>
+                            <Link to="/about-utauv">
+                              Learn More
+                            </Link>
+                          </Button>
+                        </div>
                       </motion.div>
                     </div>
                   </div>
@@ -650,12 +721,12 @@ const AboutUs = () => {
                     Follow us on social media to stay updated with our latest releases and community events.
                   </motion.p>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
                     <motion.a
                       href="https://www.youtube.com/@EmeraldProjectUtau"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`flex flex-col items-center p-6 rounded-xl ${
+                      className={`flex flex-col items-center p-4 sm:p-6 rounded-xl ${
                         theme === 'dark' ? 'bg-background/40 hover:bg-background/60' : 'bg-background/60 hover:bg-background/80'
                       } backdrop-blur-sm border border-primary/10 transition-all duration-300`}
                       whileHover={{ y: -5 }}
@@ -663,8 +734,8 @@ const AboutUs = () => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3 }}
                     >
-                      <div className="w-16 h-16 rounded-full bg-red-500/20 flex items-center justify-center mb-4">
-                        <Youtube className="h-8 w-8 text-red-500" />
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-red-500/20 flex items-center justify-center mb-4">
+                        <Youtube className="h-6 w-6 sm:h-8 sm:w-8 text-red-500" />
                       </div>
                       <h3 className="text-lg font-semibold text-primary mb-1">YouTube</h3>
                       <p className="text-sm text-muted-foreground text-center">Watch demos and tutorials</p>
@@ -674,7 +745,7 @@ const AboutUs = () => {
                       href="https://t.me/UtauV"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`flex flex-col items-center p-6 rounded-xl ${
+                      className={`flex flex-col items-center p-4 sm:p-6 rounded-xl ${
                         theme === 'dark' ? 'bg-background/40 hover:bg-background/60' : 'bg-background/60 hover:bg-background/80'
                       } backdrop-blur-sm border border-primary/10 transition-all duration-300`}
                       whileHover={{ y: -5 }}
@@ -682,18 +753,18 @@ const AboutUs = () => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4 }}
                     >
-                      <div className="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center mb-4">
-                        <MessageCircle className="h-8 w-8 text-blue-500" />
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-blue-500/20 flex items-center justify-center mb-4">
+                        <MessageCircle className="h-6 w-6 sm:h-8 sm:w-8 text-blue-500" />
                       </div>
                       <h3 className="text-lg font-semibold text-primary mb-1">Telegram</h3>
                       <p className="text-sm text-muted-foreground text-center">Join our community chat</p>
                     </motion.a>
                     
                     <motion.a
-                                    href="https://x.com/emeraldpjutau"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                      className={`flex flex-col items-center p-6 rounded-xl ${
+                      href="https://x.com/emeraldpjutau"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`flex flex-col items-center p-4 sm:p-6 rounded-xl ${
                         theme === 'dark' ? 'bg-background/40 hover:bg-background/60' : 'bg-background/60 hover:bg-background/80'
                       } backdrop-blur-sm border border-primary/10 transition-all duration-300`}
                       whileHover={{ y: -5 }}
@@ -701,11 +772,30 @@ const AboutUs = () => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.5 }}
                     >
-                      <div className="w-16 h-16 rounded-full bg-slate-500/20 flex items-center justify-center mb-4">
-                        <Twitter className="h-8 w-8 text-slate-500" />
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-slate-500/20 flex items-center justify-center mb-4">
+                        <Twitter className="h-6 w-6 sm:h-8 sm:w-8 text-slate-500" />
                       </div>
                       <h3 className="text-lg font-semibold text-primary mb-1">Twitter</h3>
                       <p className="text-sm text-muted-foreground text-center">Follow for updates</p>
+                    </motion.a>
+
+                    <motion.a
+                      href="https://www.tiktok.com/@emeraldproject"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`flex flex-col items-center p-4 sm:p-6 rounded-xl ${
+                        theme === 'dark' ? 'bg-background/40 hover:bg-background/60' : 'bg-background/60 hover:bg-background/80'
+                      } backdrop-blur-sm border border-primary/10 transition-all duration-300`}
+                      whileHover={{ y: -5 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.6 }}
+                    >
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-purple-500/20 flex items-center justify-center mb-4">
+                        <Video className="h-6 w-6 sm:h-8 sm:w-8 text-purple-500" />
+                      </div>
+                      <h3 className="text-lg font-semibold text-primary mb-1">TikTok</h3>
+                      <p className="text-sm text-muted-foreground text-center">Short videos and demos</p>
                     </motion.a>
                   </div>
                   

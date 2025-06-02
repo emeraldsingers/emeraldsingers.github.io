@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { useTheme } from "@/components/ThemeProvider";
@@ -39,11 +39,20 @@ interface FaqPageProps {
     initialFaqs?: FaqItem[];
 }
 
+// Оптимизированные варианты анимаций для мобильных устройств
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: { staggerChildren: 0.08, delayChildren: 0.1 }
+  }
+};
+
+const mobileContainerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.05, delayChildren: 0.05 }
   }
 };
 
@@ -53,6 +62,15 @@ const itemVariants = {
     opacity: 1, 
     y: 0,
     transition: { type: "spring", stiffness: 100, damping: 15 }
+  }
+};
+
+const mobileItemVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { type: "spring", stiffness: 100, damping: 20, duration: 0.15 }
   }
 };
 
@@ -71,6 +89,22 @@ const accordionVariants = {
   }
 };
 
+// Предварительно загруженное содержимое для мобильных устройств
+const mobileAccordionVariants = {
+  collapsed: {
+    opacity: 0,
+    height: 0,
+    marginTop: 0,
+    transition: { duration: 0.15, ease: [0.4, 0.0, 0.2, 1] } 
+  },
+  open: {
+    opacity: 1,
+    height: "auto",
+    marginTop: "0.5rem", 
+    transition: { duration: 0.2, ease: [0.4, 0.0, 0.2, 1] }
+  }
+};
+
 const Faq = ({ initialFaqs = [] }: FaqPageProps) => {
     const { theme } = useTheme();
     const containerRef = useRef<HTMLDivElement>(null);
@@ -82,6 +116,7 @@ const Faq = ({ initialFaqs = [] }: FaqPageProps) => {
     const viewerRef = useRef<HTMLDivElement>(null);
     const imageRef = useRef<HTMLImageElement>(null);
     const [searchQuery, setSearchQuery] = useState("");
+    const [isMobile, setIsMobile] = useState(false);
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end start"]
@@ -280,8 +315,23 @@ const Faq = ({ initialFaqs = [] }: FaqPageProps) => {
         return () => clearTimeout(timer);
     }, []);
 
-    const filteredFaqData = faqData
-        .filter((item) => {
+    // Определяем, является ли устройство мобильным
+    useEffect(() => {
+        const checkIfMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        
+        checkIfMobile();
+        window.addEventListener('resize', checkIfMobile);
+        
+        return () => {
+            window.removeEventListener('resize', checkIfMobile);
+        };
+    }, []);
+
+    // Предварительно вычисляем отфильтрованные данные для улучшения производительности
+    const filteredFaqData = useMemo(() => {
+        return faqData.filter((item) => {
             // Filter by category
             const categoryMatch = item.category === activeCategory;
             
@@ -299,8 +349,10 @@ const Faq = ({ initialFaqs = [] }: FaqPageProps) => {
                 
             return categoryMatch && (questionMatch || answerMatch);
         });
+    }, [activeCategory, searchQuery]);
 
-    const getCategoryIcon = (category: FaqItem["category"]) => {
+    // Оптимизированная функция для получения иконки категории
+    const getCategoryIcon = useCallback((category: FaqItem["category"]) => {
         switch (category) {
             case "general":
                 return <Info className="h-4 w-4 mr-2" />;
@@ -311,7 +363,7 @@ const Faq = ({ initialFaqs = [] }: FaqPageProps) => {
             default:
                 return <HelpCircle className="h-4 w-4 mr-2" />;
         }
-    };
+    }, []);
 
     if (isLoading) {
         return (
@@ -376,12 +428,15 @@ const Faq = ({ initialFaqs = [] }: FaqPageProps) => {
             </motion.header>
             <main className="container mx-auto px-4 py-10 relative z-10">
                 <motion.div 
-                    className="max-w-5xl mx-auto glass-morphism rounded-xl p-8 overflow-hidden"
-                    variants={containerVariants}
+                    className="max-w-5xl mx-auto glass-morphism rounded-xl p-4 sm:p-8 overflow-hidden"
+                    variants={isMobile ? mobileContainerVariants : containerVariants}
                     initial="hidden"
                     animate="visible"
                 >
-                    <motion.div variants={itemVariants} className="flex flex-col md:flex-row justify-between mb-8 gap-4">
+                    <motion.div 
+                        variants={isMobile ? mobileItemVariants : itemVariants} 
+                        className="flex flex-col md:flex-row justify-between mb-6 gap-4"
+                    >
                         <div className="flex flex-wrap justify-center md:justify-start gap-2">
                             <Button
                                 variant={activeCategory === "general" ? "default" : "outline"}
@@ -423,8 +478,8 @@ const Faq = ({ initialFaqs = [] }: FaqPageProps) => {
 
                     {filteredFaqData.length === 0 ? (
                         <motion.div 
-                            variants={itemVariants}
-                            className="text-center py-10 text-muted-foreground"
+                            variants={isMobile ? mobileItemVariants : itemVariants}
+                            className="text-center py-8 text-muted-foreground"
                         >
                             <div className="flex justify-center mb-4">
                                 <HelpCircle className="h-12 w-12 text-primary/50" />
@@ -433,48 +488,79 @@ const Faq = ({ initialFaqs = [] }: FaqPageProps) => {
                             <p>Try adjusting your search query or category</p>
                         </motion.div>
                     ) : (
-                        <motion.div variants={itemVariants} className="space-y-4">
-                            <AnimatePresence initial={false}>
-                                {filteredFaqData.map((item, index) => (
-                                    <motion.div 
+                        <motion.div 
+                            variants={isMobile ? mobileItemVariants : itemVariants} 
+                            className="space-y-3"
+                            initial="hidden"
+                            animate="visible"
+                        >
+                            {filteredFaqData.map((item, index) => {
+                                const isExpanded = expandedItems.includes(item.id);
+                                // Для мобильных устройств предварительно рендерим содержимое, но скрываем его
+                                const shouldPrerender = isMobile && index < 5;
+                                
+                                return (
+                                    <div 
                                         key={item.id} 
-                                        className="border border-primary/20 rounded-lg p-4 glass-morphism overflow-hidden"
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.05 * index }}
+                                        className="border border-primary/20 rounded-lg p-3 sm:p-4 glass-morphism overflow-hidden"
                                     >
                                         <button
                                             className="flex items-center justify-between w-full text-left"
                                             onClick={() => toggleAccordion(item.id)}
-                                            aria-expanded={expandedItems.includes(item.id)}
+                                            aria-expanded={isExpanded}
                                             aria-controls={`faq-content-${item.id}`}
                                         >
                                             <div className="flex items-center">
                                                 {getCategoryIcon(item.category)}
-                                                <span className="text-xl font-semibold text-primary">{item.question}</span>
+                                                <span className="text-lg sm:text-xl font-semibold text-primary">{item.question}</span>
                                             </div>
-                                            <motion.div animate={{ rotate: expandedItems.includes(item.id) ? 180 : 0 }}>
-                                                <ChevronDown className={`w-6 h-6 text-primary transition-transform`} />
+                                            <motion.div 
+                                                animate={{ 
+                                                    rotate: isExpanded ? 180 : 0 
+                                                }}
+                                                transition={{ 
+                                                    duration: isMobile ? 0.15 : 0.3, 
+                                                    ease: "easeInOut" 
+                                                }}
+                                            >
+                                                <ChevronDown className={`w-5 h-5 sm:w-6 sm:h-6 text-primary`} />
                                             </motion.div>
                                         </button>
-                                        <AnimatePresence initial={false}>
-                                            {expandedItems.includes(item.id) && (
-                                                <motion.div
-                                                    id={`faq-content-${item.id}`}
-                                                    key="content"
-                                                    variants={accordionVariants}
-                                                    initial="collapsed"
-                                                    animate="open"
-                                                    exit="collapsed"
-                                                    style={{ overflow: 'hidden' }}
-                                                >
-                                                    <div className="pt-2 text-muted-foreground border-t border-primary/10 mt-4">{item.answer}</div>
-                                                </motion.div>
-                                            )}
-                                        </AnimatePresence>
-                                    </motion.div>
-                                ))}
-                            </AnimatePresence>
+                                        
+                                        {shouldPrerender ? (
+                                            // Предварительно отрендеренный контент для первых 5 вопросов на мобильных
+                                            <div 
+                                                className={`overflow-hidden transition-all duration-200 ease-in-out ${
+                                                    isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                                                }`}
+                                            >
+                                                <div className="pt-2 text-muted-foreground border-t border-primary/10 mt-3 sm:mt-4 text-sm sm:text-base">
+                                                    {item.answer}
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            // Обычная анимация для остальных вопросов
+                                            <AnimatePresence initial={false}>
+                                                {isExpanded && (
+                                                    <motion.div
+                                                        id={`faq-content-${item.id}`}
+                                                        key="content"
+                                                        variants={isMobile ? mobileAccordionVariants : accordionVariants}
+                                                        initial="collapsed"
+                                                        animate="open"
+                                                        exit="collapsed"
+                                                        style={{ overflow: 'hidden' }}
+                                                    >
+                                                        <div className="pt-2 text-muted-foreground border-t border-primary/10 mt-3 sm:mt-4 text-sm sm:text-base">
+                                                            {item.answer}
+                                                        </div>
+                                                    </motion.div>
+                                                )}
+                                            </AnimatePresence>
+                                        )}
+                                    </div>
+                                );
+                            })}
                         </motion.div>
                     )}
                 </motion.div>
