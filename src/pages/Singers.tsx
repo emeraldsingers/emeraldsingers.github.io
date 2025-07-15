@@ -144,10 +144,10 @@ const AnimatedBackground = ({ theme }: { theme: string }) => {
                         }}
                         transition={{
                             duration: 4 + i * 0.3,
-                            times: [0, 0.4, 0.7, 1], // Draw, hold, fade out
+                            times: [0, 0.4, 0.7, 1], 
                             delay: i * 0.2,
                             repeat: Infinity,
-                            repeatDelay: 1.5, // Pause before repeating
+                            repeatDelay: 1.5, 
                         }}
                         custom={i}
                     />
@@ -582,6 +582,7 @@ export type SingerTag =
   | 'ja' 
   | 'en' 
   | 'rus' 
+  | 'cv'
   | 'cvvc' 
   | 'vcv' 
   | 'vccv' 
@@ -602,7 +603,7 @@ const tagCategories = [
   },
   { 
     name: 'Phoneme System', 
-    tags: ['cvvc', 'vcv', 'vccv', 'cvc'] 
+    tags: ['cv', 'cvvc', 'vcv', 'vccv', 'cvc'] 
   }
 ];
 
@@ -616,6 +617,7 @@ const tagDisplay: Record<SingerTag, { label: string, color: string }> = {
   ja: { label: 'Japanese', color: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300' },
   en: { label: 'English', color: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300' },
   rus: { label: 'Russian', color: 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300' },
+  cv: { label: 'CV', color: 'bg-rose-100 text-rose-800 dark:bg-rose-900/30 dark:text-rose-300' },
   cvvc: { label: 'CVVC', color: 'bg-lime-100 text-lime-800 dark:bg-lime-900/30 dark:text-lime-300' },
   vcv: { label: 'VCV', color: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300' },
   vccv: { label: 'VCCV', color: 'bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300' },
@@ -655,12 +657,11 @@ const singers = [
     name: "Mitsuo",
     image: "/images/mitsuo_thumb.webp",
     slug: "mitsuo",
-    tags: ['male', 'rvc', 'ja'] as SingerTag[],
-    audioSample: "/samples/mitsuo/mitsuorvc.mp3"
+    tags: ['male', 'cv', 'utau', 'rvc', 'ja'] as SingerTag[],
+    audioSample: "/samples/mitsuo/mitsuo-samplecv.mp3"
   },
 ];
 
-// Augmented SingerCard component with audio playback
 const SingerCardWithAudio = ({ 
   singer, 
   theme, 
@@ -681,7 +682,6 @@ const SingerCardWithAudio = ({
     if (isPlaying) {
       audioRef.current?.play();
       
-      // Start progress animation
       const updateProgress = () => {
         if (audioRef.current) {
           setCurrentTime(audioRef.current.currentTime);
@@ -692,7 +692,6 @@ const SingerCardWithAudio = ({
     } else {
       audioRef.current?.pause();
       
-      // Stop progress animation
       if (progressAnimationRef.current) {
         cancelAnimationFrame(progressAnimationRef.current);
         progressAnimationRef.current = null;
@@ -706,8 +705,6 @@ const SingerCardWithAudio = ({
       }
     };
   }, [isPlaying]);
-  
-  // Get audio duration when metadata is loaded
   useEffect(() => {
     const audio = audioRef.current;
     
@@ -720,7 +717,6 @@ const SingerCardWithAudio = ({
     if (audio) {
       audio.addEventListener('loadedmetadata', handleLoadedMetadata);
       
-      // If already loaded
       if (audio.duration) {
         setAudioDuration(audio.duration);
       }

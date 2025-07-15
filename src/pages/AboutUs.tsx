@@ -100,28 +100,6 @@ const teamMembers: TeamMember[] = [
     }
   },
   {
-    name: "Beaver-P",
-    role: "Voice Provider",
-    avatar: "/images/beaverp.webp",
-    description: "Voice provider of Simon Weber, talented artist behind many of our visual assets.",
-    social: {
-      youtube: "https://www.youtube.com/@BeaverPr",
-      telegram: "https://t.me/BeaverProdMusic",
-      tiktok: "https://www.tiktok.com/@beaver_pr"
-    }
-  },
-  {
-    name: "mnifl",
-    role: "Voice Provider",
-    avatar: "/images/mnifl.webp",
-    description: "Voice provider of Mitsuo, talented artist behind many of our visual assets.",
-    social: {
-      youtube: "https://www.youtube.com/@mnifl8878",
-      telegram: "https://t.me/mihynchikkc",
-      tiktok: "https://www.tiktok.com/@aichai25"
-    }
-  },
-  {
     name: "SouЯ",
     role: "Voice Provider & Artist",
     avatar: "/images/souR.webp",
@@ -142,6 +120,28 @@ const teamMembers: TeamMember[] = [
       tiktok: "https://www.tiktok.com/@v2divon",
       twitter: "https://x.com/V2DIVON",
       telegram: "https://t.me/v2divon"
+    }
+  },
+  {
+    name: "Beaver-P",
+    role: "Voice Provider",
+    avatar: "/images/beaverp.webp",
+    description: "Voice provider of Simon Weber, talented artist behind many of our visual assets.",
+    social: {
+      youtube: "https://www.youtube.com/@BeaverPr",
+      telegram: "https://t.me/BeaverProdMusic",
+      tiktok: "https://www.tiktok.com/@beaver_pr"
+    }
+  },
+  {
+    name: "mnifl",
+    role: "Voice Provider",
+    avatar: "/images/mnifl.webp",
+    description: "Voice provider of Mitsuo, talented artist behind many of our visual assets.",
+    social: {
+      youtube: "https://www.youtube.com/@mnifl8878",
+      telegram: "https://t.me/mihynchikkc",
+      tiktok: "https://www.tiktok.com/@aichai25"
     }
   },
   {

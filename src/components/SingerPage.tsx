@@ -243,6 +243,12 @@ const singersData = {
             dark: 'rgb(255, 85, 0)',
         },
         voicebanks: {
+            CV: {
+                url: "https://mega.nz/file/ynIknCiZ#8N-5Ns9EKXKQMa-vBLz9ci2BszWTBwdZwFoI7OmYqnY",
+                vocalModes: [
+                    { name: "Normal", description: "Standard voice", sample: "/samples/mitsuo/mitsuo-samplecv.mp3" }
+                ]
+            },
             RVC: {
                 url: "https://www.weights.com/ru/models/cm7p25bsz66jto915lydx2sfx",
                 vocalModes: [
@@ -256,6 +262,30 @@ const singersData = {
                 title: "【MITSUO DEMO】 虚無さん | Nihil-san - ¿?shimon 【Emerald Project Russian UTAUカバー】"
             }
         ]
+    },
+    shin: {
+        name: "SHIN",
+        cv: "DIVON",
+        images: ["/images/SHIN_AI_demo.webp"],
+        authors: { "/images/SHIN_AI_demo.webp": "DIVON" },
+        description: "Hi",
+        audioSamples: [],
+        characterData: {
+            Species: "Placeholder",
+            Gender: "Placeholder",
+            Age: "Placeholder",
+            Height: "Placeholden",
+            Weight: "Placeholde",
+            Birthday: "Placeholder",
+            Stone: "Placeholder",
+        },
+        colors: {
+            light: 'rgb(15,19,28)', 
+            dark: 'rgb(215, 223, 241)',
+        },
+        voicebanks: {
+    }, 
+        videoDemos: []
     },
     
 };
