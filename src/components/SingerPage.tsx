@@ -284,8 +284,14 @@ const singersData = {
             dark: 'rgb(215, 223, 241)',
         },
         voicebanks: {
+            VCV: {
+                url: "https://mega.nz/folder/GtsDxQrD#DvzWGMexZtRSwkhlMuCOXg"
+            }
     }, 
-        videoDemos: []
+        videoDemos: [{
+            url: "https://www.youtube.com/embed/exUwWSWDYk4",
+            title: "【SHIN V3】HARDBASS NIGHT【UTAU COVER】+USTxDL"
+        }]
     },
     
 };
