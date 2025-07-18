@@ -1,20 +1,20 @@
 [
     {
+        "youtubeVideoId": "kr_BJ2cQrBA",
+        "image": "/images/psi.webp",
+        "title": "【Mitsuo CV DEMO】 Psi",
+        "description": "Yet another demo for such a beautiful boy! 💚✨..."
+    },
+    {
         "youtubeVideoId": "QRIUFGFhuKk",
         "image": "/images/helloworker.webp",
         "title": "【Asoqwer VCV】 Hello Worker",
-        "description": "Asoqwer is finally in the Emerald Project! 💚✨..."
+        "description": "Asoqwer is finally in Emerald Project! 💚✨..."
     },
     {
         "youtubeVideoId": "fRvdPqekcAY",
         "image": "/images/nihilsanru.webp",
-        "title": "【MITSUO DEMO】 Nihil-san ",
+        "title": "【MITSUO DEMO】 Nihil-san",
         "description": "Mitsuo is finally in Emerald Project! 💚✨..."
-    },
-    {
-        "youtubeVideoId": "F2JMYiLiNIk",
-        "image": "/images/wavesimon.webp",
-        "title": "【SIMON WEBER DEMO】 WAVE ",
-        "description": "Simon is finally in Emerald Project! 💚✨..."
     }
 ]
