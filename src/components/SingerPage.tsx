@@ -29,9 +29,18 @@ import {
     MessageCircleQuestion,
     Maximize2,
     Minimize2,
+    FileCode,
+    Globe,
+    Cpu,
+    Clock,
+    Database,
+    Sparkles,
+    Heart,
+    Music,
 } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 import Footer from "@/components/Footer";
 
@@ -61,7 +70,10 @@ const singersData = {
                 url: "https://mega.nz/file/vrYlyQoa#cY-N8DzP3-nKZ9VcfOsaUlhJl98fr2brbfm2TovMegk",
                 vocalModes: [
                     { name: "CVVC Normal", description: "CVVC Balanced and clear vocal tone", sample: "/samples/akizora/akizora-samplecvvc.mp3"},
-                ]
+                ],
+                type: "UTAU",
+                otoConfig: "Configured by Asoqwer",
+                supportedLanguages: ["ja"]
             },
         },
         videoDemos: [ 
@@ -97,7 +109,10 @@ const singersData = {
                     { name: "CVVC Normal", description: "CVVC Balanced and clear vocal tone", sample: "/samples/asoqwer/asoqwer-samplecvvcnormal.mp3"},
                     { name: "CVVC Whisper", description: "CVVC Whisper soft voice", sample: "/samples/asoqwer/asoqwer-samplecvvcwhisper.mp3" },
                     { name: "CVVC Power", description: "CVVC Strong voice", sample: "/samples/asoqwer/asoqwer-samplecvvcpower.mp3" }
-                ]
+                ],
+                type: "UTAU",
+                otoConfig: "Configured by Asoqwer",
+                supportedLanguages: ["ja"]
             },
             VCV: {
                 url: "https://mega.nz/file/6nh0nLiK#Vo7lP9BISClKdaRI2c1mcwYWZ_BpFuP5ePou3IlW30E",
@@ -105,19 +120,26 @@ const singersData = {
                     { name: "VCV Normal", description: "VCV balanced and clear vocal tone", sample: "/samples/asoqwer/asoqwer-samplevcvnormal.mp3" },
                     { name: "VCV Power", description: "VCV strong voice", sample: "/samples/asoqwer/asoqwer-samplevcvpower.mp3" },
                     { name: "VCV Weak", description: "VCV weak relaxed voice", sample: "/samples/asoqwer/asoqwer-samplevcvweak.mp3" },
-                ]
+                ],
+                type: "UTAU",
+                otoConfig: "Configured by Asoqwer",
+                supportedLanguages: ["ja"]
             },
             "RVC Normal": {
                 url: "https://www.weights.com/ru/models/cm6koudmc2ieknh192auqw96e",
                 vocalModes: [
                 { name: "RVC Normal", description: "75e 3450step 8 batch-size", sample: "/samples/asoqwer/asoqwer-rvc-sample.mp3" }
-                ]
+                ],
+                type: "RVC",
+                training: "Trained by Asoqwer",
             },
             "RVC Raspy": {
                 url: "https://www.weights.com/ru/models/cm6kp6gf02erlpj19y1va7czf",
                 vocalModes: [
                 { name: "RVC Raspy", description: "300e 15600step 8 batch-size", sample: "/samples/asoqwer/asoqwer-rvc-raspy.mp3" }
-                ]
+                ],
+                type: "RVC",
+                training: "Trained by Asoqwer",
             }
         },
         videoDemos: [ 
@@ -166,7 +188,10 @@ const singersData = {
                     { name: "Childish", description: "A light and ringing voice with a childish tone", sample: "/samples/emerald/emerald_childishcvvc.mp3" },
                     { name: "Dark", description: "Deep and rich tone with a serious undertone", sample: "/samples/emerald/emerald_darkcvvc.mp3" },
                     { name: "Soft", description: "Soft and calm tone", sample: "/samples/emerald/emerald_softcvvc.mp3" },
-                ]
+                ],
+                type: "UTAU",
+                otoConfig: "Configured by SouЯ",
+                supportedLanguages: ["ja"]
             },
             "CVC RUS": {
                 url: "https://mega.nz/file/O2p0gShD#_J9erU9itDXAavdCytTjB7LczUWuS4_ebyX4jw58aFQ",
@@ -175,7 +200,10 @@ const singersData = {
                     { name: "Childish", description: "Bright and naive timbre with a youthful tone", sample: "/samples/emerald/emerald_chldishcvcrus.mp3" },
                     { name: "Dark", description: "Dark and dramatic voice", sample: "/samples/emerald/emerald_darkcvcrus.mp3" },
                     { name: "Soft", description: "A quiet and velvety voice", sample: "/samples/emerald/emerald_softcvcrus.mp3" },
-                ]
+                ],
+                type: "UTAU",
+                otoConfig: "Configured by SouЯ",
+                supportedLanguages: ["ru"]
             }
         },
         videoDemos: [
@@ -211,8 +239,10 @@ const singersData = {
                 vocalModes: [
                     { name: "CVVC Normal", description: "CVVC Normal tone", sample: "/samples/simon/simon-samplecvvc.mp3" },
                     { name: "CVVC Power", description: "CVVC Strong voice", sample: "/samples/simon/simon-samplecvvcpower.mp3" },
-                ]
-
+                ],
+                type: "UTAU",
+                otoConfig: "Configured by Beaver-P",
+                supportedLanguages: ["ja"]
             }
         },
         videoDemos: [ 
@@ -224,7 +254,7 @@ const singersData = {
     },
     mitsuo: {
         name: "Mitsuo",
-        cv: "Mitsuo",
+        cv: "mnifl",
         images: ["/images/mitsuo.webp"],
         authors: { "/images/mitsuo.webp": "povidlosecret" },
         description: "Mitsuo is a human male virtual singer primarily available as an RVC model.",
@@ -247,13 +277,18 @@ const singersData = {
                 url: "https://mega.nz/file/ynIknCiZ#8N-5Ns9EKXKQMa-vBLz9ci2BszWTBwdZwFoI7OmYqnY",
                 vocalModes: [
                     { name: "Normal", description: "Standard voice", sample: "/samples/mitsuo/mitsuo-samplecv.mp3" }
-                ]
+                ],
+                type: "UTAU",
+                otoConfig: "Configured by mnifl",
+                supportedLanguages: ["ja"]
             },
             RVC: {
                 url: "https://www.weights.com/ru/models/cm7p25bsz66jto915lydx2sfx",
                 vocalModes: [
                     { name: "RVC", description: "680e 50 min", sample: "/samples/mitsuo/mitsuorvc.mp3" }
-                ]
+                ],
+                type: "RVC",
+                training: "Trained by mnifl",
             }
         },
         videoDemos: [
@@ -286,8 +321,23 @@ const singersData = {
         voicebanks: {
             VCV: {
                 url: "https://mega.nz/folder/GtsDxQrD#DvzWGMexZtRSwkhlMuCOXg"
-            }
-    }, 
+            },
+            /* DiffSinger: {
+               url: "Placeholder",
+                vocalModes: [
+                    { name: "Placeholder", description: "Standard DiffSinger voice", sample: "/samples/shin/shin-diffsinger-sample.mp3" }
+                ],
+                type: "DiffSinger",
+                supportedLanguages: ["de", "en", "es", "fr", "it", "ja", "ko", "pl", "pt", "ru", "th", "vi", "zh"],
+                labeling: "Labeled by Placeholder",
+                training: "Trained by Placeholder",
+                totalDataDuration: "Placeholder",
+                supportedExpressions: ["TENC (Tension)", "VEL (Velocity)", "GENC (Gender)", "BREC (Breathiness)", "Pitch (Auto Pitch)", "FALC (Falsetto)"],
+                additionalDataUsed: "Placeholder",
+                specialThanks: "Placeholder",
+                recommendedUsage: "Placeholder",
+            } */
+        }, 
         videoDemos: [{
             url: "https://www.youtube.com/embed/exUwWSWDYk4",
             title: "【SHIN V3】HARDBASS NIGHT【UTAU COVER】+USTxDL"
@@ -1705,6 +1755,21 @@ const SingerPage: React.FC = () => {
     const vocalModesToDisplay = currentVoicebank?.vocalModes || [];
     const videoDemos = currentSinger.videoDemos || []; 
 
+    const languageDisplay = {
+        ja: { label: 'Japanese', flag: '🇯🇵', color: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300' },
+        en: { label: 'English', flag: '🇬🇧', color: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300' },
+        ru: { label: 'Russian', flag: '🇷🇺', color: 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300' },
+        de: { label: 'German', flag: '🇩🇪', color: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300' },
+        es: { label: 'Spanish', flag: '🇪🇸', color: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300' },
+        fr: { label: 'French', flag: '🇫🇷', color: 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300' },
+        it: { label: 'Italian', flag: '🇮🇹', color: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300' },
+        ko: { label: 'Korean', flag: '🇰🇷', color: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300' },
+        pl: { label: 'Polish', flag: '🇵🇱', color: 'bg-white text-red-800 dark:bg-gray-900/30 dark:text-red-300' },
+        pt: { label: 'Portuguese', flag: '🇵🇹', color: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300' },
+        th: { label: 'Thai', flag: '🇹🇭', color: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300' },
+        vi: { label: 'Vietnamese', flag: '🇻🇳', color: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300' },
+        zh: { label: 'Chinese', flag: '🇨🇳', color: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300' },
+    };
 
     return (
         <>
@@ -1911,7 +1976,7 @@ const SingerPage: React.FC = () => {
                                         animate="animate"
                                         exit="exit"
                                         custom={animationDirection}
-                                        className="bg-white/10 dark:bg-black/20 rounded-lg p-6"
+                                        className="bg-white/5 dark:bg-black/20 rounded-lg p-6"
                                     >
                                         <div className="flex flex-wrap items-center justify-between mb-6">
                                             <h3 className="text-xl font-medium text-primary">{currentVoicebankFormat}</h3>
@@ -1931,7 +1996,7 @@ const SingerPage: React.FC = () => {
                                         </div>
 
                                         {vocalModesToDisplay.length > 0 && (
-                                            <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-4" variants={containerVariants} initial="hidden" animate="visible">
+                                            <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6" variants={containerVariants} initial="hidden" animate="visible">
                                                 {vocalModesToDisplay.map((mode, index) => (
                                                     <motion.div 
                                                         key={mode.name + index}
@@ -1988,6 +2053,122 @@ const SingerPage: React.FC = () => {
                                                     </motion.div>
                                                 ))}
                                             </motion.div>
+                                        )}
+
+                                        {/* New: Additional Information Grid */}
+                                        {currentVoicebank.type && (
+                                            <div className="mt-6">
+                                                <h4 className="text-lg font-medium text-primary mb-4">Additional Details</h4>
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                    {currentVoicebank.type === "UTAU" && currentVoicebank.otoConfig && (
+                                                        <div className="bg-white/5 dark:bg-black/20 rounded-lg p-4">
+                                                            <div className="flex items-center gap-2 mb-2">
+                                                                <FileCode className="h-5 w-5 text-primary" />
+                                                                <h5 className="font-medium text-primary">OTO Configuration</h5>
+                                                            </div>
+                                                            <p className="text-muted-foreground text-sm">{currentVoicebank.otoConfig}</p>
+                                                        </div>
+                                                    )}
+                                                    {currentVoicebank.supportedLanguages && currentVoicebank.supportedLanguages.length > 0 && (
+                                                        <div className="bg-white/5 dark:bg-black/20 rounded-lg p-4">
+                                                            <div className="flex items-center gap-2 mb-2">
+                                                                <Globe className="h-5 w-5 text-primary" />
+                                                                <h5 className="font-medium text-primary">Supported Languages</h5>
+                                                            </div>
+                                                            <div className="flex flex-wrap gap-2">
+                                                                {currentVoicebank.supportedLanguages.map(lang => (
+                                                                    <span key={lang} className={`px-3 py-1 rounded-full text-sm font-medium ${languageDisplay[lang]?.color}`}>
+                                                                        {languageDisplay[lang]?.flag} {languageDisplay[lang]?.label}
+                                                                    </span>
+                                                                ))}
+                                                            </div>
+                                                        </div>
+                                                    )}
+                                                    {currentVoicebank.type === "RVC" && currentVoicebank.training && (
+                                                        <div className="bg-white/5 dark:bg-black/20 rounded-lg p-4">
+                                                            <div className="flex items-center gap-2 mb-2">
+                                                                <Cpu className="h-5 w-5 text-primary" />
+                                                                <h5 className="font-medium text-primary">Training Details</h5>
+                                                            </div>
+                                                            <p className="text-muted-foreground text-sm">{currentVoicebank.training}</p>
+                                                        </div>
+                                                    )}
+                                                    {currentVoicebank.type === "DiffSinger" && (
+                                                        <>
+                                                            {currentVoicebank.supportedExpressions && (
+                                                                <div className="bg-white/5 dark:bg-black/20 rounded-lg p-4">
+                                                                    <div className="flex items-center gap-2 mb-2">
+                                                                        <Sparkles className="h-5 w-5 text-primary" />
+                                                                        <h5 className="font-medium text-primary">Supported Expressions</h5>
+                                                                    </div>
+                                                                    <div className="flex flex-wrap gap-2">
+                                                                        {currentVoicebank.supportedExpressions.map(expr => (
+                                                                            <span key={expr} className="px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300 border border-purple-300 dark:border-purple-500">
+                                                                                {expr}
+                                                                            </span>
+                                                                        ))}
+                                                                    </div>
+                                                                </div>
+                                                            )}
+                                                            {currentVoicebank.labeling && (
+                                                                <div className="bg-white/5 dark:bg-black/20 rounded-lg p-4">
+                                                                    <div className="flex items-center gap-2 mb-2">
+                                                                        <Users className="h-5 w-5 text-primary" />
+                                                                        <h5 className="font-medium text-primary">Labeling</h5>
+                                                                    </div>
+                                                                    <p className="text-muted-foreground text-sm">{currentVoicebank.labeling}</p>
+                                                                </div>
+                                                            )}
+                                                            {currentVoicebank.training && (
+                                                                <div className="bg-white/5 dark:bg-black/20 rounded-lg p-4">
+                                                                    <div className="flex items-center gap-2 mb-2">
+                                                                        <Cpu className="h-5 w-5 text-primary" />
+                                                                        <h5 className="font-medium text-primary">Training</h5>
+                                                                    </div>
+                                                                    <p className="text-muted-foreground text-sm">{currentVoicebank.training}</p>
+                                                                </div>
+                                                            )}
+                                                            {currentVoicebank.totalDataDuration && (
+                                                                <div className="bg-white/5 dark:bg-black/20 rounded-lg p-4">
+                                                                    <div className="flex items-center gap-2 mb-2">
+                                                                        <Clock className="h-5 w-5 text-primary" />
+                                                                        <h5 className="font-medium text-primary">Total Data Duration</h5>
+                                                                    </div>
+                                                                    <p className="text-muted-foreground text-sm">{currentVoicebank.totalDataDuration}</p>
+                                                                </div>
+                                                            )}
+
+                                                            {currentVoicebank.additionalDataUsed && (
+                                                                <div className="bg-white/5 dark:bg-black/20 rounded-lg p-4">
+                                                                    <div className="flex items-center gap-2 mb-2">
+                                                                        <Database className="h-5 w-5 text-primary" />
+                                                                        <h5 className="font-medium text-primary">Additional Data Used</h5>
+                                                                    </div>
+                                                                    <p className="text-muted-foreground text-sm">{currentVoicebank.additionalDataUsed}</p>
+                                                                </div>
+                                                            )}
+                                                            {currentVoicebank.specialThanks && (
+                                                                <div className="bg-white/5 dark:bg-black/20 rounded-lg p-4">
+                                                                    <div className="flex items-center gap-2 mb-2">
+                                                                        <Heart className="h-5 w-5 text-primary" />
+                                                                        <h5 className="font-medium text-primary">Special Thanks</h5>
+                                                                    </div>
+                                                                    <p className="text-muted-foreground text-sm">{currentVoicebank.specialThanks}</p>
+                                                                </div>
+                                                            )}
+                                                            {currentVoicebank.recommendedUsage && (
+                                                                <div className="bg-white/5 dark:bg-black/20 rounded-lg p-4">
+                                                                    <div className="flex items-center gap-2 mb-2">
+                                                                        <Music className="h-5 w-5 text-primary" />
+                                                                        <h5 className="font-medium text-primary">Recommended Usage</h5>
+                                                                    </div>
+                                                                    <p className="text-muted-foreground text-sm">{currentVoicebank.recommendedUsage}</p>
+                                                                </div>
+                                                            )}
+                                                        </>
+                                                    )}
+                                                </div>
+                                            </div>
                                         )}
                                     </motion.div>
                                 )}
