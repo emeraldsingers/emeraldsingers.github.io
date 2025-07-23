@@ -293,6 +293,11 @@ const singersData = {
         },
         videoDemos: [
             {
+                url: "https://www.youtube.com/embed/kr_BJ2cQrBA",
+                title: "【Mitsuo CV】 プシ | Psi - r-906 【Emerald Project UTAUカバー】"
+            },
+
+            {
                 url: "https://www.youtube.com/embed/fRvdPqekcAY",
                 title: "【MITSUO DEMO】 虚無さん | Nihil-san - ¿?shimon 【Emerald Project Russian UTAUカバー】"
             }
