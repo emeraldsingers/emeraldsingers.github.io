@@ -327,51 +327,99 @@ const Index = () => {
                         </svg>
                     </div>
 
-                    <main className="container mx-auto px-4 py-12 md:py-10 relative z-10">
-                    <motion.div
-                        initial="hidden"
-                        animate="visible"
-                        variants={containerVariants}
-                            className="py-12 md:py-20 text-center"
-                            style={{ y, opacity }}
-                        >
+                    <main className="container mx-auto px-4 py-8 md:py-16 relative z-10">
+                        <div className="max-w-6xl mx-auto">
+                            <motion.div
+                                initial="hidden"
+                                animate="visible"
+                                variants={containerVariants}
+                                    className="py-8 md:py-16 text-center"
+                                    style={{ y, opacity }}
+                                >
+                                
+                                <motion.div 
+                                    variants={itemVariants}
+                                    className="inline-block mb-4"
+                                >
+                                    <span className={`inline-flex items-center px-3 py-1 text-sm rounded-full ${
+                                        theme === 'dark' 
+                                            ? 'bg-emerald-500/10 text-emerald-400' 
+                                            : 'bg-emerald-100 text-emerald-700'
+                                    } font-medium`}>
+                                        <Sparkles className="w-4 h-4 mr-1" />
+                                        Virtual Singer Collection
+                                    </span>
+                                </motion.div>
+                                
+                                
+                            <motion.h1 
+                                variants={itemVariants}
+                                    className={`text-6xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight ${
+                                        theme === 'dark' ? 'text-emerald-400' : 'text-emerald-700'
+                                    }`}
+                            >
+                                    Emerald Project
+                            </motion.h1>
+                            
+                            <motion.p 
+                                variants={itemVariants}
+                                    className={`text-xl md:text-2xl mb-10 max-w-2xl mx-auto ${
+                                        theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                                    }`}
+                            >
+                                    Discover our collection of virtual singers and bring your creative projects to life.
+                            </motion.p>
                             
                             <motion.div 
                                 variants={itemVariants}
-                                className="inline-block mb-4"
+                                    className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mb-12"
                             >
-                                <span className={`inline-flex items-center px-3 py-1 text-sm rounded-full ${
-                                    theme === 'dark' 
-                                        ? 'bg-emerald-500/10 text-emerald-400' 
-                                        : 'bg-emerald-100 text-emerald-700'
-                                } font-medium`}>
-                                    <Sparkles className="w-4 h-4 mr-1" />
-                                    Virtual Singer Collection
-                                </span>
+                                <Button
+                                        size="lg"
+                                        className={`${
+                                            theme === 'dark'
+                                                ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
+                                                : 'bg-emerald-600 hover:bg-emerald-700 text-white'
+                                        } shadow-lg shadow-emerald-600/20 transition-all duration-300 transform hover:scale-105 rounded-full w-full sm:w-auto px-8 py-6`}
+                                    asChild
+                                >
+                                        <Link to="/singers" className="flex items-center justify-center">
+                                            <Users className="mr-2 h-5 w-5" /> Browse Singers
+                                    </Link>
+                                </Button>
+                                <Button
+                                    variant="outline"
+                                        size="lg"
+                                        className={`${
+                                            theme === 'dark'
+                                                ? 'border-emerald-700 text-emerald-400 hover:bg-emerald-950'
+                                                : 'border-emerald-600 text-emerald-700 hover:bg-emerald-50'
+                                        } shadow-lg transition-all duration-300 transform hover:scale-105 rounded-full w-full sm:w-auto px-8 py-6`}
+                                    asChild
+                                >
+                                        <Link to="/how-to" className="flex items-center justify-center">
+                                            <HelpCircle className="mr-2 h-5 w-5" /> How To Use
+                                    </Link>
+                                </Button>
                             </motion.div>
-                            
-                            
-                        <motion.h1 
-                            variants={itemVariants}
-                                className={`text-6xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight ${
-                                    theme === 'dark' ? 'text-emerald-400' : 'text-emerald-700'
-                                }`}
+                        </motion.div>
+
+                        <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-100px" }}
+                            variants={scrollAppearVariants}
+                                className="mb-16 md:mb-24 relative z-10"
                         >
-                                Emerald Project
-                        </motion.h1>
-                        
-                        <motion.p 
-                            variants={itemVariants}
-                                className={`text-xl md:text-2xl mb-10 max-w-2xl mx-auto ${
-                                    theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                                }`}
-                        >
-                                Discover our collection of virtual singers and bring your creative projects to life.
-                        </motion.p>
-                        
+                            <InfiniteScroll />
+                        </motion.div>
+                    </div>
+
                         <motion.div 
-                            variants={itemVariants}
-                                className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mb-16"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.6 }}
+                                className="flex justify-center mt-8 mb-16 md:mb-24 relative z-10"
                         >
                             <Button
                                     size="lg"
@@ -379,168 +427,128 @@ const Index = () => {
                                         theme === 'dark'
                                             ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
                                             : 'bg-emerald-600 hover:bg-emerald-700 text-white'
-                                    } shadow-lg shadow-emerald-600/20 transition-all duration-300 transform hover:scale-105 rounded-full w-full sm:w-auto px-8 py-6`}
+                                    } shadow-lg shadow-emerald-600/20 transition-all duration-300 transform hover:scale-105 rounded-full px-8 py-6`}
                                 asChild
                             >
-                                    <Link to="/singers" className="flex items-center justify-center">
-                                        <Users className="mr-2 h-5 w-5" /> Browse Singers
-                                </Link>
-                            </Button>
-                            <Button
-                                variant="outline"
-                                    size="lg"
-                                    className={`${
-                                        theme === 'dark'
-                                            ? 'border-emerald-700 text-emerald-400 hover:bg-emerald-950'
-                                            : 'border-emerald-600 text-emerald-700 hover:bg-emerald-50'
-                                    } shadow-lg transition-all duration-300 transform hover:scale-105 rounded-full w-full sm:w-auto px-8 py-6`}
-                                asChild
-                            >
-                                    <Link to="/how-to" className="flex items-center justify-center">
-                                        <HelpCircle className="mr-2 h-5 w-5" /> How To Use
+                                <Link to="/singers" className="flex items-center gap-2">
+                                    View All Singers
+                                        <ArrowRight className="w-5 h-5" />
                                 </Link>
                             </Button>
                         </motion.div>
-                    </motion.div>
-
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: "-100px" }}
-                        variants={scrollAppearVariants}
-                            className="mb-16 md:mb-24 relative z-10"
-                    >
-                        <InfiniteScroll />
-                    </motion.div>
-
-                    <motion.div 
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.6 }}
-                            className="flex justify-center mt-8 mb-16 md:mb-24 relative z-10"
-                    >
-                        <Button
-                                size="lg"
-                                className={`${
-                                    theme === 'dark'
-                                        ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
-                                        : 'bg-emerald-600 hover:bg-emerald-700 text-white'
-                                } shadow-lg shadow-emerald-600/20 transition-all duration-300 transform hover:scale-105 rounded-full px-8 py-6`}
-                            asChild
-                        >
-                            <Link to="/singers" className="flex items-center gap-2">
-                                View All Singers
-                                    <ArrowRight className="w-5 h-5" />
-                            </Link>
-                        </Button>
-                    </motion.div>
                     </main>
                 </div>
 
                 <div className="container mx-auto px-4 py-12 md:py-20 relative">
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: "-100px" }}
-                        variants={containerVariants}
-                        className="mb-20 md:mb-32"
-                    >
-                        <motion.div variants={itemVariants}>
-                            <SectionTitle title="Resources & Information" theme={theme} />
-                        </motion.div>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-                            <motion.div variants={cardVariants}>
-                                <FeatureCard 
-                                    icon={FileText} 
-                                    title="Terms of Use" 
-                                    description="Guidelines and policies for using our virtual singers in your creative projects."
-                                    linkText="Read More"
-                                    linkTo="/terms"
-                                    theme={theme}
-                                />
-                            </motion.div>
-                            
-                            <motion.div variants={cardVariants}>
-                                <FeatureCard 
-                                    icon={BriefcaseBusiness} 
-                                    title="About Us" 
-                                    description="Learn about the team and mission behind the Emerald Project."
-                                    linkText="Read More"
-                                    linkTo="/about-us"
-                                    theme={theme}
-                                />
-                            </motion.div>
-                            
-                            <motion.div variants={cardVariants}>
-                                <FeatureCard 
-                                    icon={Origami} 
-                                    title="About UtauV" 
-                                    description="Explore the technology behind UTAU and voice synthesis."
-                                    linkText="Read More"
-                                    linkTo="/about-utauv"
-                                    theme={theme}
-                                />
-                            </motion.div>
-                        </div>
-                    </motion.div>
-
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: "-100px" }}
-                        variants={containerVariants}
-                        className="mb-20 md:mb-32"
-                    >
-                        <motion.div variants={itemVariants}>
-                            <SectionTitle title="Community" theme={theme} />
-                        </motion.div>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
-                            <motion.div variants={cardVariants}>
-                                <FeatureCard 
-                                    icon={Brush} 
-                                    title="Community Works" 
-                                    description="Discover amazing creations from our talented community members."
-                                    linkText="Explore"
-                                    linkTo="/gallery"
-                                    theme={theme}
-                                />
-                            </motion.div>
-                            
-                            <motion.div variants={cardVariants}>
-                                <FeatureCard 
-                                    icon={TableOfContents} 
-                                    title="FAQ" 
-                                    description="Frequently Asked Questions about virtual singers and the Emerald Project."
-                                    linkText="View FAQ Page"
-                                    linkTo="/faq"
-                                    theme={theme}
-                                />
-                            </motion.div>
-                        </div>
-                    </motion.div>
-
-                    {latestWorks.length > 0 && (
+                    <div className="max-w-6xl mx-auto">
                         <motion.div
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true, margin: "-100px" }}
                             variants={containerVariants}
-                            className="mb-20 md:mb-32"
+                            className="mb-16 md:mb-24"
                         >
                             <motion.div variants={itemVariants}>
-                                <SectionTitle title="Latest Works" theme={theme} />
+                                <SectionTitle title="Resources & Information" theme={theme} />
                             </motion.div>
                             
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-                                    {latestWorks.map((work, index) => (
-                                    <motion.div key={index} variants={cardVariants}>
-                                        <ProjectCard work={work} theme={theme} />
-                                        </motion.div>
-                                    ))}
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                                <motion.div variants={cardVariants}>
+                                    <FeatureCard 
+                                        icon={FileText} 
+                                        title="Terms of Use" 
+                                        description="Guidelines and policies for using our virtual singers in your creative projects."
+                                        linkText="Read More"
+                                        linkTo="/terms"
+                                        theme={theme}
+                                    />
+                                </motion.div>
+                                
+                                <motion.div variants={cardVariants}>
+                                    <FeatureCard 
+                                        icon={BriefcaseBusiness} 
+                                        title="About Us" 
+                                        description="Learn about the team and mission behind the Emerald Project."
+                                        linkText="Read More"
+                                        linkTo="/about-us"
+                                        theme={theme}
+                                    />
+                                </motion.div>
+                                
+                                <motion.div variants={cardVariants}>
+                                    <FeatureCard 
+                                        icon={Origami} 
+                                        title="About UtauV" 
+                                        description="Explore the technology behind UTAU and voice synthesis."
+                                        linkText="Read More"
+                                        linkTo="/about-utauv"
+                                        theme={theme}
+                                    />
+                                </motion.div>
                             </div>
                         </motion.div>
+                    </div>
+
+                    <div className="max-w-6xl mx-auto">
+                        <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-100px" }}
+                            variants={containerVariants}
+                            className="mb-16 md:mb-24"
+                        >
+                            <motion.div variants={itemVariants}>
+                                <SectionTitle title="Community" theme={theme} />
+                            </motion.div>
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
+                                <motion.div variants={cardVariants}>
+                                    <FeatureCard 
+                                        icon={Brush} 
+                                        title="Community Works" 
+                                        description="Discover amazing creations from our talented community members."
+                                        linkText="Explore"
+                                        linkTo="/gallery"
+                                        theme={theme}
+                                    />
+                                </motion.div>
+                                
+                                <motion.div variants={cardVariants}>
+                                    <FeatureCard 
+                                        icon={TableOfContents} 
+                                        title="FAQ" 
+                                        description="Frequently Asked Questions about virtual singers and the Emerald Project."
+                                        linkText="View FAQ Page"
+                                        linkTo="/faq"
+                                        theme={theme}
+                                    />
+                                </motion.div>
+                            </div>
+                        </motion.div>
+                    </div>
+
+                    {latestWorks.length > 0 && (
+                        <div className="max-w-6xl mx-auto">
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, margin: "-100px" }}
+                                variants={containerVariants}
+                                className="mb-16 md:mb-24"
+                            >
+                                <motion.div variants={itemVariants}>
+                                    <SectionTitle title="Latest Works" theme={theme} />
+                                </motion.div>
+                                
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+                                        {latestWorks.map((work, index) => (
+                                        <motion.div key={index} variants={cardVariants}>
+                                            <ProjectCard work={work} theme={theme} />
+                                            </motion.div>
+                                        ))}
+                                </div>
+                            </motion.div>
+                        </div>
                     )}
                 </div>
                 

@@ -98,6 +98,14 @@ const Gallery = () => {
       character: "Akizora", 
       artist: "KambaL"
     },
+    {
+      id: "toisku",
+      type: "official",
+      image: "/images/toisku-artwork.webp",
+      title: "Toisku Artwork",
+      character: "Toisku",
+      artist: "Zihiko",
+    },
     { 
       id: "identity", 
       type: "community", 

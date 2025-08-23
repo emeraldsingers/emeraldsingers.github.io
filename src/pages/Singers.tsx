@@ -643,8 +643,15 @@ const singers = [
     name: "Emerald",
     image: "/images/Emerald2025NoLogo_thumb.webp",
     slug: "emerald",
-    tags: ['male', 'utau', 'ja', 'rus', 'cvvc', 'cvc'] as SingerTag[],
+    tags: ['male', 'utau', 'ja', 'cvvc', "rus", 'cvc'] as SingerTag[],
     audioSample: "/samples/emerald/emerald_normalcvvc.mp3"
+  },
+    {
+    name: "Mitsuo",
+    image: "/images/mitsuo_thumb.webp",
+    slug: "mitsuo",
+    tags: ['male', 'cv', 'utau', 'rvc', 'ja'] as SingerTag[],
+    audioSample: "/samples/mitsuo/mitsuo-samplecv.mp3"
   },
   {
     name: "Simon Weber",
@@ -654,12 +661,13 @@ const singers = [
     audioSample: "/samples/simon/simon-samplecvvc.mp3"
   },
   {
-    name: "Mitsuo",
-    image: "/images/mitsuo_thumb.webp",
-    slug: "mitsuo",
-    tags: ['male', 'cv', 'utau', 'rvc', 'ja'] as SingerTag[],
-    audioSample: "/samples/mitsuo/mitsuo-samplecv.mp3"
-  },
+    name: "Toisku",
+    image: "/images/toisku_thumb.webp",
+    slug: "toisku",
+    tags: ['male', 'utau', 'ja', 'cvvc', "rus", 'cvc'] as SingerTag[],
+    audioSample: "/samples/toisku/toisku-cvvc.mp3"
+  }
+
 ];
 
 const SingerCardWithAudio = ({ 
@@ -1012,119 +1020,120 @@ const Singers = () => {
         <Navigation />
         
         <main className="container mx-auto px-4 py-8 md:py-24 flex-grow relative z-10">
-          <motion.div 
-            variants={itemVariants}
-            className="mb-6 flex flex-col"
-          >
-            <h1 className="text-4xl font-bold text-primary mb-8 text-center">
-              Our Singers
-            </h1>
-            
-            <div className="flex justify-center mb-4">
-              <Button
-                onClick={toggleFilterPanel}
-                variant="outline"
-                size="sm"
-                className="flex items-center gap-2"
-              >
-                <Filter className="h-4 w-4" />
-                Filters
-                {isFilterPanelOpen ? (
-                  <ChevronUp className="h-4 w-4" />
-                ) : (
-                  <ChevronDown className="h-4 w-4" />
-                )}
-              </Button>
-            </div>
-            <div className="flex justify-center mb-6">
-              {selectedTags.length > 0 && (
+          <div className="max-w-6xl mx-auto">
+            <motion.div 
+              variants={itemVariants}
+              className="mb-6 flex flex-col"
+            >
+              <h1 className="text-4xl font-bold text-primary mb-8 text-center">
+                Our Singers
+              </h1>
+              
+              <div className="flex justify-center mb-4">
                 <Button
-                  onClick={clearAllTags}
-                  variant="ghost"
+                  onClick={toggleFilterPanel}
+                  variant="outline"
                   size="sm"
-                  className="text-xs text-muted-foreground hover:text-primary"
+                  className="flex items-center gap-2"
                 >
-                  <X className="h-3 w-3 mr-1" />
-                  Clear all filters ({selectedTags.length})
+                  <Filter className="h-4 w-4" />
+                  Filters
+                  {isFilterPanelOpen ? (
+                    <ChevronUp className="h-4 w-4" />
+                  ) : (
+                    <ChevronDown className="h-4 w-4" />
+                  )}
                 </Button>
-              )}
-            </div>
-          </motion.div>
-
-          <AnimatePresence>
-            {isFilterPanelOpen && (
-              <motion.div 
-                initial="closed"
-                animate="open"
-                exit="closed"
-                variants={filterPanelVariants}
-                className="overflow-hidden mb-8"
-              >
-                <div className="bg-card/50 backdrop-blur-sm p-4 rounded-lg border border-primary/20 max-w-3xl mx-auto shadow-lg">
-                  <div className="space-y-3">
-                    {tagCategories.map(category => (
-                      <div key={category.name} className="mb-2">
-                        <h3 className="text-xs font-medium text-muted-foreground mb-1">{category.name}</h3>
-                        <div className="flex flex-wrap gap-1.5">
-                          {category.tags.map(tag => {
-                            const isSelected = selectedTags.includes(tag as SingerTag);
-                            
-                            return (
-                              <button
-                                key={tag}
-                                onClick={() => toggleTag(tag as SingerTag)}
-                                className={cn(
-                                  tagDisplay[tag as SingerTag].color,
-                                  "px-2 py-0.5 rounded-full text-xs font-medium transition-colors",
-                                  isSelected ? "ring-1 ring-primary" : "opacity-80 hover:opacity-100"
-                                )}
-                              >
-                                {tagDisplay[tag as SingerTag].label}
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-              <motion.div 
-            variants={singerGridVariants}
-                initial="hidden"
-                animate="visible"
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8"
-          >
-            <AnimatePresence>
-              {isLoading ? (
-              <motion.div
-                  className="col-span-full flex justify-center py-20"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  <Loader2 className="h-12 w-12 animate-spin text-primary" />
-                </motion.div>
-              ) : filteredSingers.length > 0 ? (
-                filteredSingers.map((singer, index) => (
-                    <motion.div
-                      key={singer.slug}
-                    className="h-full"
-                      variants={hasFilteredOnce ? singerItemVariants : getInitialLoadVariant(index)}
-                      initial="hidden"
-                      animate="visible"
-                      exit="exit"
-                      layout
+              </div>
+              <div className="flex justify-center mb-6">
+                {selectedTags.length > 0 && (
+                  <Button
+                    onClick={clearAllTags}
+                    variant="ghost"
+                    size="sm"
+                    className="text-xs text-muted-foreground hover:text-primary"
                   >
-                    <SingerCardWithAudio 
-                      singer={singer} 
-                      theme={theme} 
-                      isPlaying={playingSinger === singer.slug}
-                      onPlayToggle={handlePlayToggle}
-                      />
+                    <X className="h-3 w-3 mr-1" />
+                    Clear all filters ({selectedTags.length})
+                  </Button>
+                )}
+              </div>
+            </motion.div>
+
+            <AnimatePresence>
+              {isFilterPanelOpen && (
+                <motion.div 
+                  initial="closed"
+                  animate="open"
+                  exit="closed"
+                  variants={filterPanelVariants}
+                  className="overflow-hidden mb-8"
+                >
+                  <div className="bg-card/50 backdrop-blur-sm p-4 rounded-lg border border-primary/20 max-w-3xl mx-auto shadow-lg">
+                    <div className="space-y-3">
+                      {tagCategories.map(category => (
+                        <div key={category.name} className="mb-2">
+                          <h3 className="text-xs font-medium text-muted-foreground mb-1">{category.name}</h3>
+                          <div className="flex flex-wrap gap-1.5">
+                            {category.tags.map(tag => {
+                              const isSelected = selectedTags.includes(tag as SingerTag);
+                              
+                              return (
+                                <button
+                                  key={tag}
+                                  onClick={() => toggleTag(tag as SingerTag)}
+                                  className={cn(
+                                    tagDisplay[tag as SingerTag].color,
+                                    "px-2 py-0.5 rounded-full text-xs font-medium transition-colors",
+                                    isSelected ? "ring-1 ring-primary" : "opacity-80 hover:opacity-100"
+                                  )}
+                                >
+                                  {tagDisplay[tag as SingerTag].label}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            <motion.div 
+              variants={singerGridVariants}
+              initial="hidden"
+              animate="visible"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+            >
+              <AnimatePresence>
+                {isLoading ? (
+                <motion.div
+                    className="col-span-full flex justify-center py-20"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    <Loader2 className="h-12 w-12 animate-spin text-primary" />
+                  </motion.div>
+                ) : filteredSingers.length > 0 ? (
+                  filteredSingers.map((singer, index) => (
+                      <motion.div
+                        key={singer.slug}
+                        className="h-full"
+                        variants={hasFilteredOnce ? singerItemVariants : getInitialLoadVariant(index)}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        layout
+                    >
+                      <SingerCardWithAudio 
+                        singer={singer} 
+                        theme={theme} 
+                        isPlaying={playingSinger === singer.slug}
+                        onPlayToggle={handlePlayToggle}
+                        />
                     </motion.div>
                 ))
               ) : (
@@ -1151,6 +1160,7 @@ const Singers = () => {
             )}
           </AnimatePresence>
         </motion.div>
+        </div>
         </main>
         
         <Footer />

@@ -56,4 +56,8 @@
     <loc>https://emeraldsingers.github.io/#/singer/mitsuo</loc>
     <priority>0.85</priority>
   </url>
+  <url>
+    <loc>https://emeraldsingers.github.io/#/singer/toisku</loc>
+    <priority>0.85</priority>
+  </url>
 </urlset> 

@@ -24,9 +24,11 @@ const SimpleSingerCard = ({ name, image, slug }: { name: string; image: string; 
 const singers = [
   { name: "Akizora", image: "/images/akizora_thumb.webp", slug: "akizora" },
   { name: "Asoqwer", image: "/images/asoqwer_thumb.webp", slug: "asoqwer" },
-  { name: "Simon Weber", image: "/images/simon-weber-eu_thumb.webp", slug: "simon-weber" },
-  { name: "Mitsuo", image: "/images/mitsuo_thumb.webp", slug: "mitsuo" },
   { name: "Emerald", image: "/images/Emerald2025NoLogo_thumb.webp", slug: "emerald" },
+  { name: "Mitsuo", image: "/images/mitsuo_thumb.webp", slug: "mitsuo" },
+  { name: "Simon Weber", image: "/images/simon-weber-eu_thumb.webp", slug: "simon-weber" },
+  { name: "Toisku", image: "/images/toisku_thumb.webp", slug: "toisku" },
+
 ];
 
 const itemWidthPx = 224 + 24; 
@@ -41,7 +43,7 @@ const InfiniteScroll = () => {
     const cloneItems = () => {
       const items = scrollElement.querySelectorAll(".scroll-item");
       
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < 6; i++) {
         items.forEach((item) => {
           const clone = item.cloneNode(true) as HTMLElement;
           scrollElement.appendChild(clone);
@@ -78,7 +80,7 @@ const InfiniteScroll = () => {
           }
         }
         .animate-infinite-scroll {
-          animation: infinite-scroll 50s linear infinite;
+          animation: infinite-scroll 40s linear infinite;
         }
       `}</style>
     </div>

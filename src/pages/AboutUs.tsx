@@ -148,7 +148,7 @@ const teamMembers: TeamMember[] = [
     name: "Leshy-P",
     role: "Voice Provider",
     avatar: "/images/leshy.webp",
-    description: "Voice provider of a future voicebank currently in development, talented artist behind many of our visual assets.",
+    description: "Voice provider of Toisku, talented artist behind many of our visual assets.",
 
     social: {
       youtube: "https://youtube.com/@LeshyP",

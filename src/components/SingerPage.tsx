@@ -69,12 +69,29 @@ const singersData = {
             CVVC: {
                 url: "https://mega.nz/file/vrYlyQoa#cY-N8DzP3-nKZ9VcfOsaUlhJl98fr2brbfm2TovMegk",
                 vocalModes: [
-                    { name: "CVVC Normal", description: "CVVC Balanced and clear vocal tone", sample: "/samples/akizora/akizora-samplecvvc.mp3"},
+                    { name: "CVVC Normal", description: "Balanced and clear vocal tone", sample: "/samples/akizora/akizora-samplecvvc.mp3"},
                 ],
                 type: "UTAU",
                 otoConfig: "Configured by Asoqwer",
-                supportedLanguages: ["ja"]
+                supportedLanguages: ["ja"],
+                vocalType: "Mezzo-soprano",
+                recommendedRange: "B3-C5",
+                recommendedResampler: "resampler.dll & doppeltler64",
+                recommendedBPM: "80-200",
             },
+            "CVVC Solid": {
+                url: "https://mega.nz/file/3jIAULqS#9zDCuFTJXZ8lY7sAQ9Rrm2gBYeuH-UJIMUwZrEHTu2s",
+                vocalModes: [
+                    { name: "Solid", description: "Solid vocal tone", sample: "/samples/akizora/akizora-samplecvvcsolid.mp3"},
+                ],
+                type: "UTAU",
+                otoConfig: "Configured by mnifl",
+                supportedLanguages: ["ja"],
+                vocalType: "Mezzo-soprano",
+                recommendedRange: "B3-C5",
+                recommendedResampler: "resampler.dll & doppeltler64",
+                recommendedBPM: "80-200",
+            }
         },
         videoDemos: [ 
             {
@@ -106,24 +123,32 @@ const singersData = {
             CVVC: {
                 url: "https://mega.nz/file/z6wVAC4I#KzbDLjtkegUyKfMKyWdTIdVro0EqSa01vyq-zWEj8hM",
                 vocalModes: [
-                    { name: "CVVC Normal", description: "CVVC Balanced and clear vocal tone", sample: "/samples/asoqwer/asoqwer-samplecvvcnormal.mp3"},
-                    { name: "CVVC Whisper", description: "CVVC Whisper soft voice", sample: "/samples/asoqwer/asoqwer-samplecvvcwhisper.mp3" },
-                    { name: "CVVC Power", description: "CVVC Strong voice", sample: "/samples/asoqwer/asoqwer-samplecvvcpower.mp3" }
+                    { name: "CVVC Normal", description: "Balanced and clear vocal tone", sample: "/samples/asoqwer/asoqwer-samplecvvcnormal.mp3"},
+                    { name: "CVVC Whisper", description: "Whisper soft voice", sample: "/samples/asoqwer/asoqwer-samplecvvcwhisper.mp3" },
+                    { name: "CVVC Power", description: "Strong voice", sample: "/samples/asoqwer/asoqwer-samplecvvcpower.mp3" }
                 ],
                 type: "UTAU",
                 otoConfig: "Configured by Asoqwer",
-                supportedLanguages: ["ja"]
+                supportedLanguages: ["ja"],
+                vocalType: "Tenor",
+                recommendedRange: "B2-C5",
+                recommendedResampler: "moresampler.exe & macres",
+                recommendedBPM: "80-180",
             },
             VCV: {
                 url: "https://mega.nz/file/6nh0nLiK#Vo7lP9BISClKdaRI2c1mcwYWZ_BpFuP5ePou3IlW30E",
                 vocalModes: [
-                    { name: "VCV Normal", description: "VCV balanced and clear vocal tone", sample: "/samples/asoqwer/asoqwer-samplevcvnormal.mp3" },
-                    { name: "VCV Power", description: "VCV strong voice", sample: "/samples/asoqwer/asoqwer-samplevcvpower.mp3" },
-                    { name: "VCV Weak", description: "VCV weak relaxed voice", sample: "/samples/asoqwer/asoqwer-samplevcvweak.mp3" },
+                    { name: "VCV Normal", description: "Balanced and clear vocal tone", sample: "/samples/asoqwer/asoqwer-samplevcvnormal.mp3" },
+                    { name: "VCV Power", description: "Strong voice", sample: "/samples/asoqwer/asoqwer-samplevcvpower.mp3" },
+                    { name: "VCV Weak", description: "Weak relaxed voice", sample: "/samples/asoqwer/asoqwer-samplevcvweak.mp3" },
                 ],
                 type: "UTAU",
                 otoConfig: "Configured by Asoqwer",
-                supportedLanguages: ["ja"]
+                supportedLanguages: ["ja"],
+                vocalType: "Tenor",
+                recommendedRange: "B2-F#5",
+                recommendedResampler: "moresampler.exe & hifisampler",
+                recommendedBPM: "80-180",
             },
             "RVC Normal": {
                 url: "https://www.weights.com/ru/models/cm6koudmc2ieknh192auqw96e",
@@ -185,25 +210,33 @@ const singersData = {
                 url: "https://mega.nz/file/X75EUZbB#IsI5ufOYEJpIqtLLpYH-daxGFYzZjPxuFfA5YR4itTs",
                 vocalModes: [
                     { name: "Normal", description: "Universal neutral tone", sample: "/samples/emerald/emerald_normalcvvc.mp3" },
-                    { name: "Childish", description: "A light and ringing voice with a childish tone", sample: "/samples/emerald/emerald_childishcvvc.mp3" },
-                    { name: "Dark", description: "Deep and rich tone with a serious undertone", sample: "/samples/emerald/emerald_darkcvvc.mp3" },
+                    { name: "Childish", description: "A light and ringing voice", sample: "/samples/emerald/emerald_childishcvvc.mp3" },
+                    { name: "Dark", description: "Deep and rich tone", sample: "/samples/emerald/emerald_darkcvvc.mp3" },
                     { name: "Soft", description: "Soft and calm tone", sample: "/samples/emerald/emerald_softcvvc.mp3" },
                 ],
                 type: "UTAU",
                 otoConfig: "Configured by SouЯ",
-                supportedLanguages: ["ja"]
+                supportedLanguages: ["ja"],
+                vocalType: "Mezzo-soprano",
+                recommendedRange: "B3-C5",
+                recommendedResampler: "doppeltler64 & hifisampler",
+                recommendedBPM: "80-200",
             },
             "CVC RUS": {
                 url: "https://mega.nz/file/O2p0gShD#_J9erU9itDXAavdCytTjB7LczUWuS4_ebyX4jw58aFQ",
                 vocalModes: [
                     { name: "Normal", description: "Standard expressive voice", sample: "/samples/emerald/emerald_normalcvcrus.mp3" },
-                    { name: "Childish", description: "Bright and naive timbre with a youthful tone", sample: "/samples/emerald/emerald_chldishcvcrus.mp3" },
+                    { name: "Childish", description: "Bright and naive timbre", sample: "/samples/emerald/emerald_chldishcvcrus.mp3" },
                     { name: "Dark", description: "Dark and dramatic voice", sample: "/samples/emerald/emerald_darkcvcrus.mp3" },
                     { name: "Soft", description: "A quiet and velvety voice", sample: "/samples/emerald/emerald_softcvcrus.mp3" },
                 ],
                 type: "UTAU",
                 otoConfig: "Configured by SouЯ",
-                supportedLanguages: ["ru"]
+                supportedLanguages: ["ru"],
+                vocalType: "Mezzo-soprano",
+                recommendedRange: "B3-C5",
+                recommendedResampler: "doppeltler64 & hifisampler",
+                recommendedBPM: "80-200",
             }
         },
         videoDemos: [
@@ -237,12 +270,16 @@ const singersData = {
             CVVC: {
                 url: "https://mega.nz/file/uyRyRBJT#eJm82-F24dcLjxmd_liIrk5MqsPcsY22vHTPMahRgyE",
                 vocalModes: [
-                    { name: "CVVC Normal", description: "CVVC Normal tone", sample: "/samples/simon/simon-samplecvvc.mp3" },
-                    { name: "CVVC Power", description: "CVVC Strong voice", sample: "/samples/simon/simon-samplecvvcpower.mp3" },
+                    { name: "CVVC Normal", description: "Normal vocal tone", sample: "/samples/simon/simon-samplecvvc.mp3" },
+                    { name: "CVVC Power", description: "Powerful voice", sample: "/samples/simon/simon-samplecvvcpower.mp3" },
                 ],
                 type: "UTAU",
                 otoConfig: "Configured by Beaver-P",
-                supportedLanguages: ["ja"]
+                supportedLanguages: ["ja"],
+                vocalType: "Bass",
+                recommendedRange: "E2-E4",
+                recommendedResampler: "TIPS & moresampler",
+                recommendedBPM: "80-200",
             }
         },
         videoDemos: [ 
@@ -276,11 +313,15 @@ const singersData = {
             CV: {
                 url: "https://mega.nz/file/ynIknCiZ#8N-5Ns9EKXKQMa-vBLz9ci2BszWTBwdZwFoI7OmYqnY",
                 vocalModes: [
-                    { name: "Normal", description: "Standard voice", sample: "/samples/mitsuo/mitsuo-samplecv.mp3" }
+                    { name: "Normal", description: "Standard expressive voice", sample: "/samples/mitsuo/mitsuo-samplecv.mp3" }
                 ],
                 type: "UTAU",
                 otoConfig: "Configured by mnifl",
-                supportedLanguages: ["ja"]
+                supportedLanguages: ["ja"],
+                vocalType: "Tenor",
+                recommendedRange: "B2-C5",
+                recommendedResampler: "TIPS & moresampler",
+                recommendedBPM: "80-200",
             },
             RVC: {
                 url: "https://www.weights.com/ru/models/cm7p25bsz66jto915lydx2sfx",
@@ -302,6 +343,56 @@ const singersData = {
                 title: "【MITSUO DEMO】 虚無さん | Nihil-san - ¿?shimon 【Emerald Project Russian UTAUカバー】"
             }
         ]
+    },
+    toisku: {
+        name: "Toisku",
+        cv: "Leshy-P",
+        images: ["/images/toisku.webp"],
+        authors: { "/images/toisku.webp": "Zihiko" },
+        description: "Hi",
+        audioSamples: [],
+        characterData: {
+            Species: "Demon",
+            Gender: "Male",
+            Age: "Ageless",
+            Height: "175cm",
+            Weight: "65kg",
+            Birthday: "05.05",
+            Stone: "Chaorite",
+        },
+        colors: {
+            light: 'rgb(17,96,98)', 
+            dark: 'rgb(191,119,246)',
+        },
+        voicebanks: {
+            CVVC: {
+                url: "https://drive.google.com/file/d/1zp_PXikkp0gVsg3t93gHFXaVBtPU0Otn/view?usp=sharing",
+                vocalModes: [
+                    { name: "Normal", description: "Universal neutral tone", sample: "/samples/toisku/toisku-cvvc.mp3" },
+                ],
+                type: "UTAU",
+                otoConfig: "Configured by mnifl",
+                supportedLanguages: ["ja"],
+                vocalType: "Baritone",
+                recommendedRange: "E2-C5",
+                recommendedResampler: "TIPS & moresampler",
+                recommendedBPM: "80-200",
+            },
+            "CVC RUS": {
+                url: "https://drive.google.com/file/d/1z5Zd8ehvemkyMD6ZbVeH1O0BmaMngdm4/view?usp=sharing",
+                vocalModes: [
+                    { name: "Normal", description: "Standard expressive voice", sample: "/samples/toisku/toisku-cvc.mp3" },
+                ],
+                type: "UTAU",
+                otoConfig: "Configured by SouЯ",
+                supportedLanguages: ["ru"],
+                vocalType: "Baritone",
+                recommendedRange: "E2-C5",
+                recommendedResampler: "TIPS & moresampler",
+                recommendedBPM: "80-200",
+            }
+        },
+        videoDemos: []
     },
     shin: {
         name: "SHIN",
@@ -385,7 +476,7 @@ const AudioVisualization: React.FC<AudioVisualizationProps> = ({ audioRef, isPla
             
             if (!analyserRef.current) {
                 analyserRef.current = audioContextRef.current.createAnalyser();
-                analyserRef.current.fftSize = 2048;
+                analyserRef.current.fftSize = 256;
             }
             
             const needNewSource = !sourceRef.current || sourceRef.current.mediaElement !== audio;
@@ -429,29 +520,31 @@ const AudioVisualization: React.FC<AudioVisualizationProps> = ({ audioRef, isPla
             canvas.height = canvas.offsetHeight;
         }
         
-        analyserRef.current.getByteTimeDomainData(dataArray);
-        canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
-        canvasCtx.lineWidth = 2;
-        canvasCtx.strokeStyle = theme === 'light' ? singerColors.dark : singerColors.light;
-        canvasCtx.beginPath();
+        analyserRef.current.getByteFrequencyData(dataArray);
         
-        const sliceWidth = canvas.width * 1.0 / bufferLength;
+        canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        const barWidth = (canvas.width / bufferLength) * 2.5;
         let x = 0;
         
-        for (let i = 0; i < bufferLength; i++) {
-            const v = dataArray[i] / 128.0;
-            const y = (v * canvas.height / 2);
-            
-            if (i === 0) {
-                canvasCtx.moveTo(x, y);
-            } else {
-                canvasCtx.lineTo(x, y);
-            }
-            x += sliceWidth;
-        }
+        const primaryColor = theme === 'light' ? singerColors.dark : singerColors.light;
+        const rgbMatch = primaryColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+        const r = rgbMatch ? parseInt(rgbMatch[1]) : 56;
+        const g = rgbMatch ? parseInt(rgbMatch[2]) : 161;
+        const b = rgbMatch ? parseInt(rgbMatch[3]) : 105;
         
-        canvasCtx.lineTo(canvas.width, canvas.height / 2);
-        canvasCtx.stroke();
+        for (let i = 0; i < bufferLength; i++) {
+            const barHeight = (dataArray[i] / 255) * canvas.height;
+            
+            const gradient = canvasCtx.createLinearGradient(0, canvas.height, 0, canvas.height - barHeight);
+            gradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0.2)`);
+            gradient.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0.8)`);
+            
+            canvasCtx.fillStyle = gradient;
+            canvasCtx.fillRect(x, canvas.height - barHeight, barWidth - 1, barHeight);
+            
+            x += barWidth;
+        }
         
         animationFrameRef.current = requestAnimationFrame(draw);
     }, [isPlaying, theme, singerColors]);
@@ -1835,398 +1928,453 @@ const SingerPage: React.FC = () => {
                     animate="animate"
                     exit="exit"
                 >
-                    <motion.div 
-                        className="flex flex-col md:flex-row gap-8 mt-8 mb-12 items-center"
-                    >
-                        <div className="w-full md:w-1/2 max-w-[450px] flex justify-center">
-                            <motion.div 
-                                className="relative"
-                                variants={childVariants}
-                            >
-                                <div className="relative w-full max-w-[28rem] h-auto aspect-square overflow-hidden rounded-lg mx-auto transition-opacity duration-300 shadow-lg">
-                                    <img
-                                        ref={imageRef}
-                                        key={currentImagePath}
-                                        src={currentImagePath}
-                                        alt={`${currentSinger.name} artwork - Emerald Project`}
-                                        className="w-full h-full object-contain bg-black/5 dark:bg-white/5"
-                                        style={{ opacity: imageOpacity }}
-                                    />
-                                </div>
+                    <div className="max-w-6xl mx-auto">
+                        <motion.div 
+                            className="flex flex-col md:flex-row gap-8 mt-8 mb-12 items-center"
+                        >
+                            <div className="w-full md:w-1/2 max-w-[450px] flex justify-center">
                                 <motion.div 
-                                    className="flex flex-row items-center justify-center mt-2 text-primary/80"
+                                    className="relative"
                                     variants={childVariants}
                                 >
-                                    <Brush className="w-5 h-5 mr-1" />
-                                    {currentImageAuthor && (
-                                        <p className="text-xs italic">Art by {currentImageAuthor}</p>
+                                    <div className="relative w-full max-w-[28rem] h-auto aspect-square overflow-hidden rounded-lg mx-auto transition-opacity duration-300 shadow-lg">
+                                        <img
+                                            ref={imageRef}
+                                            key={currentImagePath}
+                                            src={currentImagePath}
+                                            alt={`${currentSinger.name} artwork - Emerald Project`}
+                                            className="w-full h-full object-contain bg-black/5 dark:bg-white/5"
+                                            style={{ opacity: imageOpacity }}
+                                        />
+                                    </div>
+                                    <motion.div 
+                                        className="flex flex-row items-center justify-center mt-2 text-primary/80"
+                                        variants={childVariants}
+                                    >
+                                        <Brush className="w-5 h-5 mr-1" />
+                                        {currentImageAuthor && (
+                                            <p className="text-xs italic">Art by {currentImageAuthor}</p>
+                                        )}
+                                    </motion.div>
+                                    {currentSinger.images.length > 1 && (
+                                        <>
+                                            <motion.div 
+                                                className="absolute top-1/2 -translate-y-1/2 left-4"
+                                                variants={childVariants}
+                                            >
+                                                <Button
+                                                    variant="outline"
+                                                    size="icon"
+                                                    onClick={handlePrevImage}
+                                                    className="bg-white/80 dark:bg-black/50 hover:bg-white dark:hover:bg-black/80 rounded-full"
+                                                    aria-label="Previous Image"
+                                                >
+                                                    <ChevronLeft className="h-4 w-4" />
+                                                </Button>
+                                            </motion.div>
+                                            <motion.div 
+                                                className="absolute top-1/2 -translate-y-1/2 right-4"
+                                                variants={childVariants}
+                                            >
+                                                <Button
+                                                    variant="outline"
+                                                    size="icon"
+                                                    onClick={handleNextImage}
+                                                    className="bg-white/80 dark:bg-black/50 hover:bg-white dark:hover:bg-black/80 rounded-full"
+                                                    aria-label="Next Image"
+                                                >
+                                                    <ChevronRight className="h-4 w-4" />
+                                                </Button>
+                                            </motion.div>
+                                        </>
                                     )}
                                 </motion.div>
-                                {currentSinger.images.length > 1 && (
-                                    <>
-                                        <motion.div 
-                                            className="absolute top-1/2 -translate-y-1/2 left-4"
-                                            variants={childVariants}
-                                        >
-                                            <Button
-                                                variant="outline"
-                                                size="icon"
-                                                onClick={handlePrevImage}
-                                                className="bg-white/80 dark:bg-black/50 hover:bg-white dark:hover:bg-black/80 rounded-full"
-                                                aria-label="Previous Image"
-                                            >
-                                                <ChevronLeft className="h-4 w-4" />
-                                            </Button>
-                                        </motion.div>
-                                        <motion.div 
-                                            className="absolute top-1/2 -translate-y-1/2 right-4"
-                                            variants={childVariants}
-                                        >
-                                            <Button
-                                                variant="outline"
-                                                size="icon"
-                                                onClick={handleNextImage}
-                                                className="bg-white/80 dark:bg-black/50 hover:bg-white dark:hover:bg-black/80 rounded-full"
-                                                aria-label="Next Image"
-                                            >
-                                                <ChevronRight className="h-4 w-4" />
-                                            </Button>
-                                        </motion.div>
-                                    </>
-                                )}
-                            </motion.div>
-                        </div>
-
-                        <motion.div 
-                            className="w-full md:w-1/2"
-                            variants={childVariants}
-                        >
-                            <motion.h1 
-                                className="text-4xl font-bold text-primary mb-2"
-                                variants={childVariants}
-                            >
-                                {currentSinger.name}
-                            </motion.h1>
-                            <motion.p 
-                                className="text-muted-foreground mb-6"
-                                variants={childVariants}
-                            >
-                                CV: {currentSinger.cv}
-                            </motion.p>
+                            </div>
 
                             <motion.div 
-                                className="mb-6"
+                                className="w-full md:w-1/2"
+                                variants={childVariants}
                             >
-                                <motion.h2 
-                                    className="text-2xl font-semibold text-primary mb-4"
+                                <motion.h1 
+                                    className="text-4xl font-bold text-primary mb-2"
                                     variants={childVariants}
                                 >
-                                    Character Info
-                                </motion.h2>
-                                <motion.div className="grid grid-cols-2 gap-4" variants={containerVariants} initial="hidden" animate="visible">
-                                    {currentSinger.characterData && Object.entries(currentSinger.characterData).map(([key, value], index) => (
-                                        <motion.div 
-                                            key={key} 
-                                            className="flex items-center gap-3"
-                                            variants={characterDataVariants}
-                                            custom={index}
-                                        >
-                                            {key === "Species" && getSpeciesIcon(value as string)}
-                                            {key === "Gender" && getGenderIcon(value as string)}
-                                            {key === "Age" && <Cake className="h-6 w-6 text-primary" />}
-                                            {key === "Height" && <Ruler className="h-6 w-6 text-primary" />}
-                                            {key === "Weight" && <Weight className="h-6 w-6 text-primary" />}
-                                            {key === "Birthday" && <Cake className="h-6 w-6 text-primary" />}
-                                            {key === "Stone" && <Gem className="h-6 w-6 text-primary" />}
-                                            <div>
-                                                <span className="text-muted-foreground font-medium">{key}:</span>{" "}
-                                                <span className="text-primary font-medium">{value as string}</span>
-                                            </div>
-                                        </motion.div>
-                                    ))}
+                                    {currentSinger.name}
+                                </motion.h1>
+                                <motion.p 
+                                    className="text-muted-foreground mb-6"
+                                    variants={childVariants}
+                                >
+                                    CV: {currentSinger.cv}
+                                </motion.p>
+
+                                <motion.div 
+                                    className="mb-6"
+                                >
+                                    <motion.h2 
+                                        className="text-2xl font-semibold text-primary mb-4"
+                                        variants={childVariants}
+                                    >
+                                        Character Info
+                                    </motion.h2>
+                                    <motion.div className="grid grid-cols-2 gap-4" variants={containerVariants} initial="hidden" animate="visible">
+                                        {currentSinger.characterData && Object.entries(currentSinger.characterData).map(([key, value], index) => (
+                                            <motion.div 
+                                                key={key} 
+                                                className="flex items-center gap-3"
+                                                variants={characterDataVariants}
+                                                custom={index}
+                                            >
+                                                {key === "Species" && getSpeciesIcon(value as string)}
+                                                {key === "Gender" && getGenderIcon(value as string)}
+                                                {key === "Age" && <Cake className="h-6 w-6 text-primary" />}
+                                                {key === "Height" && <Ruler className="h-6 w-6 text-primary" />}
+                                                {key === "Weight" && <Weight className="h-6 w-6 text-primary" />}
+                                                {key === "Birthday" && <Cake className="h-6 w-6 text-primary" />}
+                                                {key === "Stone" && <Gem className="h-6 w-6 text-primary" />}
+                                                <div>
+                                                    <span className="text-muted-foreground font-medium">{key}:</span>{" "}
+                                                    <span className="text-primary font-medium">{value as string}</span>
+                                                </div>
+                                            </motion.div>
+                                        ))}
+                                    </motion.div>
                                 </motion.div>
                             </motion.div>
                         </motion.div>
-                    </motion.div>
 
-                    {voicebankFormats.length > 0 && (
-                        <motion.div
-                            className="mb-16 border border-primary/10 rounded-lg p-6 bg-white/5 dark:bg-black/20 backdrop-blur-sm"
-                            ref={voicebanksSectionRef}
-                            variants={secondarySectionVariants}
-                        >
-                            <h2 className="text-2xl font-semibold text-primary mb-6">Voicebanks</h2>
-                            
-                            <div className="flex flex-wrap gap-2 mb-6">
-                                {voicebankFormats.map((format) => (
-                                    <Button
-                                        key={format}
-                                        variant={currentVoicebankFormat === format ? "default" : "outline"}
-                                        className={currentVoicebankFormat === format 
-                                            ? "bg-primary text-primary-foreground" 
-                                            : "border-primary/20 text-primary"}
-                                        onClick={() => handleVoicebankFormatClick(format)}
-                                    >
-                                        {format}
-                                    </Button>
-                                ))}
-                            </div>
-                            
-                            <AnimatePresence mode="wait" initial={false} custom={animationDirection}>
-                                {currentVoicebank && (
-                                    <motion.div 
-                                        key={currentVoicebankFormat}
-                                        variants={voicebankVariants}
-                                        initial="initial"
-                                        animate="animate"
-                                        exit="exit"
-                                        custom={animationDirection}
-                                        className="bg-white/5 dark:bg-black/20 rounded-lg p-6"
-                                    >
-                                        <div className="flex flex-wrap items-center justify-between mb-6">
-                                            <h3 className="text-xl font-medium text-primary">{currentVoicebankFormat}</h3>
-                                            {currentVoicebank.url && (
-                                                <a
-                                                    href={currentVoicebank.url}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="btn-primary flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-md transition-colors"
-                                                >
-                                                    <Download className="h-4 w-4" />
-                                                    {currentVoicebankFormat && typeof currentVoicebankFormat === 'string' && currentVoicebankFormat.toLowerCase().includes('rvc') 
-                                                        ? "View on Weights.gg" 
-                                                        : "Download"}
-                                                </a>
-                                            )}
-                                        </div>
-
-                                        {vocalModesToDisplay.length > 0 && (
-                                            <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6" variants={containerVariants} initial="hidden" animate="visible">
-                                                {vocalModesToDisplay.map((mode, index) => (
-                                                    <motion.div 
-                                                        key={mode.name + index}
-                                                        className="bg-white/5 dark:bg-black/20 rounded-lg p-4"
-                                                        variants={itemVariants}
+                        {voicebankFormats.length > 0 && (
+                            <motion.div
+                                className="mb-16 border border-primary/10 rounded-lg p-4 bg-white/5 dark:bg-black/20 backdrop-blur-sm"
+                                ref={voicebanksSectionRef}
+                                variants={secondarySectionVariants}
+                            >
+                                <h2 className="text-2xl font-semibold text-primary mb-6">Voicebanks</h2>
+                                
+                                <div className="flex flex-wrap gap-2 mb-6">
+                                    {voicebankFormats.map((format) => (
+                                        <Button
+                                            key={format}
+                                            variant={currentVoicebankFormat === format ? "default" : "outline"}
+                                            className={currentVoicebankFormat === format 
+                                                ? "bg-primary text-primary-foreground" 
+                                                : "border-primary/20 text-primary"}
+                                            onClick={() => handleVoicebankFormatClick(format)}
+                                        >
+                                            {format}
+                                        </Button>
+                                    ))}
+                                </div>
+                                
+                                <AnimatePresence mode="wait" initial={false} custom={animationDirection}>
+                                    {currentVoicebank && (
+                                        <motion.div 
+                                            key={currentVoicebankFormat}
+                                            variants={voicebankVariants}
+                                            initial="initial"
+                                            animate="animate"
+                                            exit="exit"
+                                            custom={animationDirection}
+                                            className="bg-white/5 dark:bg-black/20 rounded-lg p-4"
+                                        >
+                                            <div className="flex flex-wrap items-center justify-between mb-6">
+                                                <h3 className="text-xl font-medium text-primary">{currentVoicebankFormat}</h3>
+                                                {currentVoicebank.url && (
+                                                    <a
+                                                        href={currentVoicebank.url}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="btn-primary flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-md transition-colors"
                                                     >
-                                                        <div className="flex flex-wrap items-center justify-between mb-2">
-                                                            <div>
-                                                                <h4 className="text-lg font-medium text-primary">{mode.name}</h4>
-                                                                {mode.description && (
-                                                                    <p className="text-sm text-muted-foreground">{mode.description}</p>
-                                                                )}
-                                                            </div>
-                                                            {mode.sample && (
-                                                                <div className="flex items-center gap-2 mt-2 md:mt-0">
-                                                                    <Button
-                                                                        variant="outline"
-                                                                        size="sm"
-                                                                        className="text-xs"
-                                                                        onClick={() => handlePlaySample(mode.sample!)}
-                                                                    >
-                                                                        {(isPlaying && currentSampleUrl === mode.sample) ? (
-                                                                            <>
-                                                                                <Pause className="h-3 w-3 mr-1" /> Pause
-                                                                            </>
-                                                                        ) : (
-                                                                            <>
-                                                                                <Play className="h-3 w-3 mr-1" /> Play Sample
-                                                                            </>
+                                                        <Download className="h-4 w-4" />
+                                                        {currentVoicebankFormat && typeof currentVoicebankFormat === 'string' && currentVoicebankFormat.toLowerCase().includes('rvc')
+                                                            ? "View on Weights.gg"
+                                                            : "Download"}
+                                                    </a>
+                                                )}
+                                            </div>
+
+                                            <div className="flex flex-col md:flex-row gap-6">
+                                                {vocalModesToDisplay.length > 0 && (
+                                                    <div className="flex-1">
+                                                        <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6" variants={containerVariants} initial="hidden" animate="visible">
+                                                            {vocalModesToDisplay.map((mode, index) => (
+                                                                <motion.div 
+                                                                    key={mode.name + index}
+                                                                    className="bg-white/5 dark:bg-black/20 rounded-lg p-3"
+                                                                    variants={itemVariants}
+                                                                >
+                                                                    <div className="flex flex-wrap items-center justify-between mb-2">
+                                                                        <div>
+                                                                            <h4 className="text-lg font-medium text-primary">{mode.name}</h4>
+                                                                            {mode.description && (
+                                                                                <p className="text-sm text-muted-foreground">{mode.description}</p>
+                                                                            )}
+                                                                        </div>
+                                                                        {mode.sample && (
+                                                                            <div className="flex items-center gap-2 mt-2 md:mt-0">
+                                                                                <Button
+                                                                                    variant="outline"
+                                                                                    size="sm"
+                                                                                    className="text-xs"
+                                                                                    onClick={() => handlePlaySample(mode.sample!)}
+                                                                                >
+                                                                                    {(isPlaying && currentSampleUrl === mode.sample) ? (
+                                                                                        <>
+                                                                                            <Pause className="h-3 w-3 mr-1" /> Pause
+                                                                                        </>
+                                                                                    ) : (
+                                                                                        <>
+                                                                                            <Play className="h-3 w-3 mr-1" /> Play Sample
+                                                                                        </>
+                                                                                    )}
+                                                                                </Button>
+                                                                            </div>
                                                                         )}
-                                                                    </Button>
+                                                                    </div>
+                                                                    <AnimatePresence>
+                                                                        {mode.sample && currentSampleUrl === mode.sample && isPlaying && (
+                                                                            <motion.div 
+                                                                                className="mt-2 bg-black/10 dark:bg-white/10 rounded-lg overflow-hidden"
+                                                                                initial={{ height: 0, opacity: 0 }}
+                                                                                animate={{ height: 'auto', opacity: 1 }}
+                                                                                exit={{ height: 0, opacity: 0 }}
+                                                                                transition={{ duration: 0.3 }}
+                                                                            >
+                                                                                <AudioVisualization
+                                                                                    audioRef={audioRef}
+                                                                                    isPlaying={true} 
+                                                                                    theme={theme as 'light' | 'dark'}
+                                                                                    singerColors={currentSinger.colors}
+                                                                                    src={currentSampleUrl}
+                                                                                />
+                                                                            </motion.div>
+                                                                        )}
+                                                                    </AnimatePresence>
+                                                                </motion.div>
+                                                            ))}
+                                                        </motion.div>
+                                                    </div>
+                                                )}
+
+                                                {currentVoicebank.type && (
+                                                    <div className="w-full md:w-1/3 bg-white/5 dark:bg-black/20 rounded-lg p-4">
+                                                        <h4 className="text-lg font-medium text-primary mb-4">Additional Details</h4>
+                                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                            {currentVoicebank.type === "UTAU" && currentVoicebank.otoConfig && (
+                                                                <div className="bg-white/5 dark:bg-black/20 rounded-lg p-3">
+                                                                    <div className="flex items-center gap-2 mb-1">
+                                                                        <FileCode className="h-4 w-4 text-primary" />
+                                                                        <h5 className="font-medium text-primary text-sm">OTO Config</h5>
+                                                                    </div>
+                                                                    <p className="text-muted-foreground text-xs">{currentVoicebank.otoConfig}</p>
                                                                 </div>
                                                             )}
-                                                        </div>
-                                                        <AnimatePresence>
-                                                            {mode.sample && currentSampleUrl === mode.sample && isPlaying && (
-                                                                <motion.div 
-                                                                    className="mt-2 bg-black/10 dark:bg-white/10 rounded-lg overflow-hidden"
-                                                                    initial={{ height: 0, opacity: 0 }}
-                                                                    animate={{ height: 'auto', opacity: 1 }}
-                                                                    exit={{ height: 0, opacity: 0 }}
-                                                                    transition={{ duration: 0.3 }}
-                                                                >
-                                                                    <AudioVisualization
-                                                                        audioRef={audioRef}
-                                                                        isPlaying={true} 
-                                                                        theme={theme as 'light' | 'dark'}
-                                                                        singerColors={currentSinger.colors}
-                                                                        src={currentSampleUrl}
-                                                                    />
-                                                                </motion.div>
-                                                            )}
-                                                        </AnimatePresence>
-                                                    </motion.div>
-                                                ))}
-                                            </motion.div>
-                                        )}
-
-                                        {/* New: Additional Information Grid */}
-                                        {currentVoicebank.type && (
-                                            <div className="mt-6">
-                                                <h4 className="text-lg font-medium text-primary mb-4">Additional Details</h4>
-                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                                    {currentVoicebank.type === "UTAU" && currentVoicebank.otoConfig && (
-                                                        <div className="bg-white/5 dark:bg-black/20 rounded-lg p-4">
-                                                            <div className="flex items-center gap-2 mb-2">
-                                                                <FileCode className="h-5 w-5 text-primary" />
-                                                                <h5 className="font-medium text-primary">OTO Configuration</h5>
-                                                            </div>
-                                                            <p className="text-muted-foreground text-sm">{currentVoicebank.otoConfig}</p>
-                                                        </div>
-                                                    )}
-                                                    {currentVoicebank.supportedLanguages && currentVoicebank.supportedLanguages.length > 0 && (
-                                                        <div className="bg-white/5 dark:bg-black/20 rounded-lg p-4">
-                                                            <div className="flex items-center gap-2 mb-2">
-                                                                <Globe className="h-5 w-5 text-primary" />
-                                                                <h5 className="font-medium text-primary">Supported Languages</h5>
-                                                            </div>
-                                                            <div className="flex flex-wrap gap-2">
-                                                                {currentVoicebank.supportedLanguages.map(lang => (
-                                                                    <span key={lang} className={`px-3 py-1 rounded-full text-sm font-medium ${languageDisplay[lang]?.color}`}>
-                                                                        {languageDisplay[lang]?.flag} {languageDisplay[lang]?.label}
-                                                                    </span>
-                                                                ))}
-                                                            </div>
-                                                        </div>
-                                                    )}
-                                                    {currentVoicebank.type === "RVC" && currentVoicebank.training && (
-                                                        <div className="bg-white/5 dark:bg-black/20 rounded-lg p-4">
-                                                            <div className="flex items-center gap-2 mb-2">
-                                                                <Cpu className="h-5 w-5 text-primary" />
-                                                                <h5 className="font-medium text-primary">Training Details</h5>
-                                                            </div>
-                                                            <p className="text-muted-foreground text-sm">{currentVoicebank.training}</p>
-                                                        </div>
-                                                    )}
-                                                    {currentVoicebank.type === "DiffSinger" && (
-                                                        <>
-                                                            {currentVoicebank.supportedExpressions && (
-                                                                <div className="bg-white/5 dark:bg-black/20 rounded-lg p-4">
-                                                                    <div className="flex items-center gap-2 mb-2">
-                                                                        <Sparkles className="h-5 w-5 text-primary" />
-                                                                        <h5 className="font-medium text-primary">Supported Expressions</h5>
+                                                            {currentVoicebank.supportedLanguages && currentVoicebank.supportedLanguages.length > 0 && (
+                                                                <div className="bg-white/5 dark:bg-black/20 rounded-lg p-3">
+                                                                    <div className="flex items-center gap-2 mb-1">
+                                                                        <Globe className="h-4 w-4 text-primary" />
+                                                                        <h5 className="font-medium text-primary text-sm">Languages</h5>
                                                                     </div>
-                                                                    <div className="flex flex-wrap gap-2">
-                                                                        {currentVoicebank.supportedExpressions.map(expr => (
-                                                                            <span key={expr} className="px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300 border border-purple-300 dark:border-purple-500">
-                                                                                {expr}
+                                                                    <div className="flex flex-wrap gap-1">
+                                                                        {currentVoicebank.supportedLanguages.map(lang => (
+                                                                            <span key={lang} className={`px-2 py-0.5 rounded-full text-xs font-medium ${languageDisplay[lang]?.color}`}>
+                                                                                {languageDisplay[lang]?.flag}
                                                                             </span>
                                                                         ))}
                                                                     </div>
                                                                 </div>
                                                             )}
-                                                            {currentVoicebank.labeling && (
-                                                                <div className="bg-white/5 dark:bg-black/20 rounded-lg p-4">
-                                                                    <div className="flex items-center gap-2 mb-2">
-                                                                        <Users className="h-5 w-5 text-primary" />
-                                                                        <h5 className="font-medium text-primary">Labeling</h5>
+                                                            {currentVoicebank.type === "RVC" && currentVoicebank.training && (
+                                                                <div className="bg-white/5 dark:bg-black/20 rounded-lg p-3">
+                                                                    <div className="flex items-center gap-2 mb-1">
+                                                                        <Cpu className="h-4 w-4 text-primary" />
+                                                                        <h5 className="font-medium text-primary text-sm">Training</h5>
                                                                     </div>
-                                                                    <p className="text-muted-foreground text-sm">{currentVoicebank.labeling}</p>
+                                                                    <p className="text-muted-foreground text-xs">{currentVoicebank.training}</p>
                                                                 </div>
                                                             )}
-                                                            {currentVoicebank.training && (
-                                                                <div className="bg-white/5 dark:bg-black/20 rounded-lg p-4">
-                                                                    <div className="flex items-center gap-2 mb-2">
-                                                                        <Cpu className="h-5 w-5 text-primary" />
-                                                                        <h5 className="font-medium text-primary">Training</h5>
+                                                            {currentVoicebank.type === "UTAU" && currentVoicebank.vocalType && (
+                                                                <div className="bg-white/5 dark:bg-black/20 rounded-lg p-3">
+                                                                    <div className="flex items-center gap-2 mb-1">
+                                                                        <Music className="h-4 w-4 text-primary" />
+                                                                        <h5 className="font-medium text-primary text-sm">Vocal Type</h5>
                                                                     </div>
-                                                                    <p className="text-muted-foreground text-sm">{currentVoicebank.training}</p>
+                                                                    <p className="text-muted-foreground text-xs">{currentVoicebank.vocalType}</p>
                                                                 </div>
                                                             )}
-                                                            {currentVoicebank.totalDataDuration && (
-                                                                <div className="bg-white/5 dark:bg-black/20 rounded-lg p-4">
-                                                                    <div className="flex items-center gap-2 mb-2">
-                                                                        <Clock className="h-5 w-5 text-primary" />
-                                                                        <h5 className="font-medium text-primary">Total Data Duration</h5>
+                                                            {currentVoicebank.type === "UTAU" && currentVoicebank.recommendedRange && (
+                                                                <div className="bg-white/5 dark:bg-black/20 rounded-lg p-3">
+                                                                    <div className="flex items-center gap-2 mb-1">
+                                                                        <Ruler className="h-4 w-4 text-primary" />
+                                                                        <h5 className="font-medium text-primary text-sm">Range</h5>
                                                                     </div>
-                                                                    <p className="text-muted-foreground text-sm">{currentVoicebank.totalDataDuration}</p>
+                                                                    <p className="text-muted-foreground text-xs">{currentVoicebank.recommendedRange}</p>
                                                                 </div>
                                                             )}
-
-                                                            {currentVoicebank.additionalDataUsed && (
-                                                                <div className="bg-white/5 dark:bg-black/20 rounded-lg p-4">
-                                                                    <div className="flex items-center gap-2 mb-2">
-                                                                        <Database className="h-5 w-5 text-primary" />
-                                                                        <h5 className="font-medium text-primary">Additional Data Used</h5>
+                                                            {currentVoicebank.type === "UTAU" && currentVoicebank.recommendedResampler && (
+                                                                <div className="bg-white/5 dark:bg-black/20 rounded-lg p-3">
+                                                                    <div className="flex items-center gap-2 mb-1">
+                                                                        <Cpu className="h-4 w-4 text-primary" />
+                                                                        <h5 className="font-medium text-primary text-sm">Resampler</h5>
                                                                     </div>
-                                                                    <p className="text-muted-foreground text-sm">{currentVoicebank.additionalDataUsed}</p>
+                                                                    <p className="text-muted-foreground text-xs">{currentVoicebank.recommendedResampler}</p>
                                                                 </div>
                                                             )}
-                                                            {currentVoicebank.specialThanks && (
-                                                                <div className="bg-white/5 dark:bg-black/20 rounded-lg p-4">
-                                                                    <div className="flex items-center gap-2 mb-2">
-                                                                        <Heart className="h-5 w-5 text-primary" />
-                                                                        <h5 className="font-medium text-primary">Special Thanks</h5>
+                                                            {currentVoicebank.type === "UTAU" && currentVoicebank.recommendedBPM && (
+                                                                <div className="bg-white/5 dark:bg-black/20 rounded-lg p-3">
+                                                                    <div className="flex items-center gap-2 mb-1">
+                                                                        <Clock className="h-4 w-4 text-primary" />
+                                                                        <h5 className="font-medium text-primary text-sm">BPM</h5>
                                                                     </div>
-                                                                    <p className="text-muted-foreground text-sm">{currentVoicebank.specialThanks}</p>
+                                                                    <p className="text-muted-foreground text-xs">{currentVoicebank.recommendedBPM}</p>
                                                                 </div>
                                                             )}
-                                                            {currentVoicebank.recommendedUsage && (
-                                                                <div className="bg-white/5 dark:bg-black/20 rounded-lg p-4">
-                                                                    <div className="flex items-center gap-2 mb-2">
-                                                                        <Music className="h-5 w-5 text-primary" />
-                                                                        <h5 className="font-medium text-primary">Recommended Usage</h5>
+                                                            {currentVoicebank.type === "UTAU" && currentVoicebank.appends && currentVoicebank.appends.length > 0 && (
+                                                                <div className="bg-white/5 dark:bg-black/20 rounded-lg p-3">
+                                                                    <div className="flex items-center gap-2 mb-1">
+                                                                        <Sparkles className="h-4 w-4 text-primary" />
+                                                                        <h5 className="font-medium text-primary text-sm">Appends</h5>
                                                                     </div>
-                                                                    <p className="text-muted-foreground text-sm">{currentVoicebank.recommendedUsage}</p>
+                                                                    <div className="flex flex-wrap gap-1">
+                                                                        {currentVoicebank.appends.map((append, index) => (
+                                                                            <span key={index} className="px-2 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300 border border-purple-300 dark:border-purple-500">
+                                                                                {append}
+                                                                            </span>
+                                                                        ))}
+                                                                    </div>
                                                                 </div>
                                                             )}
-                                                        </>
-                                                    )}
-                                                </div>
+                                                            {currentVoicebank.type === "DiffSinger" && (
+                                                                <>
+                                                                    {currentVoicebank.supportedExpressions && (
+                                                                        <div className="bg-white/5 dark:bg-black/20 rounded-lg p-3">
+                                                                            <div className="flex items-center gap-2 mb-1">
+                                                                                <Sparkles className="h-4 w-4 text-primary" />
+                                                                                <h5 className="font-medium text-primary text-sm">Expressions</h5>
+                                                                            </div>
+                                                                            <div className="flex flex-wrap gap-1">
+                                                                                {currentVoicebank.supportedExpressions.map(expr => (
+                                                                                    <span key={expr} className="px-2 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300 border border-purple-300 dark:border-purple-500">
+                                                                                        {expr}
+                                                                                    </span>
+                                                                                ))}
+                                                                            </div>
+                                                                        </div>
+                                                                    )}
+                                                                    {currentVoicebank.labeling && (
+                                                                        <div className="bg-white/5 dark:bg-black/20 rounded-lg p-3">
+                                                                            <div className="flex items-center gap-2 mb-1">
+                                                                                <Users className="h-4 w-4 text-primary" />
+                                                                                <h5 className="font-medium text-primary text-sm">Labeling</h5>
+                                                                            </div>
+                                                                            <p className="text-muted-foreground text-xs">{currentVoicebank.labeling}</p>
+                                                                        </div>
+                                                                    )}
+                                                                    {currentVoicebank.training && (
+                                                                        <div className="bg-white/5 dark:bg-black/20 rounded-lg p-3">
+                                                                            <div className="flex items-center gap-2 mb-1">
+                                                                                <Cpu className="h-4 w-4 text-primary" />
+                                                                                <h5 className="font-medium text-primary text-sm">Training</h5>
+                                                                            </div>
+                                                                            <p className="text-muted-foreground text-xs">{currentVoicebank.training}</p>
+                                                                        </div>
+                                                                    )}
+                                                                    {currentVoicebank.totalDataDuration && (
+                                                                        <div className="bg-white/5 dark:bg-black/20 rounded-lg p-3">
+                                                                            <div className="flex items-center gap-2 mb-1">
+                                                                                <Clock className="h-4 w-4 text-primary" />
+                                                                                <h5 className="font-medium text-primary text-sm">Data Duration</h5>
+                                                                            </div>
+                                                                            <p className="text-muted-foreground text-xs">{currentVoicebank.totalDataDuration}</p>
+                                                                        </div>
+                                                                    )}
+                                                                    {currentVoicebank.additionalDataUsed && (
+                                                                        <div className="bg-white/5 dark:bg-black/20 rounded-lg p-3">
+                                                                            <div className="flex items-center gap-2 mb-1">
+                                                                                <Database className="h-4 w-4 text-primary" />
+                                                                                <h5 className="font-medium text-primary text-sm">Additional Data</h5>
+                                                                            </div>
+                                                                            <p className="text-muted-foreground text-xs">{currentVoicebank.additionalDataUsed}</p>
+                                                                        </div>
+                                                                    )}
+                                                                    {currentVoicebank.specialThanks && (
+                                                                        <div className="bg-white/5 dark:bg-black/20 rounded-lg p-3">
+                                                                            <div className="flex items-center gap-2 mb-1">
+                                                                                <Heart className="h-4 w-4 text-primary" />
+                                                                                <h5 className="font-medium text-primary text-sm">Special Thanks</h5>
+                                                                            </div>
+                                                                            <p className="text-muted-foreground text-xs">{currentVoicebank.specialThanks}</p>
+                                                                        </div>
+                                                                    )}
+                                                                    {currentVoicebank.recommendedUsage && (
+                                                                        <div className="bg-white/5 dark:bg-black/20 rounded-lg p-3">
+                                                                            <div className="flex items-center gap-2 mb-1">
+                                                                                <Music className="h-4 w-4 text-primary" />
+                                                                                <h5 className="font-medium text-primary text-sm">Usage</h5>
+                                                                            </div>
+                                                                            <p className="text-muted-foreground text-xs">{currentVoicebank.recommendedUsage}</p>
+                                                                        </div>
+                                                                    )}
+                                                                </>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                )}
                                             </div>
-                                        )}
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </motion.div>
-                    )}
-
-                    {videoDemos.length > 0 && (
-                        <motion.div 
-                            className="mt-8 mb-16"
-                            variants={demoSectionVariants}
-                        >
-                            <h2 className="text-2xl font-semibold text-primary mb-6 text-center">Demo Videos</h2>
-                            <motion.div className="max-w-4xl mx-auto" variants={containerVariants} initial="hidden" animate="visible">
-                                <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 ${videoDemos.length % 2 !== 0 ? 'md:last:col-span-2 md:last:mx-auto md:last:max-w-xl' : ''}`}>
-                                    {videoDemos.map((demo, index) => (
-                                        <motion.div 
-                                            key={demo.url + index}
-                                            whileHover={{ scale: 1.02 }}
-                                            whileTap={{ scale: 0.98 }}
-                                            className={`aspect-video overflow-hidden rounded-lg shadow-lg ${
-                                                videoDemos.length % 2 !== 0 && index === videoDemos.length - 1 
-                                                ? 'md:col-span-2 md:mx-auto md:max-w-xl' : ''
-                                            }`}
-                                            variants={itemVariants}
-                                        >
-                                            <div className="relative h-full">
-                                                <iframe
-                                                    src={demo.url}
-                                                    title={demo.title}
-                                                    frameBorder="0"
-                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                    allowFullScreen
-                                                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                                                    loading="lazy"
-                                                ></iframe>
-                                                <Button
-                                                    variant="outline"
-                                                    size="icon"
-                                                    className="absolute top-2 right-2 bg-white/70 dark:bg-black/70 hover:bg-white dark:hover:bg-black/90 z-10"
-                                                    onClick={() => setExpandedVideo(demo)}
-                                                    aria-label="Expand video"
-                                                >
-                                                    <Maximize2 className="h-4 w-4" />
-                                                </Button>
-                                            </div>
-                                            <h3 className="text-lg font-medium text-primary mt-2 text-center">{demo.title}</h3>
                                         </motion.div>
-                                    ))}
-                                </div>
+                                    )}
+                                </AnimatePresence>
                             </motion.div>
-                        </motion.div>
-                    )}
+                        )}
+
+                        {videoDemos.length > 0 && (
+                            <motion.div 
+                                className="mt-8 mb-16"
+                                variants={demoSectionVariants}
+                            >
+                                <h2 className="text-2xl font-semibold text-primary mb-6 text-center">Demo Videos</h2>
+                                <motion.div className="max-w-4xl mx-auto" variants={containerVariants} initial="hidden" animate="visible">
+                                    <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 ${videoDemos.length % 2 !== 0 ? 'md:last:col-span-2 md:last:mx-auto md:last:max-w-xl' : ''}`}>
+                                        {videoDemos.map((demo, index) => (
+                                            <motion.div 
+                                                key={demo.url + index}
+                                                whileHover={{ scale: 1.02 }}
+                                                whileTap={{ scale: 0.98 }}
+                                                className={`aspect-video overflow-hidden rounded-lg shadow-lg ${
+                                                    videoDemos.length % 2 !== 0 && index === videoDemos.length - 1 
+                                                    ? 'md:col-span-2 md:mx-auto md:max-w-xl' : ''
+                                                }`}
+                                                variants={itemVariants}
+                                            >
+                                                <div className="relative h-full">
+                                                    <iframe
+                                                        src={demo.url}
+                                                        title={demo.title}
+                                                        frameBorder="0"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                        allowFullScreen
+                                                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                                                        loading="lazy"
+                                                    ></iframe>
+                                                    <Button
+                                                        variant="outline"
+                                                        size="icon"
+                                                        className="absolute top-2 right-2 bg-white/70 dark:bg-black/70 hover:bg-white dark:hover:bg-black/90 z-10"
+                                                        onClick={() => setExpandedVideo(demo)}
+                                                        aria-label="Expand video"
+                                                    >
+                                                        <Maximize2 className="h-4 w-4" />
+                                                    </Button>
+                                                </div>
+                                                <h3 className="text-lg font-medium text-primary mt-2 text-center">{demo.title}</h3>
+                                            </motion.div>
+                                        ))}
+                                    </div>
+                                </motion.div>
+                            </motion.div>
+                        )}
+                    </div>
                 </motion.main>
 
                 <Footer />
@@ -2276,8 +2424,7 @@ const SingerPage: React.FC = () => {
                 </motion.div>
             )}
         </AnimatePresence>
-        </>
-    );
-};
-
+    </>
+);
+}
 export default SingerPage;
