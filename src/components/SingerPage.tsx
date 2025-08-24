@@ -320,7 +320,7 @@ const singersData = {
                 supportedLanguages: ["ja"],
                 vocalType: "Tenor",
                 recommendedRange: "B2-C5",
-                recommendedResampler: "TIPS & moresampler",
+                recommendedResampler: "hifisampler",
                 recommendedBPM: "80-200",
             },
             RVC: {
