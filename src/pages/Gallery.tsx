@@ -79,6 +79,8 @@ const Gallery = () => {
     character: string;
     artist: string;
     href?: string;
+    linkLabel?: string;
+    linkType?: 'youtube' | 'telegram'; 
   }
   
   const galleryItems: GalleryItem[] = [
@@ -88,7 +90,10 @@ const Gallery = () => {
       image: "/images/akizora-2.webp", 
       title: "Akizora Artwork", 
       character: "Akizora", 
-      artist: "JustKAMAZ"
+      artist: "JustKAMAZ",
+      href: "https://t.me/JUST_KAMAZ",
+      linkLabel: "Artist's Telegram Channel",
+      linkType: 'telegram'
     },
     { 
       id: "akizora-2", 
@@ -96,7 +101,10 @@ const Gallery = () => {
       image: "/images/akizora-3.webp", 
       title: "Akizora \"pick me\"", 
       character: "Akizora", 
-      artist: "KambaL"
+      artist: "KambaL",
+      href: "https://t.me/kamba1l/108",
+      linkLabel: "Open in Telegram",
+      linkType: 'telegram'
     },
     {
       id: "simon-sisi",
@@ -105,14 +113,20 @@ const Gallery = () => {
       title: "сегодня мы приготовим ах ладно смотрите на мои сиськи",
       character: "Simon Weber",
       artist: "KambaL",
+      href: "https://t.me/kamba1l/296",
+      linkLabel: "Open in Telegram",
+      linkType: 'telegram'
     },
-        {
+    {
       id: "akizora-sisi",
       type: "official",
       image: "/images/akizora-keko-sisi.webp",
       title: "сегодня день сисек",
       character: "Akizora",
       artist: "KambaL",
+      href: "https://t.me/kamba1l/298",
+      linkLabel: "Open in Telegram",
+      linkType: 'telegram'
     },
     {
       id: "toisku",
@@ -121,6 +135,9 @@ const Gallery = () => {
       title: "Toisku Artwork",
       character: "Toisku",
       artist: "Zihiko",
+      href: "https://t.me/zihiko_hikari",
+      linkLabel: "Artist's Telegram Channel",
+      linkType: 'telegram'
     },
     { 
       id: "identity", 
@@ -129,7 +146,9 @@ const Gallery = () => {
       title: "Identity", 
       character: "Tilke x Asoqwer", 
       artist: "mnifl", 
-      href: "https://www.youtube.com/watch?v=81F29AUNDAQ"
+      href: "https://www.youtube.com/watch?v=81F29AUNDAQ",
+      linkLabel: "Watch on YouTube",
+      linkType: 'youtube'
     },
     { 
       id: "lonely-love", 
@@ -138,7 +157,9 @@ const Gallery = () => {
       title: "Lonely Love", 
       character: "Akizora", 
       artist: "Leshy-P", 
-      href: "https://www.youtube.com/watch?v=zqfyw-mbG0A"
+      href: "https://www.youtube.com/watch?v=zqfyw-mbG0A",
+      linkLabel: "Watch on YouTube",
+      linkType: 'youtube'
     },
     { 
       id: "king", 
@@ -147,7 +168,9 @@ const Gallery = () => {
       title: "KING", 
       character: "Asoqwer x Tilke x Simon Weber", 
       artist: "mnifl", 
-      href: "https://www.youtube.com/watch?v=awOAjlqdPXc"
+      href: "https://www.youtube.com/watch?v=awOAjlqdPXc",
+      linkLabel: "Watch on YouTube",
+      linkType: 'youtube'
     }
   ];
   
@@ -522,37 +545,25 @@ const Gallery = () => {
                   </div>
                   
                   {selectedImage.href && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.4 }}
-                    >
-                      <Button asChild className="mt-4 w-full relative overflow-hidden group">
-                        <motion.a 
-                          href={selectedImage.href} 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
-                          className="flex items-center justify-center gap-2"
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
+                    <Button asChild className="mt-4 w-full relative overflow-hidden group">
+                      <motion.a 
+                        href={selectedImage.href} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="flex items-center justify-center gap-2"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <motion.span
+                          animate={{ x: [0, 5, 0], scale: [1, 1.1, 1] }}
+                          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
                         >
-                          <motion.span
-                            animate={{ 
-                              x: [0, 5, 0],
-                              scale: [1, 1.1, 1]
-                            }}
-                            transition={{
-                              duration: 1.5,
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }}
-                          >
-                            <Youtube className="h-4 w-4" />
-                          </motion.span>
-                          Watch on YouTube
-                        </motion.a>
-                      </Button>
-                    </motion.div>
+                          {selectedImage.linkType === 'youtube' && <Youtube className="h-4 w-4" />}
+                          {selectedImage.linkType === 'telegram' && <ExternalLink className="h-4 w-4" />}
+                        </motion.span>
+                        {selectedImage.linkLabel ?? "Open Link"}
+                      </motion.a>
+                    </Button>
                   )}
                 </div>
               </div>
