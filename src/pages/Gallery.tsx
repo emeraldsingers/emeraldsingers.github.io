@@ -99,6 +99,22 @@ const Gallery = () => {
       artist: "KambaL"
     },
     {
+      id: "simon-sisi",
+      type: "official",
+      image: "/images/simon-sisi.webp",
+      title: "сегодня мы приготовим ах ладно смотрите на мои сиськи",
+      character: "Simon Weber",
+      artist: "KambaL",
+    },
+        {
+      id: "akizora-sisi",
+      type: "official",
+      image: "/images/akizora-keko-sisi.webp",
+      title: "сегодня день сисек",
+      character: "Akizora",
+      artist: "KambaL",
+    },
+    {
       id: "toisku",
       type: "official",
       image: "/images/toisku-artwork.webp",
