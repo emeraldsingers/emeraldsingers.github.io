@@ -95,7 +95,6 @@ const teamMembers: TeamMember[] = [
     avatar: "/images/akizora-3.webp",
     description: "Creator of Emerald Project, Voice provider of Akizora, and the driving force behind the project.",
     social: {
-      twitter: "https://x.com/hjfgrtij",
       youtube: "https://www.youtube.com/@Seejiu-C",
     }
   },
