@@ -298,7 +298,15 @@ const singersData = {
             {
                 url: "https://www.youtube.com/embed/F2JMYiLiNIk", 
                 title: "【SIMON WEBER DEMO】 WAVE 【Emerald Project UTAUカバー】"
-            }
+            },
+            {
+                url: "https://www.youtube.com/embed/j8URO9d5ddU", 
+                title: "【Simon Weber】Alter Ego【UTAU Cover】"
+            },
+            {
+                url: "https://www.youtube.com/embed/PMScYxi8bpA", 
+                title: "【Simon Weber】-ERROR【UTAU English Cover】"
+            },
         ]
     },
     mitsuo: {
