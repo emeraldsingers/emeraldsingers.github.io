@@ -60,6 +60,7 @@ const singersData = {
             Weight: "51kg",
             Birthday: "Doesn't remember",
             Stone: "Fluorite",
+            "Fav Item": "Gummies",
         },
         colors: { 
             light: 'rgb(21,188,206)',
@@ -114,6 +115,7 @@ const singersData = {
             Weight: "50 kg",
             Birthday: "23.03",
             Stone: "Amber",
+            "Fav Item": "Fish snacks",
         },
         colors: {
             light: 'rgb(145, 36, 36)', 
@@ -181,8 +183,8 @@ const singersData = {
                 title: "【asoqwer VCV】うらぽしゃ | Urapocere - Iyowa 【UTAUカバー】 + UST"
             },
             {
-                url: "https://www.youtube.com/embed/v6ZwyaaHlkw",
-                title: "【Asoqwer VCV】 今際の際 | IMAWANOKIWA - いよわ【UTAUカバー】 +Voicebank Release"
+                url: "https://www.youtube.com/embed/Grt6iyZnhQw",
+                title: "【asoqwer DiffSinger Beta】 Basics in Behavior - The Living Tombstone 【DiffSingerカバー】"
             }
         ]
     },
@@ -200,6 +202,7 @@ const singersData = {
             Weight: "Unknown",
             Birthday: "15.09",
             Stone: "Emerald",
+            "Fav Item": "Bow",
         },
         colors: {
             light: 'rgb(91, 139, 107)',
@@ -243,7 +246,15 @@ const singersData = {
             {
                 url: "https://www.youtube.com/embed/EpeqkWKsUMk",
                 title: "[Emerald CVC RUS] V.3.6.0 Release - multipitch, Dark, english phonemes "
-            }
+            },
+            {
+                url: "https://www.youtube.com/embed/IfdLe08hHvI",
+                title: "【Emerald CVVC】Nori-P - Butterfly on your Right Shoulder (4th anniversary cover) UTAU"
+            },
+                        {
+                url: "https://www.youtube.com/embed/hZJjR__FTUM",
+                title: "【Emerald】 Affection Addiction - KAT x Aku P 【Emerald Project DiffSingerカバー】"
+            },
         ]
     },
     "simon-weber": {
@@ -261,6 +272,7 @@ const singersData = {
             Weight: "80kg",
             Birthday: "01.08",
             Stone: "Carneol",
+            "Fav Item": "Track Jacket",
         },
         colors: {
             light: 'rgb(255, 136, 0)', 
@@ -304,6 +316,7 @@ const singersData = {
             Weight: "65kg",
             Birthday: "19.06",
             Stone: "Opal",
+            "Fav Item": "Tea",
         },
         colors: {
             light: 'rgb(59,162,228)', 
@@ -358,7 +371,8 @@ const singersData = {
             Height: "175cm",
             Weight: "65kg",
             Birthday: "05.05",
-            Stone: "Chaorite",
+            Stone: "Charoite",
+            "Fav Item": "Cedar cone",
         },
         colors: {
             light: 'rgb(17,96,98)', 
@@ -390,7 +404,16 @@ const singersData = {
                 recommendedRange: "E2-C5",
                 recommendedResampler: "TIPS & moresampler",
                 recommendedBPM: "80-200",
-            }
+            },
+            RVC: {
+                url: "https://www.weights.com/ru/models/cmgbd583300p30acxsspozsyc",
+                vocalModes: [
+                    { name: "RVC", description: "200e, 17800 steps", sample: "/samples/toisku/toiskurvc.mp3" },
+                ],
+                type: "RVC",
+                training: "Trained by Naska-P",
+            },
+            
         },
         videoDemos: []
     },
@@ -408,7 +431,7 @@ const singersData = {
             Height: "Placeholden",
             Weight: "Placeholde",
             Birthday: "Placeholder",
-            Stone: "Placeholder",
+            "Fav Item": "Placeholder",
         },
         colors: {
             light: 'rgb(15,19,28)', 
@@ -2032,6 +2055,7 @@ const SingerPage: React.FC = () => {
                                                 {key === "Weight" && <Weight className="h-6 w-6 text-primary" />}
                                                 {key === "Birthday" && <Cake className="h-6 w-6 text-primary" />}
                                                 {key === "Stone" && <Gem className="h-6 w-6 text-primary" />}
+                                                {key === "Fav Item" && <Heart className="h-6 w-6 text-primary" />}
                                                 <div>
                                                     <span className="text-muted-foreground font-medium">{key}:</span>{" "}
                                                     <span className="text-primary font-medium">{value as string}</span>

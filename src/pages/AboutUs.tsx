@@ -172,7 +172,6 @@ const teamMembers: TeamMember[] = [
     avatar: "/images/eulliaq.webp",
     description: "Talented artist and silly KAITO lover.",
     social: {
-      youtube: "https://www.youtube.com/@EmeraldProjectUtau",
       telegram: "https://t.me/falconyeulliaq",
       twitter: "https://x.com/Eulliaq",
       tiktok: "https://www.tiktok.com/@eulliaqzh"
@@ -416,7 +415,7 @@ const AboutUs = () => {
                     We are committed to pushing the boundaries of what virtual singers can achieve.
                   </motion.p>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
                     {teamMembers.map((member, index) => (
                       <motion.div
                         key={member.name}
@@ -535,13 +534,26 @@ const AboutUs = () => {
                   </motion.h2>
                   
                   <motion.p 
-                    className="text-muted-foreground mb-6 text-center max-w-2xl mx-auto"
+                    className="text-muted-foreground mb-4 text-center max-w-2xl mx-auto"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.2 }}
                   >
                     Our enhanced fork of OpenUtau, designed specifically for the Emerald Project singers with unique styling and powerful features.
                   </motion.p>
+                  
+                  <motion.div
+                    className={`mb-6 p-4 rounded-lg ${
+                      theme === 'dark' ? 'bg-amber-500/10 border-amber-500/30' : 'bg-amber-50 border-amber-200'
+                    } border text-center max-w-2xl mx-auto`}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    <p className={`text-sm ${theme === 'dark' ? 'text-amber-300' : 'text-amber-700'}`}>
+                      ⚠️ UtauV is currently being updated. It works, but we recommend waiting for the new version based on the latest OpenUtau releases.
+                    </p>
+                  </motion.div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                     <motion.div
@@ -811,6 +823,44 @@ const AboutUs = () => {
                         Gallery & Community Works
                       </Link>
                         </Button>
+                  </motion.div>
+                  
+                  <motion.div
+                    className={`mt-6 p-6 rounded-lg ${
+                      theme === 'dark' ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-emerald-50 border-emerald-200'
+                    } border`}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.7 }}
+                  >
+                    <h3 className="text-lg font-semibold text-primary mb-3 text-center">Share Your Works!</h3>
+                    <p className="text-muted-foreground text-center mb-4">
+                      Created something amazing with our voicebanks? We'd love to feature it!
+                    </p>
+                    <div className="flex flex-wrap gap-3 justify-center">
+                      <Button variant="default" size="sm" asChild>
+                        <a 
+                          href="https://t.me/UtauV" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center"
+                        >
+                          <Send className="h-4 w-4 mr-2" />
+                          Submit via Telegram Channel
+                        </a>
+                      </Button>
+                      <Button variant="outline" size="sm" asChild>
+                        <a 
+                          href="https://t.me/EmeraldProjectSupport_bot" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center"
+                        >
+                          <MessageCircle className="h-4 w-4 mr-2" />
+                          Submit via Support Bot
+                        </a>
+                      </Button>
+                    </div>
                   </motion.div>
                 </div>
                 </motion.div>

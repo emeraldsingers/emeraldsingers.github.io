@@ -550,125 +550,96 @@ const StarryBackground = ({ theme }: { theme: string }) => {
 };
 
 const roadmapData = {
-  inPlans: [
+  completed: [
     {
       id: 1,
-      title: "New Singers",
-      description: "Working on a new virtual singer",
-      timeline: "Q2 2025",
-      priority: "High"
+      date: "January 2025",
+      title: "Project Launch",
+      description: "Initial public release of Emerald Project with first voicebanks",
+      icon: "🚀"
     },
-
+    {
+      id: 2,
+      date: "February 2025",
+      title: "Official Website",
+      description: "Launch of emeraldsingers.github.io with full singer showcase",
+      icon: "🌐"
+    },
     {
       id: 3,
-      title: "DiffSinger Voicebanks",
-      description: "DiffSinger voicebanks for all singers",
-      timeline: "Q2 2025",
-      priority: "Medium"
+      date: "April 2025",
+      title: "UtauV Plugins",
+      description: "AutoPitch and AutoHarmonies plugins integrated into UtauV",
+      icon: "🎵"
     },
-
-  ],
-  inProgress: [
     {
       id: 4,
-      title: "Mitsuo Voicebanks release",
-      description: "JA CVVC & RU CVC voicebanks for Mitsuo",
-      progress: 60,
-      startedDate: "April 2025"
+      date: "May 2025",
+      title: "Site Redesign",
+      description: "Major visual overhaul with improved UX and animations",
+      icon: "✨"
     },
     {
       id: 5,
-      title: "Voice Bank Updates",
-      description: "Refining existing voice banks",
-      progress: 65,
-      startedDate: "April 2025"
+      date: "October 2025",
+      title: "Roadmap Update",
+      description: "Complete restructuring of project roadmap and future plans",
+      icon: "📋"
     }
   ],
-  completed: [
+  inProgress: [
     {
       id: 6,
-      title: "Initial Release",
-      description: "First public launch of the Emerald Project",
-      completedDate: "January, 12th 2025"
+      title: "Mitsuo VoiceBanks",
+      description: "Japanese CVVC and Russian CVC voicebanks in production",
+      progress: 75,
+      eta: "Q4 2025",
+      icon: "🎤"
     },
     {
       id: 7,
-      title: "Official Site Launch",
-      description: "The site was launched on February 20th, 2025",
-      completedDate: "February 20th, 2025"
+      title: "VoiceBank Refinement",
+      description: "Improving quality and expanding existing singer libraries",
+      progress: 60,
+      eta: "Ongoing",
+      icon: "🔧"
+    },
+        {
+      id: 10,
+      title: "New Singers",
+      description: "Expanding the roster with fresh voices and characters",
+      progress: 20,
+      priority: "High",
+      eta: "Ongoing",
+      icon: "⭐"
     },
     {
       id: 8,
-      title: "AutoPitch Plugin & AutoHarmonies",
-      description: "Plugins installed in UtauV",
-      completedDate: "April 2025"
+      title: "UtauV Enhancement",
+      description: "Updating to latest OpenUtau base with new features",
+      progress: 45,
+      eta: "Q1 2026",
+      icon: "⚙️"
     },
+
+  ],
+  planned: [
     {
       id: 9,
-      title: "Site Redesign",
-      description: "New appearance of the site with improved design and functionality",
-      completedDate: "May 2025"
-    }
+      title: "DiffSinger Models",
+      description: "AI-based singing synthesis for all main singers",
+      priority: "High",
+      timeline: "Q2 2026",
+      icon: "🤖"
+    },
+
   ]
 };
 
 const Roadmap = () => {
     const { theme } = useTheme();
-    const [activePhase, setActivePhase] = useState(0);
+    const [activeTab, setActiveTab] = useState<'completed' | 'inProgress' | 'planned'>('inProgress');
     const containerRef = useRef<HTMLDivElement>(null);
-    
-    const phases = [
-        {
-            title: "Phase 1: Foundation",
-            subtitle: "January 2025",
-            items: [
-                roadmapData.completed[0].title,
-                roadmapData.completed[0].description,
-            ],
-            completed: true
-        },
-        {
-            title: "Phase 2: Website Development",
-            subtitle: "February 2025",
-            items: [
-                roadmapData.completed[1].title,
-                roadmapData.completed[1].description,
-            ],
-            completed: true
-        },
-        {
-            title: "Phase 3: Plugin Development",
-            subtitle: "April 2025",
-            items: [
-                roadmapData.completed[2].title,
-                roadmapData.completed[2].description,
-                roadmapData.inProgress[0].title,
-                roadmapData.inProgress[0].description,
-                roadmapData.inProgress[1].title,
-                roadmapData.inProgress[1].description,
-            ],
-            completed: true
-        },
-        {
-            title: "Phase 4: Site Enhancement",
-            subtitle: "May 2025",
-            items: [
-                roadmapData.completed[3].title,
-                roadmapData.completed[3].description,
-            ],
-            completed: true
-        },
-        {
-            title: "Phase 5: New Features",
-            subtitle: "Q3 2025",
-            items: [
-              "New Website design(again)",
-              "AutoPitch Plugin based on Transformers",
-              "DiffSinger Voicebanks for all singers",
-            ],
-            completed: false
-        },
-    ];
 
     return (
         <div
@@ -677,7 +648,7 @@ const Roadmap = () => {
         >
             <Helmet>
                 <title>Roadmap - Emerald Singers</title>
-                <meta name="description" content="Discover the development roadmap for the Emerald Project. Learn about our future plans and features for Emerald singers." />
+                <meta name="description" content="Discover the development roadmap for the Emerald Project. Track our progress and explore upcoming features." />
                 <link rel="canonical" href="https://emeraldsingers.github.io/roadmap" />
             </Helmet>
             
@@ -686,71 +657,212 @@ const Roadmap = () => {
             <StarryBackground theme={theme} />
             
             <Navigation />
-            <main className="flex-grow container mx-auto px-4 py-24 relative">
+            
+            <main className="flex-grow container mx-auto px-4 py-20 relative z-10">
+                {/* Header */}
                 <motion.div 
-                    className="max-w-5xl mx-auto glass-morphism rounded-xl p-8 mb-8"
+                    className="text-center mb-12"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                >
+                    <motion.h1 
+                        className="text-5xl md:text-6xl font-bold text-primary mb-4"
+                        initial={{ scale: 0.9 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: "spring", stiffness: 200 }}
+                    >
+                        Development Roadmap
+                    </motion.h1>
+                    <motion.p 
+                        className="text-lg text-muted-foreground max-w-2xl mx-auto"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                    >
+                        Track our journey from launch to future innovations
+                    </motion.p>
+                    <motion.div
+                        className="mt-2 text-sm text-emerald-500"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.3 }}
+                    >
+                        Last updated: October 3, 2025
+                    </motion.div>
+                </motion.div>
+
+                {/* Tab Selector */}
+                <motion.div 
+                    className="flex justify-center gap-4 mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1, duration: 0.5 }}
+                    transition={{ delay: 0.4 }}
                 >
-                    <h1 className="text-4xl font-bold text-primary mb-8 text-center">Emerald Project Roadmap</h1>
-                    <p className="text-lg text-center mb-8">
-                        Our development plan outlines the journey of the Emerald Project from conception to future innovations.
-                    </p>
-                </motion.div>
-                
-                <div className="space-y-16 pb-20">
-                    {phases.map((phase, index) => (
-                        <motion.div 
-                            key={index} 
-                            className="relative"
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 + index * 0.1, duration: 0.5 }}
+                    {[
+                        { key: 'completed', label: '✅ Completed', count: roadmapData.completed.length },
+                        { key: 'inProgress', label: '🔄 In Progress', count: roadmapData.inProgress.length },
+                        { key: 'planned', label: '📅 Planned', count: roadmapData.planned.length }
+                    ].map((tab) => (
+                        <motion.button
+                            key={tab.key}
+                            onClick={() => setActiveTab(tab.key as any)}
+                            className={cn(
+                                "px-6 py-3 rounded-lg font-medium transition-all relative overflow-hidden",
+                                activeTab === tab.key
+                                    ? "bg-primary text-primary-foreground shadow-lg"
+                                    : "glass-morphism hover:scale-105"
+                            )}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
                         >
-                            <div className="absolute left-1/2 transform -translate-x-1/2 h-full top-0">
-                                <div className={`w-[3px] h-full ${index === phases.length - 1 ? 'h-0' : 'h-full'} ${phase.completed ? 'bg-emerald-500' : 'bg-gray-300 dark:bg-gray-700'}`}></div>
-                            </div>
-                            
-                            <div className="flex items-center justify-center mb-4 relative z-10">
-                                <motion.div 
-                                    className={`w-8 h-8 rounded-full ${phase.completed ? 'bg-emerald-500' : 'bg-gray-300 dark:bg-gray-700'} flex items-center justify-center text-white font-bold text-sm shadow-lg`}
-                                    whileHover={{ scale: 1.1 }}
-                                    onClick={() => setActivePhase(index)}
-                                >
-                                    {index + 1}
-                                </motion.div>
-                            </div>
-                            
-                            <motion.div 
-                                className={`glass-morphism rounded-xl p-6 max-w-3xl mx-auto ${activePhase === index ? 'border-l-4 border-emerald-500' : ''}`}
-                                whileHover={{ scale: 1.02 }}
-                                onClick={() => setActivePhase(index)}
-                            >
-                                <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                                    <h2 className="text-2xl font-bold text-primary">{phase.title}</h2>
-                                    <div className={`px-3 py-1 rounded-full text-sm ${phase.completed ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200' : 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200'}`}>
-                                        {phase.subtitle}
-                                    </div>
-                                </div>
-                                <ul className="space-y-2">
-                                    {phase.items.map((item, itemIndex) => (
-                                        <li key={itemIndex} className="flex items-start">
-                                            <span className={`mr-2 mt-1 ${phase.completed ? 'text-emerald-500' : 'text-gray-400'}`}>•</span>
-                                            <span>{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                                <div className="mt-4 text-right">
-                                    <span className={`text-sm font-medium ${phase.completed ? 'text-emerald-500' : 'text-gray-400'}`}>
-                                        {phase.completed ? 'Completed' : 'Planned'}
-                                    </span>
-                                </div>
-                            </motion.div>
-                        </motion.div>
+                            <span className="relative z-10 flex items-center gap-2">
+                                {tab.label}
+                                <span className="text-xs opacity-70">({tab.count})</span>
+                            </span>
+                        </motion.button>
                     ))}
+                </motion.div>
+
+                {/* Content Area */}
+                <div className="max-w-6xl mx-auto">
+                    {/* Completed Section */}
+                    {activeTab === 'completed' && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            className="space-y-6"
+                        >
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                {roadmapData.completed.map((item, index) => (
+                                    <motion.div
+                                        key={item.id}
+                                        className="glass-morphism rounded-xl p-6 border-l-4 border-emerald-500"
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: index * 0.1 }}
+                                        whileHover={{ scale: 1.02, y: -5 }}
+                                    >
+                                        <div className="flex items-start gap-4">
+                                            <span className="text-4xl">{item.icon}</span>
+                                            <div className="flex-1">
+                                                <div className="flex items-center justify-between mb-2">
+                                                    <h3 className="text-xl font-bold text-primary">{item.title}</h3>
+                                                    <span className="text-xs bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 px-2 py-1 rounded">
+                                                        ✓ Done
+                                                    </span>
+                                                </div>
+                                                <p className="text-sm text-muted-foreground mb-3">{item.description}</p>
+                                                <div className="text-xs text-emerald-500 font-medium">
+                                                    📅 {item.date}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </motion.div>
+                    )}
+
+                    {/* In Progress Section */}
+                    {activeTab === 'inProgress' && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            className="space-y-6"
+                        >
+                            {roadmapData.inProgress.map((item, index) => (
+                                <motion.div
+                                    key={item.id}
+                                    className="glass-morphism rounded-xl p-6 border-l-4 border-blue-500"
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: index * 0.1 }}
+                                    whileHover={{ scale: 1.01, y: -3 }}
+                                >
+                                    <div className="flex items-start gap-4">
+                                        <span className="text-4xl">{item.icon}</span>
+                                        <div className="flex-1">
+                                            <div className="flex items-center justify-between mb-2">
+                                                <h3 className="text-2xl font-bold text-primary">{item.title}</h3>
+                                                <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-3 py-1 rounded">
+                                                    ETA: {item.eta}
+                                                </span>
+                                            </div>
+                                            <p className="text-muted-foreground mb-4">{item.description}</p>
+                                            
+                                            {/* Progress Bar */}
+                                            <div className="space-y-2">
+                                                <div className="flex items-center justify-between text-sm">
+                                                    <span className="text-muted-foreground">Progress</span>
+                                                    <span className="font-bold text-primary">{item.progress}%</span>
+                                                </div>
+                                                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
+                                                    <motion.div
+                                                        className="h-full bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full"
+                                                        initial={{ width: 0 }}
+                                                        animate={{ width: `${item.progress}%` }}
+                                                        transition={{ duration: 1, delay: index * 0.2 }}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+                    )}
+
+                    {/* Planned Section */}
+                    {activeTab === 'planned' && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            className="space-y-6"
+                        >
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                {roadmapData.planned.map((item, index) => (
+                                    <motion.div
+                                        key={item.id}
+                                        className="glass-morphism rounded-xl p-6 border-l-4 border-purple-500"
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: index * 0.1 }}
+                                        whileHover={{ scale: 1.02, y: -5 }}
+                                    >
+                                        <div className="flex items-start gap-4">
+                                            <span className="text-4xl">{item.icon}</span>
+                                            <div className="flex-1">
+                                                <div className="flex items-center gap-2 mb-2">
+                                                    <h3 className="text-xl font-bold text-primary">{item.title}</h3>
+                                                </div>
+                                                <p className="text-sm text-muted-foreground mb-3">{item.description}</p>
+                                                <div className="flex items-center justify-between text-xs">
+                                                    <span className={cn(
+                                                        "px-2 py-1 rounded font-medium",
+                                                        item.priority === 'High' 
+                                                            ? "bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300"
+                                                            : "bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300"
+                                                    )}>
+                                                        {item.priority} Priority
+                                                    </span>
+                                                    <span className="text-purple-500 font-medium">
+                                                        📅 {item.timeline}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </motion.div>
+                    )}
                 </div>
             </main>
+            
             <Footer />
         </div>
     );

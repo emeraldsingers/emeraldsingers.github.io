@@ -17,7 +17,10 @@ import {
   ChevronLeft,
   ChevronRight,
   Play,
-  Video
+  Video,
+  Sparkles,
+  Award,
+  Users
 } from "lucide-react";
 
 const buttonVariants = {
@@ -73,7 +76,7 @@ const Gallery = () => {
   
   interface GalleryItem {
     id: string;
-    type: 'official' | 'community';
+    type: 'official' | 'community' | 'communityArtwork';
     image: string;
     title: string;
     character: string;
@@ -86,7 +89,7 @@ const Gallery = () => {
   const galleryItems: GalleryItem[] = [
     { 
       id: "akizora-1", 
-      type: "official", 
+      type: "communityArtwork", 
       image: "/images/akizora-2.webp", 
       title: "Akizora Artwork", 
       character: "Akizora", 
@@ -97,7 +100,7 @@ const Gallery = () => {
     },
     { 
       id: "akizora-2", 
-      type: "official", 
+      type: "communityArtwork", 
       image: "/images/akizora-3.webp", 
       title: "Akizora \"pick me\"", 
       character: "Akizora", 
@@ -108,7 +111,7 @@ const Gallery = () => {
     },
     {
       id: "simon-sisi",
-      type: "official",
+      type: "communityArtwork",
       image: "/images/simon-sisi.webp",
       title: "сегодня мы приготовим ах ладно смотрите на мои сиськи",
       character: "Simon Weber",
@@ -119,7 +122,7 @@ const Gallery = () => {
     },
     {
       id: "akizora-sisi",
-      type: "official",
+      type: "communityArtwork",
       image: "/images/akizora-keko-sisi.webp",
       title: "сегодня день сисек",
       character: "Akizora",
@@ -176,7 +179,9 @@ const Gallery = () => {
   
   const filteredItems = activeCategory === 'all' 
     ? galleryItems 
-    : galleryItems.filter(item => item.type === activeCategory);
+    : activeCategory === 'official'
+      ? galleryItems.filter(item => item.type === 'official' || item.type === 'communityArtwork')
+      : galleryItems.filter(item => item.type === activeCategory);
     
   const handleCategoryChange = (category: 'all' | 'official' | 'community') => {
     if (category === activeCategory) return;
@@ -211,6 +216,11 @@ const Gallery = () => {
     const index = filteredItems.findIndex(i => i.id === item.id);
     setCurrentIndex(index);
     setSelectedImage(item);
+  };
+
+  const getYouTubeEmbedUrl = (url: string) => {
+    const videoId = url.match(/(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=|\/watch\?.+&v=))([\w-]{11})/)?.[1];
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
   };
 
   return (
@@ -339,7 +349,7 @@ const Gallery = () => {
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div 
               key={activeCategory}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr"
               custom={direction}
               variants={containerVariants}
               initial="initial"
@@ -350,7 +360,7 @@ const Gallery = () => {
                 <motion.div 
                   key={item.id}
                   className={cn(
-                    "glass-morphism rounded-lg overflow-hidden cursor-pointer transition-all",
+                    "glass-morphism rounded-lg overflow-hidden cursor-pointer transition-all flex flex-col h-full",
                     "hover:scale-[1.02]",
                     item.type === 'community' && "community-cover-card"
                   )}
@@ -363,7 +373,7 @@ const Gallery = () => {
                   onMouseEnter={() => item.type === 'community' && setHoveredCover(item.id)}
                   onMouseLeave={() => setHoveredCover(null)}
                 >
-                  <div className="aspect-square relative overflow-hidden">
+                  <div className="aspect-square relative overflow-hidden flex-shrink-0">
                     <img 
                       src={item.image} 
                       alt={item.title} 
@@ -373,6 +383,7 @@ const Gallery = () => {
                       )}
                     />
                     
+
                     {item.type === 'community' && (
                       <>
                         <motion.div 
@@ -436,19 +447,35 @@ const Gallery = () => {
                     )}
                   </div>
                   
-                  <div className="p-4">
-                    <h3 className="font-medium text-primary truncate">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground truncate">{item.character}</p>
-                    <div className="flex justify-between items-center mt-2">
-                      <span className="text-xs text-muted-foreground">by {item.artist}</span>
+                  <div className="p-4 pb-6 bg-gradient-to-b from-transparent to-black/5 dark:to-white/5 flex-grow flex flex-col justify-end">
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <h3 className="font-semibold text-primary flex-1 line-clamp-2 leading-tight">{item.title}</h3>
                       {item.href && (
                         <motion.div
-                          whileHover={{ scale: 1.2, rotate: 5 }}
+                          className={cn(
+                            "p-1.5 rounded-full flex-shrink-0",
+                            item.linkType === 'youtube' 
+                              ? "bg-red-100 dark:bg-red-900/30" 
+                              : "bg-blue-100 dark:bg-blue-900/30"
+                          )}
+                          whileHover={{ scale: 1.15, rotate: 5 }}
                           whileTap={{ scale: 0.9 }}
                         >
-                          <Youtube className="h-4 w-4 text-muted-foreground" />
+                          {item.linkType === 'youtube' && <Youtube className="h-3.5 w-3.5 text-red-600 dark:text-red-400" />}
+                          {item.linkType === 'telegram' && <ExternalLink className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400" />}
+                          {!item.linkType && <ExternalLink className="h-3.5 w-3.5 text-primary" />}
                         </motion.div>
                       )}
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-3 truncate flex items-center gap-1">
+                      <Music className="h-3 w-3 flex-shrink-0" />
+                      {item.character}
+                    </p>
+                    <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                      <div className="w-6 h-6 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0">
+                        {item.artist.charAt(0).toUpperCase()}
+                      </div>
+                      <span className="truncate">{item.artist}</span>
                     </div>
                   </div>
                 </motion.div>
@@ -461,27 +488,39 @@ const Gallery = () => {
       <AnimatePresence>
         {selectedImage && (
           <motion.div 
-            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-2 sm:p-4 overflow-y-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedImage(null)}
           >
             <motion.div 
-              className="bg-background dark:bg-black/90 rounded-lg overflow-hidden max-w-4xl max-h-[90vh] w-full"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
+              className="glass-morphism rounded-2xl overflow-hidden max-w-5xl w-full shadow-2xl border border-primary/20 my-auto max-h-[95vh] sm:max-h-[90vh] flex flex-col"
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ type: "spring", damping: 25 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex flex-col md:flex-row">
-                <div className="md:w-2/3 bg-black relative">
-                  <img 
-                    src={selectedImage.image} 
-                    alt={selectedImage.title} 
-                    className="w-full h-full object-contain max-h-[70vh]"
-                  />
+              <div className="flex flex-col md:flex-row overflow-hidden">
+                <div className="md:w-2/3 bg-black relative group">
+                  {selectedImage.type === 'community' && selectedImage.href && getYouTubeEmbedUrl(selectedImage.href) ? (
+                    <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                      <iframe
+                        src={getYouTubeEmbedUrl(selectedImage.href) || ''}
+                        title={selectedImage.title}
+                        className="absolute top-0 left-0 w-full h-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
+                  ) : (
+                    <img 
+                      src={selectedImage.image} 
+                      alt={selectedImage.title} 
+                      className="w-full h-full object-contain max-h-[70vh]"
+                    />
+                  )}
                   
                   {filteredItems.length > 1 && (
                     <>
@@ -513,57 +552,121 @@ const Gallery = () => {
                   )}
                 </div>
                 
-                <div className="md:w-1/3 p-6 flex flex-col">
-                  <div className="flex justify-between items-start mb-4">
-                    <h2 className="text-2xl font-bold text-primary">{selectedImage.title}</h2>
+                <div className="md:w-1/3 p-4 sm:p-6 flex flex-col bg-gradient-to-b from-transparent to-primary/5 overflow-y-auto max-h-[50vh] md:max-h-none">
+                  <div className="flex justify-between items-start mb-4 sm:mb-6">
+                    <motion.h2 
+                      className="text-lg sm:text-2xl font-bold text-primary flex-1 pr-2"
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 }}
+                    >
+                      {selectedImage.title}
+                    </motion.h2>
                     <motion.button 
                       onClick={() => setSelectedImage(null)}
-                      className="text-muted-foreground hover:text-foreground transition-colors"
+                      className="text-muted-foreground hover:text-destructive transition-colors p-2 rounded-full hover:bg-destructive/10 flex-shrink-0"
                       whileHover={{ scale: 1.1, rotate: 90 }}
                       whileTap={{ scale: 0.9 }}
+                      initial={{ opacity: 0, rotate: -90 }}
+                      animate={{ opacity: 1, rotate: 0 }}
+                      transition={{ delay: 0.2 }}
                     >
                       <X className="h-5 w-5" />
                     </motion.button>
                   </div>
                   
-                  <div className="mb-6 flex-grow">
-                    <p className="text-lg text-foreground">{selectedImage.character}</p>
-                    <p className="text-muted-foreground">Artist: {selectedImage.artist}</p>
+                  <motion.div 
+                    className="mb-4 sm:mb-6 flex-grow space-y-3 sm:space-y-4"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    <div className="flex items-center gap-2">
+                      <Music className="h-4 w-4 sm:h-5 sm:w-5 text-primary flex-shrink-0" />
+                      <p className="text-base sm:text-lg font-medium text-foreground">{selectedImage.character}</p>
+                    </div>
+                    
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+                        {selectedImage.artist.charAt(0).toUpperCase()}
+                      </div>
+                      <div>
+                        <p className="text-xs text-muted-foreground">Created by</p>
+                        <p className="font-medium text-foreground">{selectedImage.artist}</p>
+                      </div>
+                    </div>
                     
                     {selectedImage.type === 'community' && (
                       <motion.div 
-                        className="mt-4"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        className="mt-4 inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30 text-primary px-3 py-2 rounded-lg"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.3 }}
                       >
-                        <span className="inline-block bg-primary/80 text-primary-foreground text-xs py-1 px-3 rounded-md">
-                          Covers
-                        </span>
+                        <Video className="h-4 w-4" />
+                        <span className="text-sm font-medium">Community Cover</span>
                       </motion.div>
                     )}
-                  </div>
+                    {selectedImage.type === 'communityArtwork' && (
+                      <motion.div 
+                        className="mt-4 inline-flex items-center gap-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 text-primary px-3 py-2 rounded-lg"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.3 }}
+                      >
+                        <Sparkles className="h-4 w-4" />
+                        <span className="text-sm font-medium">Community Artwork</span>
+                      </motion.div>
+                    )}
+                    {selectedImage.type === 'official' && (
+                      <motion.div 
+                        className="mt-4 inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border border-emerald-500/30 text-primary px-3 py-2 rounded-lg"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.3 }}
+                      >
+                        <Award className="h-4 w-4" />
+                        <span className="text-sm font-medium">Official Artwork</span>
+                      </motion.div>
+                    )}
+                  </motion.div>
                   
                   {selectedImage.href && (
-                    <Button asChild className="mt-4 w-full relative overflow-hidden group">
-                      <motion.a 
-                        href={selectedImage.href} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="flex items-center justify-center gap-2"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        <motion.span
-                          animate={{ x: [0, 5, 0], scale: [1, 1.1, 1] }}
-                          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4 }}
+                    >
+                      <Button asChild className="w-full relative overflow-hidden group shadow-lg">
+                        <motion.a 
+                          href={selectedImage.href} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="flex items-center justify-center gap-2"
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
                         >
-                          {selectedImage.linkType === 'youtube' && <Youtube className="h-4 w-4" />}
-                          {selectedImage.linkType === 'telegram' && <ExternalLink className="h-4 w-4" />}
-                        </motion.span>
-                        {selectedImage.linkLabel ?? "Open Link"}
-                      </motion.a>
-                    </Button>
+                          <motion.span
+                            animate={{ x: [0, 3, 0] }}
+                            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                          >
+                            {selectedImage.linkType === 'youtube' && <Youtube className="h-5 w-5" />}
+                            {selectedImage.linkType === 'telegram' && <ExternalLink className="h-5 w-5" />}
+                          </motion.span>
+                          <span className="font-medium">
+                            {selectedImage.type === 'community' && selectedImage.linkType === 'youtube' 
+                              ? 'Open on YouTube' 
+                              : (selectedImage.linkLabel ?? "Open Link")}
+                          </span>
+                        </motion.a>
+                      </Button>
+                      
+                      {selectedImage.type === 'community' && selectedImage.linkType === 'youtube' && (
+                        <p className="text-xs text-center text-muted-foreground mt-2">
+                          Like, comment, and subscribe on YouTube!
+                        </p>
+                      )}
+                    </motion.div>
                   )}
                 </div>
               </div>
