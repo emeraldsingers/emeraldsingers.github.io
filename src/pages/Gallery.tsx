@@ -68,7 +68,8 @@ const containerVariants = {
 const Gallery = () => {
   const { theme } = useTheme();
   const containerRef = useRef<HTMLDivElement>(null);
-  const [activeCategory, setActiveCategory] = useState<'all' | 'official' | 'community'>('all');
+  const [activeCategory, setActiveCategory] = useState<'all' | 'covers' | 'arts'>('all');
+  const [activeSubCategory, setActiveSubCategory] = useState<'all' | 'official' | 'community'>('all');
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
   const [direction, setDirection] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -174,24 +175,99 @@ const Gallery = () => {
       href: "https://www.youtube.com/watch?v=awOAjlqdPXc",
       linkLabel: "Watch on YouTube",
       linkType: 'youtube'
-    }
+    },
+    { 
+      id: "simon-meltdown", 
+      type: "official", 
+      image: "/images/simon_meltdown.webp", 
+      title: "𝑴𝑬𝑳𝑻𝑫𝑶𝑾𝑵", 
+      character: "Simon Weber", 
+      artist: "Beaver-P", 
+      href: "https://www.youtube.com/watch?v=7__fn848Pko",
+      linkLabel: "Watch on YouTube",
+      linkType: 'youtube'
+    },
+    { 
+      id: "simon-sinking", 
+      type: "official", 
+      image: "/images/simon_sinking.webp", 
+      title: "沈める街 (Sinking town)", 
+      character: "Simon Weber", 
+      artist: "Beaver-P", 
+      href: "https://www.youtube.com/watch?v=rYthGmTbU1s",
+      linkLabel: "Watch on YouTube",
+      linkType: 'youtube'
+    },
+        { 
+      id: "simon_june", 
+      type: "official", 
+      image: "/images/simon_june.webp", 
+      title: "It was a very nice June", 
+      character: "Simon Weber", 
+      artist: "Beaver-P", 
+      href: "https://www.youtube.com/watch?v=zqfyw-mbG0A",
+      linkLabel: "Watch on YouTube",
+      linkType: 'youtube'
+    },
+        { 
+      id: "simon_error", 
+      type: "official", 
+      image: "/images/simon_error.webp", 
+      title: "-ERROR", 
+      character: "Simon Weber", 
+      artist: "Beaver-P", 
+      href: "https://www.youtube.com/watch?v=PMScYxi8bpA",
+      linkLabel: "Watch on YouTube",
+      linkType: 'youtube'
+    },
+    { 
+      id: "simon_alterego", 
+      type: "official", 
+      image: "/images/simon_alterego.webp", 
+      title: "Alter Ego", 
+      character: "Simon Weber", 
+      artist: "Beaver-P", 
+      href: "https://www.youtube.com/watch?v=j8URO9d5ddU",
+      linkLabel: "Watch on YouTube",
+      linkType: 'youtube'
+    },    
   ];
   
-  const filteredItems = activeCategory === 'all' 
-    ? galleryItems 
-    : activeCategory === 'official'
-      ? galleryItems.filter(item => item.type === 'official' || item.type === 'communityArtwork')
-      : galleryItems.filter(item => item.type === activeCategory);
+  const filteredItems = (() => {
+    let items = galleryItems;
     
-  const handleCategoryChange = (category: 'all' | 'official' | 'community') => {
+    if (activeCategory === 'covers') {
+      items = items.filter(item => item.linkType === 'youtube');
+    } else if (activeCategory === 'arts') {
+      items = items.filter(item => 
+        (item.type === 'official' || item.type === 'communityArtwork') && 
+        item.linkType !== 'youtube'
+      );
+    }
+    
+    if (activeSubCategory === 'official') {
+      items = items.filter(item => item.type === 'official');
+    } else if (activeSubCategory === 'community') {
+      items = items.filter(item => item.type === 'community' || item.type === 'communityArtwork');
+    }
+    
+    return items;
+  })();
+    
+  const handleCategoryChange = (category: 'all' | 'covers' | 'arts') => {
     if (category === activeCategory) return;
     
-    const categories = ['all', 'official', 'community'];
+    const categories = ['all', 'covers', 'arts'];
     const currentIndex = categories.indexOf(activeCategory);
     const newIndex = categories.indexOf(category);
     
     setDirection(newIndex > currentIndex ? 1 : -1);
     setActiveCategory(category);
+    setActiveSubCategory('all'); 
+  };
+
+  const handleSubCategoryChange = (subCategory: 'all' | 'official' | 'community') => {
+    setActiveSubCategory(subCategory);
   };
   
   const handleNextImage = (e: React.MouseEvent) => {
@@ -300,14 +376,14 @@ const Gallery = () => {
                 transition={{ delay: 0.5 }}
               >
                 <Button 
-                  variant={activeCategory === 'official' ? "default" : "outline"}
-                  onClick={() => handleCategoryChange('official')}
+                  variant={activeCategory === 'arts' ? "default" : "outline"}
+                  onClick={() => handleCategoryChange('arts')}
                   className={cn(
                     "min-w-[100px] relative overflow-hidden",
-                    activeCategory === 'official' && "after:absolute after:bottom-[-2px] after:left-1/2 after:-translate-x-1/2 after:w-[30%] after:h-[2px] after:bg-current after:rounded-sm"
+                    activeCategory === 'arts' && "after:absolute after:bottom-[-2px] after:left-1/2 after:-translate-x-1/2 after:w-[30%] after:h-[2px] after:bg-current after:rounded-sm"
                   )}
                 >
-                  {activeCategory === 'official' && (
+                  {activeCategory === 'arts' && (
                     <motion.span 
                       className="absolute inset-0 bg-primary opacity-30 z-0"
                       layoutId="activeButton"
@@ -326,14 +402,14 @@ const Gallery = () => {
                 transition={{ delay: 0.6 }}
               >
                 <Button 
-                  variant={activeCategory === 'community' ? "default" : "outline"}
-                  onClick={() => handleCategoryChange('community')}
+                  variant={activeCategory === 'covers' ? "default" : "outline"}
+                  onClick={() => handleCategoryChange('covers')}
                   className={cn(
                     "min-w-[100px] relative overflow-hidden",
-                    activeCategory === 'community' && "after:absolute after:bottom-[-2px] after:left-1/2 after:-translate-x-1/2 after:w-[30%] after:h-[2px] after:bg-current after:rounded-sm"
+                    activeCategory === 'covers' && "after:absolute after:bottom-[-2px] after:left-1/2 after:-translate-x-1/2 after:w-[30%] after:h-[2px] after:bg-current after:rounded-sm"
                   )}
                 >
-                  {activeCategory === 'community' && (
+                  {activeCategory === 'covers' && (
                     <motion.span 
                       className="absolute inset-0 bg-primary opacity-30 z-0"
                       layoutId="activeButton"
@@ -346,9 +422,44 @@ const Gallery = () => {
             </div>
           </header>
           
+          {/* Subcategory buttons */}
+          {(activeCategory === 'covers' || activeCategory === 'arts') && (
+            <motion.div 
+              className="flex justify-center gap-2 mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              <Button 
+                variant={activeSubCategory === 'all' ? "default" : "outline"}
+                onClick={() => handleSubCategoryChange('all')}
+                size="sm"
+                className="min-w-[80px]"
+              >
+                All
+              </Button>
+              <Button 
+                variant={activeSubCategory === 'official' ? "default" : "outline"}
+                onClick={() => handleSubCategoryChange('official')}
+                size="sm"
+                className="min-w-[80px]"
+              >
+                Official
+              </Button>
+              <Button 
+                variant={activeSubCategory === 'community' ? "default" : "outline"}
+                onClick={() => handleSubCategoryChange('community')}
+                size="sm"
+                className="min-w-[80px]"
+              >
+                Community
+              </Button>
+            </motion.div>
+          )}
+          
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div 
-              key={activeCategory}
+              key={`${activeCategory}-${activeSubCategory}`}
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr"
               custom={direction}
               variants={containerVariants}
