@@ -99,6 +99,10 @@ const singersData = {
                 url: "https://www.youtube.com/embed/70_UaoD5J5c", 
                 title: "【Akizora CVVC】 JUMPIN' OVER ! 【Emerald Project UTAUカバー】"
             },
+            {
+                url: "https://www.youtube.com/embed/CGtPEaPfxaI", 
+                title: "【Akizora】 IMAWANOKIWA - いよわ 【Emerald Project UTAUカバー】"
+            }
         ]
     },
     asoqwer: {

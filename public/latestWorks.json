@@ -1,20 +1,19 @@
-[
+[    {
+        "youtubeVideoId": "CGtPEaPfxaI",
+        "image": "/images/imawanokiwa.webp",
+        "title": "【Akizora SOLID】 IMAWANOKIWA",
+        "description": "甘いエンジェルヘイロー..."
+    },
+    {
+        "youtubeVideoId": "pMsPdXXAciY",
+        "image": "/images/mr.webp",
+        "title": "【ボカロ8人＋1】 Mr.シャーデンフロイデ",
+        "description": "Are you Mr. Schadenfreude? 🫵🎃..."
+    },
     {
         "youtubeVideoId": "hZJjR__FTUM",
         "image": "/images/addicted.webp",
         "title": "【Emerald DiffSinger Beta】 Affection Addiction",
         "description": "💚 Active development of the DiffSinger voicebank for Emerald..."
-    },
-    {
-        "youtubeVideoId": "IfdLe08hHvI",
-        "image": "/images/butterfly.webp",
-        "title": "【Emerald CVVC】 Butterfly on your Right Shoulder",
-        "description": "ВСМЫСЛЕ ЕМУ УЖЕ 4 ГОДА... А вообще пока меня не было на ютубе..."
-    },
-    {
-        "youtubeVideoId": "Grt6iyZnhQw",
-        "image": "/images/baldi.webp",
-        "title": "【asoqwer DiffSinger Beta】 Basics in Behavior",
-        "description": "in the half a year i was away, i totally forgot how to mix..."
     }
 ]

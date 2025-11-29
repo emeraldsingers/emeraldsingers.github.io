@@ -143,6 +143,28 @@ const Gallery = () => {
       linkLabel: "Artist's Telegram Channel",
       linkType: 'telegram'
     },
+    {
+      id: "asoqwer1",
+      type: "official",
+      image: "/images/asoart.webp",
+      title: "каки",
+      character: "Asoqwer",
+      artist: "eulliaq",
+      href: "https://t.me/falconyeulliaq/289",
+      linkLabel: "Open in Telegram",
+      linkType: 'telegram'
+    },
+    {
+      id: "asoqwer2",
+      type: "official",
+      image: "/images/sasiski.webp",
+      title: "пливите сасиски....",
+      character: "Asoqwer",
+      artist: "eulliaq",
+      href: "https://t.me/falconyeulliaq",
+      linkLabel: "Artist's Telegram Channel",
+      linkType: 'telegram'
+    },
     { 
       id: "identity", 
       type: "community", 
@@ -227,6 +249,28 @@ const Gallery = () => {
       title: "Alter Ego", 
       character: "Simon Weber", 
       artist: "Beaver-P", 
+      href: "https://www.youtube.com/watch?v=j8URO9d5ddU",
+      linkLabel: "Watch on YouTube",
+      linkType: 'youtube'
+    },    
+      { 
+      id: "emerald_butterfly", 
+      type: "official", 
+      image: "/images/butterfly.webp", 
+      title: "Butterfly on your Right Shoulder ", 
+      character: "Emerald", 
+      artist: "SouЯ", 
+      href: "https://www.youtube.com/watch?v=IfdLe08hHvI",
+      linkLabel: "Watch on YouTube",
+      linkType: 'youtube'
+    },    
+  { 
+      id: "asoqwer_baldi", 
+      type: "official", 
+      image: "/images/baldi.webp", 
+      title: "Basics in Behavior", 
+      character: "Asoqwer", 
+      artist: "asoqwer", 
       href: "https://www.youtube.com/watch?v=j8URO9d5ddU",
       linkLabel: "Watch on YouTube",
       linkType: 'youtube'

@@ -147,13 +147,35 @@ const teamMembers: TeamMember[] = [
     name: "Leshy-P",
     role: "Voice Provider",
     avatar: "/images/leshy.webp",
-    description: "Voice provider of Toisku, talented artist behind many of our visual assets.",
+    description: "Voice provider of Toisku.",
 
     social: {
       youtube: "https://youtube.com/@LeshyP",
       telegram: "https://t.me/leshy_music",
       twitter: "https://x.com/leshy_music",
       tiktok: "https://www.tiktok.com/@leshy_music"
+    }
+  },
+  {
+    name: "Yunna Forel",
+    role: "Voice Provider",
+    avatar: "/images/yunna.webp",
+    description: "Voice provider of Kira.",
+    social: {
+      youtube: "https://www.youtube.com/@YUNNAFOREL",
+      tiktok: "https://www.tiktok.com/@yunna.forel",
+      telegram: "https://t.me/Just_kamaz"
+    }
+  },
+  {
+    name: "Didi Uwuw",
+    role: "Voice Provider",
+    avatar: "/images/didi.webp",
+    description: "Voice provider of Douri.",
+    social: {
+      telegram: "https://t.me/uwuwnayalavochka",
+      youtube: "https://youtube.com/@didi_uwuw",
+      tiktok: "https://www.tiktok.com/@didi_one_love"
     }
   },
   {
