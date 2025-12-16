@@ -179,6 +179,29 @@ const teamMembers: TeamMember[] = [
     }
   },
   {
+    name: "Keigo",
+    role: "Voice Provider",
+    avatar: "/images/keigo.webp",
+    description: "Voice provider of Keigo.",
+    social: {
+      youtube: "https://youtube.com/@ke1go-p",
+      twitter: "https://x.com/K3I_go",
+      tiktok: "https://www.tiktok.com/@k3i_go"
+    }
+  },
+  {
+    name: "RaZ(G)e-P",
+    role: "Voice Provider",
+    avatar: "/images/raize.webp",
+    description: "Voice provider of Cove.",
+    social: {
+      youtube: "https://www.youtube.com/@RaZeRaGe-P",
+      telegram: "https://t.me/RaizeProd",
+      twitter: "https://x.com/RaZe_RaGe_P?t=jwWB2jLwgPblpwbQV9FnUw&s=09",
+      tiktok: "https://tiktok.com/@razeragep"
+    }
+  },
+  {
     name: "Akura",
     role: "Artist",
     avatar: "/images/akura.webp",
