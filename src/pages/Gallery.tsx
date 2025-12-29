@@ -275,6 +275,17 @@ const Gallery = () => {
       linkLabel: "Watch on YouTube",
       linkType: 'youtube'
     },    
+    {
+      id: "asoqwer_yumedatta",
+      type: "community",
+      image: "/images/asoqwer_yumedatta.webp",
+      title: "全部夢だった！",
+      character: "Asoqwer",
+      artist: "FuCotEn",
+      href: "https://www.youtube.com/watch?v=4ldgyVYPAzc",
+      linkLabel: "Watch on YouTube",
+      linkType: 'youtube'
+    }
   ];
   
   const filteredItems = (() => {
