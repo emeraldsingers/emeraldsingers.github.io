@@ -52,7 +52,7 @@ const Terms = () => {
       <StarryBackground theme={theme} />
       
       <Navigation />
-
+            
       {/* Hero Section */}
       <motion.header 
         className="relative h-[35vh] flex items-center justify-center overflow-hidden pt-8"

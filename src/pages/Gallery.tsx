@@ -356,7 +356,7 @@ const Gallery = () => {
       <StarryBackground theme={theme} />
       
       <Navigation />
-      
+            
       <main className="container mx-auto px-4 py-20">
         <div className="max-w-5xl mx-auto">
           <header className="text-center mb-12">

@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { HelmetProvider } from 'react-helmet-async';
+import GlobalSnowfall from "@/components/GlobalSnowfall";
 import Index from "./pages/Index";
 import SingerPage from "./components/SingerPage";
 import HowTo from "./pages/HowTo";
@@ -26,6 +27,7 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
+          <GlobalSnowfall />
           <HashRouter>
             <Routes>
               <Route path="/" element={<Index />} />

@@ -1241,7 +1241,7 @@ const SingerNotFoundDisplay: React.FC<SingerNotFoundDisplayProps> = ({ slug, the
                 <AnimatedBackground theme={theme} singerColors={notFoundColors} />
                 <FloatingElements theme={theme} singerColors={notFoundColors} />
                 <StarryBackground theme={theme} singerColors={notFoundColors} />
-                
+            
                 {/* Matrix Rain Effect */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
                     {Array.from({ length: 10 }).map((_, i) => (
@@ -1918,7 +1918,7 @@ const SingerPage: React.FC = () => {
             <AnimatedBackground theme={theme} singerColors={currentSinger.colors} />
             <FloatingElements theme={theme} singerColors={currentSinger.colors} />
             <StarryBackground theme={theme} singerColors={currentSinger.colors} />
-        
+                    
             <div className="min-h-screen relative">
                 <nav className="fixed top-0 left-0 right-0 bg-white/10 dark:bg-black/20 backdrop-blur-sm z-50 border-b border-white/20">
                     <div className="container mx-auto px-4">

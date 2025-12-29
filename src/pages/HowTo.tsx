@@ -194,7 +194,7 @@ const HowTo = () => {
       <StarryBackground theme={theme} />
 
       <Navigation />
-
+            
       <motion.main 
         className="flex-grow container mx-auto px-4 py-20 relative"
         initial="hidden"

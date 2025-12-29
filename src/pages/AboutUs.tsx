@@ -246,6 +246,7 @@ const AboutUs = () => {
   const headerY = useTransform(scrollYProgress, [0, 0.25], [0, -50]);
     
     return (
+      
         <div
       className="min-h-screen flex flex-col overflow-hidden"
             ref={containerRef}
@@ -261,7 +262,7 @@ const AboutUs = () => {
       <StarryBackground theme={theme} />
       
             <Navigation />
-      
+            
       {/* Hero Section without Banner */}
       <motion.header 
         className="relative h-[35vh] flex items-center justify-center overflow-hidden pt-16 sm:pt-8"

@@ -1018,7 +1018,7 @@ const Singers = () => {
       
       <div className="min-h-screen flex flex-col" ref={containerRef}>
         <Navigation />
-        
+            
         <main className="container mx-auto px-4 py-8 md:py-24 flex-grow relative z-10">
           <div className="max-w-6xl mx-auto">
             <motion.div 

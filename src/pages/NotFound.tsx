@@ -8,7 +8,6 @@ import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import { AnimatedBackground, FloatingElements, StarryBackground } from "@/components/AnimatedBackgrounds";
-
 const MatrixRain = ({ opacity = 0.2 }: { opacity?: number }) => {
   const characters = useMemo(() => {
     return '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン#$%&あいうえおかきくけこがぎぐげござじずぜぞさしすせそざじずぜぞたちつてとだぢづでどなにぬねのはひふへほばびぶべぼぱぴぷぺぽまみむめもやゆよらりるれろわをんきゃきゅきょしゃしゅしょちゃちゅちょにゃにゅにょひゃひゅひょみゃみゅみょりゃりゅりょ日月火水木金土人山川田口目耳手足心力女男子学校先生時車白黒赤青花空海石犬猫魚鳥雨風音森林本紙画話文名年生先友家道店前後東西南北道場光電気食飲会社書店銀駅地図外内国'.split('');
@@ -445,6 +444,7 @@ const NotFound = () => {
 
   return (
       <>
+                  
       <Helmet>
           <title>404 - Page Not Found | Emerald Project</title>
           <meta name="description" content="The page you're looking for doesn't exist or has been moved." />
