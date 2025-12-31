@@ -443,7 +443,7 @@ const singersData = {
             Age: "15 years old",
             Height: "144cm",
             Weight: "42kg",
-            Birthday: "30.03",
+            Birthday: "8.08",
             "Fav Item": "Keiro",
         },
         colors: {
