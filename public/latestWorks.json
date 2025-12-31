@@ -1,19 +1,19 @@
-[    {
+[   {
+        "youtubeVideoId": "...",
+        "image": "/images/nijiiro.webp",
+        "title": "【ボカロ6人】 Nijiiro Stories",
+        "description": "Happy New Year everyone! 💚✨"
+    }, 
+    {
+        "youtubeVideoId": "1XIF1cm9DT0",
+        "image": "/images/snowman.webp",
+        "title": "【Fukuna Kira & Douri】 Snowman (Rerec)",
+        "description": "Happy New Year everyone! 💚✨"
+    }, 
+    {
         "youtubeVideoId": "CGtPEaPfxaI",
         "image": "/images/imawanokiwa.webp",
         "title": "【Akizora SOLID】 IMAWANOKIWA",
         "description": "甘いエンジェルヘイロー..."
-    },
-    {
-        "youtubeVideoId": "pMsPdXXAciY",
-        "image": "/images/mr.webp",
-        "title": "【ボカロ8人＋1】 Mr.シャーデンフロイデ",
-        "description": "Are you Mr. Schadenfreude? 🫵🎃..."
-    },
-    {
-        "youtubeVideoId": "hZJjR__FTUM",
-        "image": "/images/addicted.webp",
-        "title": "【Emerald DiffSinger Beta】 Affection Addiction",
-        "description": "💚 Active development of the DiffSinger voicebank for Emerald..."
     }
 ]

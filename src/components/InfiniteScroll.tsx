@@ -25,6 +25,8 @@ const singers = [
   { name: "Akizora", image: "/images/akizora_thumb.webp", slug: "akizora" },
   { name: "Asoqwer", image: "/images/asoqwer_thumb.webp", slug: "asoqwer" },
   { name: "Emerald", image: "/images/Emerald2025NoLogo_thumb.webp", slug: "emerald" },
+  { name: "Fukuna Douri", image: "/images/douri-thumb.webp", slug: "douri" },
+  { name: "Fukuna Kira", image: "/images/kira-thumb.webp", slug: "kira" },
   { name: "Mitsuo", image: "/images/mitsuo_thumb.webp", slug: "mitsuo" },
   { name: "Simon Weber", image: "/images/simon-weber-eu_thumb.webp", slug: "simon-weber" },
   { name: "Toisku", image: "/images/toisku_thumb.webp", slug: "toisku" },

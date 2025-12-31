@@ -43,6 +43,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 import Footer from "@/components/Footer";
+import { url } from "inspector";
 
 const singersData = {
     akizora: {
@@ -428,6 +429,102 @@ const singersData = {
             
         },
         videoDemos: []
+    },
+    kira: {
+        name: "Fukuna Kira",
+        cv: "YunnaForel",
+        images: ["/images/kira.webp"],
+        authors: { "/images/kira.webp": "Just_kamaz" },
+        description: "Hi",
+        audioSamples: [],
+        characterData: {
+            Species: "Human",
+            Gender: "Female",
+            Age: "15 years old",
+            Height: "144cm",
+            Weight: "42kg",
+            Birthday: "30.03",
+            "Fav Item": "Keiro",
+        },
+        colors: {
+            light: 'rgb(255, 182, 193)', 
+            dark: 'rgb(255, 105, 180)',
+        },
+        voicebanks: {
+            CVVC: {
+                url: "https://drive.google.com/file/d/1aDjOj-FBu7rl-liJgenPe4t9ls7iZ7qG/view?usp=sharing",
+                vocalModes: [
+                    { name: "Normal", description: "Universal neutral tone", sample: "/samples/kira/kira-cvvc.mp3" },   
+                    { name: "Soft", description: "Soft and calm tone", sample: "/samples/kira/kira-cvvc-soft.mp3" },
+                    { name: "Power", description: "Strong and energetic tone", sample: "/samples/kira/kira-cvvc-power.mp3" },   
+                ],
+                type: "UTAU",
+                otoConfig: "Configured by DidiUwuw",
+                supportedLanguages: ["ja"],
+                vocalType: "Soprano",
+                recommendedRange: "G3-C6",
+                recommendedResampler: "TIPS, moresampler, hifisampler",
+                recommendedBPM: "80-200",
+            },
+        },
+        videoDemos: [
+            {
+                url: "https://www.youtube.com/embed/kttZV6Lt4jM",
+                title: "【Kira】ゴキブリの味 【JA CVVC UTAU teaser】"
+            },
+            {
+                url: "https://www.youtube.com/embed/1XIF1cm9DT0",
+                title: "https://www.youtube.com/watch?v=1XIF1cm9DT0"
+            }
+        ]
+    },
+        douri: {
+        name: "Fukuna Douri",
+        cv: "Didiuwuw",
+        images: ["/images/douri.webp"],
+        authors: { "/images/douri.webp": "Just_kamaz" },
+        description: "Hi",
+        audioSamples: [],
+        characterData: {
+            Species: "Human",
+            Gender: "Nonbinary",
+            Age: "18 years old",
+            Height: "176cm",
+            Weight: "65kg",
+            Birthday: "30.03",
+            "Fav Item": "Kira's keyboard",
+        },
+        colors: {
+            light: 'rgb(218, 197, 161)', 
+            dark: 'rgb(255, 197, 105)',
+        },
+        voicebanks: {
+            CVVC: {
+                url: "https://drive.google.com/file/d/1ZTKrMeX0_Fn7y2Pg_3mvWk9gjQoSiIrH/view?usp=sharing",
+                vocalModes: [
+                    { name: "Normal", description: "Universal neutral tone", sample: "/samples/douri/douri-cvvc.mp3" },   
+                    { name: "Soft", description: "Soft and calm tone", sample: "/samples/douri/douri-cvvc-soft.mp3" },
+                    { name: "Power", description: "Strong and energetic tone", sample: "/samples/douri/douri-cvvc-power.mp3" },   
+                ],
+                type: "UTAU",
+                otoConfig: "Configured by DidiUwuw",
+                supportedLanguages: ["ja"],
+                vocalType: "Baritone",
+                recommendedRange: "F2-A4",
+                recommendedResampler: "TIPS, moresampler, hifisampler",
+                recommendedBPM: "80-200",
+            },
+        },
+        videoDemos: [
+            {
+                url: "https://www.youtube.com/embed/FvNETLM3MiU",
+                title: "【Douri】 キャットラビング (Cat Loving)【JA CVVC UTAU teaser】"
+            },
+            {
+                url: "https://www.youtube.com/embed/1XIF1cm9DT0",
+                title: "【Fukuna Kira & Douri】 Snowman (Rerec)"
+            }
+        ]
     },
     shin: {
         name: "SHIN",

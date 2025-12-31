@@ -647,6 +647,20 @@ const singers = [
     audioSample: "/samples/emerald/emerald_normalcvvc.mp3"
   },
     {
+    name: "Fukuna Douri",
+    image: "/images/douri-thumb.webp",
+    slug: "douri",
+    tags: ['male', 'utau', 'ja', 'cvvc'] as SingerTag[],
+    audioSample: "/samples/douri/douri-cvvc.mp3"
+  },
+  {
+    name: "Fukuna Kira",
+    image: "/images/kira-thumb.webp",
+    slug: "kira",
+    tags: ['female', 'utau', 'ja', 'cvvc'] as SingerTag[],
+    audioSample: "/samples/kira/kira-cvvc.mp3"
+  },
+  {
     name: "Mitsuo",
     image: "/images/mitsuo_thumb.webp",
     slug: "mitsuo",
