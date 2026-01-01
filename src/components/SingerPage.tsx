@@ -492,7 +492,7 @@ const singersData = {
             Height: "176cm",
             Weight: "65kg",
             Birthday: "30.03",
-            "Fav Item": "Kira's keyboard",
+            "Fav Item": "Kira's keytar",
         },
         colors: {
             light: 'rgb(218, 197, 161)', 
