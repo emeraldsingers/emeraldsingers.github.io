@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import { useTheme } from "@/components/ThemeProvider";
 import { Helmet } from 'react-helmet-async';
 import { Users, HelpCircle, FileText, Origami, BriefcaseBusiness, Brush, ArrowRight, TableOfContents, Sparkles, Mic2 } from "lucide-react";
-import { useEffect, useState, useRef, useMemo } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { AnimatedBackground, FloatingElements, StarryBackground } from "@/components/AnimatedBackgrounds";
 
 interface LatestWork {
@@ -35,34 +35,44 @@ const FeatureCard = ({
     return (
         <Link to={linkTo} className="block group">
             <motion.div
-                className={`flex flex-col p-6 md:p-8 rounded-2xl transition-all duration-300 h-full ${
+                className={`relative overflow-hidden flex flex-col p-6 md:p-8 rounded-3xl transition-all duration-300 h-full border ${
                     theme === 'dark' 
-                        ? 'bg-gray-900/70 border border-gray-800 hover:border-emerald-600/30 backdrop-blur-md' 
-                        : 'bg-white/90 border border-gray-100 hover:border-emerald-500/30 backdrop-blur-md'
-                } shadow-lg hover:shadow-2xl hover:shadow-emerald-500/5`}
-                whileHover={{ y: -5 }}
+                        ? 'bg-[#071312]/70 border-emerald-500/20 hover:border-emerald-400/50' 
+                        : 'bg-white/80 border-emerald-200/70 hover:border-emerald-400/60'
+                } backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.18)] hover:shadow-[0_30px_80px_rgba(16,185,129,0.2)]`}
+                whileHover={{ y: -6 }}
             >
-                <div className={`rounded-full p-3 w-fit mb-6 ${
-                    theme === 'dark' 
-                        ? 'bg-emerald-950 text-emerald-400' 
-                        : 'bg-emerald-50 text-emerald-600'
-                }`}>
-                    <Icon className="h-8 w-8" />
-                </div>
-                <h3 className={`text-2xl font-semibold mb-3 ${
-                    theme === 'dark' ? 'text-white' : 'text-gray-900'
-                }`}>
-                    {title}
-                </h3>
-                <p className={`mb-6 flex-grow ${
-                    theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-                }`}>
-                    {description}
-                </p>
-                <div className={`mt-auto flex items-center font-medium ${
-                    theme === 'dark' ? 'text-emerald-400' : 'text-emerald-600'
-                } group-hover:translate-x-1 transition-transform duration-300`}>
-                    {linkText} <ArrowRight className="ml-2 w-4 h-4" />
+                <div className={`pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
+                    theme === 'dark'
+                        ? 'bg-gradient-to-br from-emerald-500/10 via-transparent to-emerald-400/5'
+                        : 'bg-gradient-to-br from-emerald-100 via-transparent to-emerald-50'
+                }`} />
+                <div className={`pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full blur-3xl ${
+                    theme === 'dark' ? 'bg-emerald-500/10' : 'bg-emerald-300/40'
+                }`} />
+                <div className="relative z-10 flex h-full flex-col">
+                    <div className={`rounded-2xl p-3 w-fit mb-6 border shadow-[0_10px_30px_rgba(16,185,129,0.15)] ${
+                        theme === 'dark' 
+                            ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30' 
+                            : 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                    }`}>
+                        <Icon className="h-8 w-8" />
+                    </div>
+                    <h3 className={`font-display text-2xl md:text-3xl font-semibold mb-3 ${
+                        theme === 'dark' ? 'text-white' : 'text-gray-900'
+                    }`}>
+                        {title}
+                    </h3>
+                    <p className={`mb-6 flex-grow ${
+                        theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                    }`}>
+                        {description}
+                    </p>
+                    <div className={`mt-auto flex items-center font-medium ${
+                        theme === 'dark' ? 'text-emerald-300' : 'text-emerald-700'
+                    } group-hover:translate-x-1 transition-transform duration-300`}>
+                        {linkText} <ArrowRight className="ml-2 w-4 h-4" />
+                    </div>
                 </div>
             </motion.div>
         </Link>
@@ -78,21 +88,26 @@ const ProjectCard = ({
 }) => {
     return (
         <motion.div 
-            className={`overflow-hidden rounded-2xl ${
+            className={`group relative overflow-hidden rounded-3xl border ${
                 theme === 'dark' 
-                    ? 'bg-gray-900/70 border border-gray-800 backdrop-blur-md' 
-                    : 'bg-white/90 border border-gray-100 backdrop-blur-md'
-            } shadow-lg group`}
+                    ? 'bg-[#071312]/70 border-emerald-500/15' 
+                    : 'bg-white/85 border-emerald-200/70'
+            } shadow-[0_20px_50px_rgba(0,0,0,0.16)] backdrop-blur-xl`}
             whileHover={{ 
                 y: -10,
                 transition: { type: "spring", stiffness: 300, damping: 10 }
             }}
         >
+            <div className={`pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
+                theme === 'dark'
+                    ? 'bg-gradient-to-br from-emerald-500/10 via-transparent to-emerald-400/5'
+                    : 'bg-gradient-to-br from-emerald-100 via-transparent to-emerald-50'
+            }`} />
             <a
                 href={`https://www.youtube.com/watch?v=${work.youtubeVideoId}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block"
+                className="relative z-10 block"
             >
                 <div className="relative w-full aspect-video overflow-hidden">
                     <div className="absolute inset-0 bg-emerald-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300 z-10"></div>
@@ -111,13 +126,13 @@ const ProjectCard = ({
                 </div>
                 
                 <div className="p-5">
-                    <h3 className={`text-xl font-semibold group-hover:text-emerald-500 transition-colors duration-300 ${
+                    <h3 className={`font-display text-xl font-semibold group-hover:text-emerald-500 transition-colors duration-300 ${
                         theme === 'dark' ? 'text-white' : 'text-gray-900'
                     }`}>
                         {work.title}
                     </h3>
                     <p className={`mt-2 text-sm ${
-                        theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                        theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
                     }`}>
                         {work.description}
                     </p>
@@ -129,14 +144,16 @@ const ProjectCard = ({
 
 const SectionTitle = ({ title, theme }: { title: string, theme: string }) => {
     return (
-        <motion.h2 
-            className="text-3xl md:text-4xl font-bold mb-12 text-center"
-            style={{
-                color: theme === 'dark' ? '#10b981' : '#047857',
-            }}
-        >
-            {title}
-        </motion.h2>
+        <div className="text-center mb-12">
+            <h2 className={`font-display text-3xl md:text-4xl font-semibold tracking-tight ${
+                theme === 'dark' ? 'text-emerald-200' : 'text-emerald-800'
+            }`}>
+                {title}
+            </h2>
+            <div className={`mx-auto mt-4 h-[3px] w-20 rounded-full ${
+                theme === 'dark' ? 'bg-emerald-400/70' : 'bg-emerald-600/70'
+            }`} />
+        </div>
     );
 };
 
@@ -149,8 +166,6 @@ const Index = () => {
     
     const y = useTransform(scrollY, [0, 500], [0, -100]);
     const opacity = useTransform(scrollY, [0, 300], [1, 0]);
-    
-    const [micActive, setMicActive] = useState(false);
 
     useEffect(() => {
         const fetchLatestWorks = async () => {
@@ -167,12 +182,6 @@ const Index = () => {
         };
 
         fetchLatestWorks();
-        
-        const micInterval = setInterval(() => {
-            setMicActive(prev => !prev);
-        }, 3000);
-        
-        return () => clearInterval(micInterval);
     }, []);
 
     const containerVariants = {
@@ -245,7 +254,6 @@ const Index = () => {
                 <script type="application/ld+json">
                     {JSON.stringify(organizationJsonLd)}
                 </script>
-                <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
             </Helmet>
             
             <AnimatedBackground theme={theme} />
@@ -261,72 +269,6 @@ const Index = () => {
                 <Navigation />
                 
                 <div className="relative" ref={heroRef}>
-                    <div className="absolute inset-0 -z-10 flex items-center justify-center overflow-hidden">
-                        <svg width="100%" height="100%" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice">
-                            {[...Array(6)].map((_, i) => {
-                                const delay = i * 0.5;
-                                const initialY = 150 + i * 25;
-                                const amplitude = 15 + Math.random() * 20;
-                                
-                                const wavePaths = [
-                                    "M 0 150 C 200 135, 400 165, 600 135 S 800 150",
-                                    "M 0 175 C 200 160, 400 190, 600 160 S 800 175",
-                                    "M 0 200 C 200 185, 400 215, 600 185 S 800 200",
-                                    "M 0 225 C 133 245, 266 205, 400 225 S 533 245, 666 205, 800 225",
-                                    "M 0 250 C 133 270, 266 230, 400 250 S 533 270, 666 230, 800 250",
-                                    "M 0 275 C 200 255, 350 305, 550 260 S 800 285"
-                                ];
-                                
-                                const wavePath = wavePaths[i];
-                                
-                                const accentLineColor = theme === 'dark' 
-                                    ? `rgba(${56 + i*10}, ${161 + i*5}, ${105 + i*8}, ${0.15 + i*0.02})` 
-                                    : `rgba(${56 + i*10}, ${161 + i*5}, ${105 + i*8}, ${0.2 + i*0.03})`;
-                                
-                                const drawDuration = 2.0 + (i * 0.2);
-                                const holdDuration = 1.8;
-                                const fadeDuration = 1.5;
-                                const pauseDuration = 1.8 + (i * 0.3);
-                                
-                                const cycleDuration = drawDuration + holdDuration + fadeDuration;
-                                const peakOpacity = 0.3 + (i * 0.03);
-                                
-                                const zOffset = i * 5;
-                                
-                                return (
-                                    <motion.path
-                                        key={`hero-wave-${i}`}
-                                        d={wavePath}
-                                        fill="none"
-                                        stroke={accentLineColor}
-                                        strokeWidth={0.8 + (i * 0.15)}
-                                        style={{ 
-                                            translateZ: zOffset,
-                                        }}
-                                        initial={{ pathLength: 0, opacity: 0 }}
-                                        animate={{
-                                            pathLength: [0, 1, 1, 1],
-                                            opacity: [0, peakOpacity, peakOpacity, 0],
-                                        }}
-                                        transition={{
-                                            duration: cycleDuration,
-                                            times: [
-                                                0,
-                                                drawDuration / cycleDuration,
-                                                (drawDuration + holdDuration) / cycleDuration,
-                                                1,
-                                            ],
-                                            delay,
-                                            repeat: Infinity,
-                                            repeatDelay: pauseDuration,
-                                            ease: "easeInOut",
-                                        }}
-                                    />
-                                );
-                            })}
-                        </svg>
-                    </div>
-
                     <main className="container mx-auto px-4 py-8 md:py-16 relative z-10">
                         <div className="max-w-6xl mx-auto">
                             <motion.div
@@ -427,7 +369,7 @@ const Index = () => {
                                         theme === 'dark'
                                             ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
                                             : 'bg-emerald-600 hover:bg-emerald-700 text-white'
-                                    } shadow-lg shadow-emerald-600/20 transition-all duration-300 transform hover:scale-105 rounded-full px-8 py-6`}
+                                    } transition-all duration-300 transform hover:scale-[1.02] rounded-full px-8 py-6`}
                                 asChild
                             >
                                 <Link to="/singers" className="flex items-center gap-2">

@@ -8,9 +8,9 @@ export const AnimatedBackground = ({ theme }: { theme: string }) => {
     const gridOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.6]);
     const globeY = useTransform(scrollYProgress, [0, 1], [0, -50]);
     
-    const lineColor = theme === 'dark' ? 'rgba(56, 161, 105, 0.2)' : 'rgba(56, 161, 105, 0.3)'; // Muted teal lines
-    const accentLineColor = theme === 'dark' ? 'rgba(66, 200, 135, 0.3)' : 'rgba(66, 200, 135, 0.4)';
-    const flareColor = theme === 'dark' ? '#42F0A5' : '#38D995';
+    const lineColor = theme === 'dark' ? 'rgba(110, 231, 183, 0.12)' : 'rgba(16, 185, 129, 0.22)';
+    const accentLineColor = theme === 'dark' ? 'rgba(110, 231, 183, 0.28)' : 'rgba(16, 185, 129, 0.35)';
+    const flareColor = theme === 'dark' ? '#6ee7b7' : '#10b981';
 
     const pathStrings = useRef<string[]>([
         "M 0 50 Q 100 30, 200 50 T 400 50",
@@ -24,8 +24,8 @@ export const AnimatedBackground = ({ theme }: { theme: string }) => {
             className="fixed inset-0 w-full h-full -z-10 overflow-hidden"
             style={{
                 background: theme === 'dark' 
-                    ? 'radial-gradient(circle at 80% 90%, #0E2E2B 0%, #0A1919 60%)' 
-                    : 'radial-gradient(circle at 80% 90%, #A7D7C5 0%, #E0F2F1 60%)'
+                    ? 'radial-gradient(circle at 15% 20%, rgba(16, 185, 129, 0.18), transparent 45%), radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.12), transparent 50%), linear-gradient(120deg, #051414 0%, #081f1b 50%, #031010 100%)' 
+                    : 'radial-gradient(circle at 15% 20%, rgba(16, 185, 129, 0.18), transparent 45%), radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.12), transparent 50%), linear-gradient(120deg, #f8fffb 0%, #e3f7ef 50%, #d6efe4 100%)'
             }}
         >
             <motion.svg 

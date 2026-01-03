@@ -45,9 +45,8 @@ const AnimatedBackground = ({ theme }: { theme: string }) => {
             className="fixed inset-0 w-full h-full -z-10 overflow-hidden"
             style={{
                 background: theme === 'dark' 
-                    ? 'radial-gradient(circle at 80% 90%, #0E2E2B 0%, #0A1919 60%)' 
-                    : 'radial-gradient(circle at 80% 90%, #A7D7C5 0%, #E0F2F1 60%)',
-                perspective: '1000px'
+                    ? 'radial-gradient(circle at 15% 20%, rgba(16, 185, 129, 0.18), transparent 45%), radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.12), transparent 50%), linear-gradient(120deg, #051414 0%, #081f1b 50%, #031010 100%)' 
+                    : 'radial-gradient(circle at 15% 20%, rgba(16, 185, 129, 0.18), transparent 45%), radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.12), transparent 50%), linear-gradient(120deg, #f8fffb 0%, #e3f7ef 50%, #d6efe4 100%)'
             }}
         >
             <motion.svg 
