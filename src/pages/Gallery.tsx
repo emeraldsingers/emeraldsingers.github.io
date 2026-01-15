@@ -88,28 +88,6 @@ const Gallery = () => {
   }
   
   const galleryItems: GalleryItem[] = [
-    { 
-      id: "akizora-1", 
-      type: "communityArtwork", 
-      image: "/images/akizora-2.webp", 
-      title: "Akizora Artwork", 
-      character: "Akizora", 
-      artist: "JustKAMAZ",
-      href: "https://t.me/JUST_KAMAZ",
-      linkLabel: "Artist's Telegram Channel",
-      linkType: 'telegram'
-    },
-    { 
-      id: "akizora-2", 
-      type: "communityArtwork", 
-      image: "/images/akizora-3.webp", 
-      title: "Akizora \"pick me\"", 
-      character: "Akizora", 
-      artist: "KambaL",
-      href: "https://t.me/kamba1l/108",
-      linkLabel: "Open in Telegram",
-      linkType: 'telegram'
-    },
     {
       id: "simon-sisi",
       type: "communityArtwork",
@@ -118,17 +96,6 @@ const Gallery = () => {
       character: "Simon Weber",
       artist: "KambaL",
       href: "https://t.me/kamba1l/296",
-      linkLabel: "Open in Telegram",
-      linkType: 'telegram'
-    },
-    {
-      id: "akizora-sisi",
-      type: "communityArtwork",
-      image: "/images/akizora-keko-sisi.webp",
-      title: "сегодня день сисек",
-      character: "Akizora",
-      artist: "KambaL",
-      href: "https://t.me/kamba1l/298",
       linkLabel: "Open in Telegram",
       linkType: 'telegram'
     },
@@ -173,17 +140,6 @@ const Gallery = () => {
       character: "Tilke x Asoqwer", 
       artist: "mnifl", 
       href: "https://www.youtube.com/watch?v=81F29AUNDAQ",
-      linkLabel: "Watch on YouTube",
-      linkType: 'youtube'
-    },
-    { 
-      id: "lonely-love", 
-      type: "community", 
-      image: "/images/akizoralonely.webp", 
-      title: "Lonely Love", 
-      character: "Akizora", 
-      artist: "Leshy-P", 
-      href: "https://www.youtube.com/watch?v=zqfyw-mbG0A",
       linkLabel: "Watch on YouTube",
       linkType: 'youtube'
     },

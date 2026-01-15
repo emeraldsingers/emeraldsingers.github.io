@@ -22,7 +22,6 @@ const SimpleSingerCard = ({ name, image, slug }: { name: string; image: string; 
 };
 
 const singers = [
-  { name: "Akizora", image: "/images/akizora_thumb.webp", slug: "akizora" },
   { name: "Asoqwer", image: "/images/asoqwer_thumb.webp", slug: "asoqwer" },
   { name: "Emerald", image: "/images/Emerald2025NoLogo_thumb.webp", slug: "emerald" },
   { name: "Fukuna Douri", image: "/images/douri-thumb.webp", slug: "douri" },

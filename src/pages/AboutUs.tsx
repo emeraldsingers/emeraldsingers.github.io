@@ -90,15 +90,6 @@ const teamMembers: TeamMember[] = [
     }
   },
   {
-    name: "Seejiu-C",
-    role: "Founder & Voice Provider",
-    avatar: "/images/akizora-3.webp",
-    description: "Creator of Emerald Project, Voice provider of Akizora, and the driving force behind the project.",
-    social: {
-      youtube: "https://www.youtube.com/@Seejiu-C",
-    }
-  },
-  {
     name: "SouЯ",
     role: "Voice Provider & Artist",
     avatar: "/images/souR.webp",

@@ -625,13 +625,6 @@ const tagDisplay: Record<SingerTag, { label: string, color: string }> = {
 
 const singers = [
   {
-    name: "Akizora",
-    image: "/images/akizora_thumb.webp",
-    slug: "akizora",
-    tags: ['female', 'utau', 'ja', 'cvvc'] as SingerTag[],
-    audioSample: "/samples/akizora/akizora-samplecvvc.mp3"
-  },
-  {
     name: "Asoqwer",
     image: "/images/asoqwer_thumb.webp",
     slug: "asoqwer",

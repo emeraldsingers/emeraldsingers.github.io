@@ -46,66 +46,6 @@ import Footer from "@/components/Footer";
 import { url } from "inspector";
 
 const singersData = {
-    akizora: {
-        name: "Akizora",
-        cv: "Seejiu",
-        images: ["/images/akizora.webp", "/images/akizora-2.webp", "/images/akizora-3.webp"],
-        authors: { "/images/akizora.webp": "rxko", "/images/akizora-2.webp": "JustKAMAZ", "/images/akizora-3.webp": "KambaL" },
-        audioSamples: ["/samples/akizora/akizora-sample1.mp3", "/samples/akizora/akizora-sample2.mp3"],
-        description: "Akizora is a versatile human female virtual singer known for her clear and balanced vocal tone.",
-        characterData: {
-            Species: "Human",
-            Gender: "Female",
-            Age: "17 years old",
-            Height: "165cm",
-            Weight: "51kg",
-            Birthday: "Doesn't remember",
-            Stone: "Fluorite",
-            "Fav Item": "Gummies",
-        },
-        colors: { 
-            light: 'rgb(21,188,206)',
-            dark: 'rgb(40,216,229)', 
-        },
-        voicebanks: {
-            CVVC: {
-                url: "https://mega.nz/file/vrYlyQoa#cY-N8DzP3-nKZ9VcfOsaUlhJl98fr2brbfm2TovMegk",
-                vocalModes: [
-                    { name: "CVVC Normal", description: "Balanced and clear vocal tone", sample: "/samples/akizora/akizora-samplecvvc.mp3"},
-                ],
-                type: "UTAU",
-                otoConfig: "Configured by Asoqwer",
-                supportedLanguages: ["ja"],
-                vocalType: "Mezzo-soprano",
-                recommendedRange: "B3-C5",
-                recommendedResampler: "resampler.dll & doppeltler64",
-                recommendedBPM: "80-200",
-            },
-            "CVVC Solid": {
-                url: "https://mega.nz/file/3jIAULqS#9zDCuFTJXZ8lY7sAQ9Rrm2gBYeuH-UJIMUwZrEHTu2s",
-                vocalModes: [
-                    { name: "Solid", description: "Solid vocal tone", sample: "/samples/akizora/akizora-samplecvvcsolid.mp3"},
-                ],
-                type: "UTAU",
-                otoConfig: "Configured by mnifl",
-                supportedLanguages: ["ja"],
-                vocalType: "Mezzo-soprano",
-                recommendedRange: "B3-C5",
-                recommendedResampler: "resampler.dll & doppeltler64",
-                recommendedBPM: "80-200",
-            }
-        },
-        videoDemos: [ 
-            {
-                url: "https://www.youtube.com/embed/70_UaoD5J5c", 
-                title: "【Akizora CVVC】 JUMPIN' OVER ! 【Emerald Project UTAUカバー】"
-            },
-            {
-                url: "https://www.youtube.com/embed/CGtPEaPfxaI", 
-                title: "【Akizora】 IMAWANOKIWA - いよわ 【Emerald Project UTAUカバー】"
-            }
-        ]
-    },
     asoqwer: {
         name: "Asoqwer",
         cv: "Asoqwer",
