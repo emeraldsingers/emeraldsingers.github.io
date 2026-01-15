@@ -67,7 +67,7 @@ const singersData = {
         navColorDark: 'rgb(253, 134, 134)',
         voicebanks: {
             CVVC: {
-                url: "https://mega.nz/file/z6wVAC4I#KzbDLjtkegUyKfMKyWdTIdVro0EqSa01vyq-zWEj8hM",
+                url: "https://drive.google.com/file/d/1m6KSsR13qWcEbM3m8K0NqQyVHtoZlgpo/view?usp=sharing",
                 vocalModes: [
                     { name: "CVVC Normal", description: "Balanced and clear vocal tone", sample: "/samples/asoqwer/asoqwer-samplecvvcnormal.mp3"},
                     { name: "CVVC Whisper", description: "Whisper soft voice", sample: "/samples/asoqwer/asoqwer-samplecvvcwhisper.mp3" },
@@ -82,7 +82,7 @@ const singersData = {
                 recommendedBPM: "80-180",
             },
             VCV: {
-                url: "https://mega.nz/file/6nh0nLiK#Vo7lP9BISClKdaRI2c1mcwYWZ_BpFuP5ePou3IlW30E",
+                url: "https://drive.google.com/file/d/1fEWLIvGrwiTMxFyklcagDmRyMLbGb_8l/view?usp=sharing",
                 vocalModes: [
                     { name: "VCV Normal", description: "Balanced and clear vocal tone", sample: "/samples/asoqwer/asoqwer-samplevcvnormal.mp3" },
                     { name: "VCV Power", description: "Strong voice", sample: "/samples/asoqwer/asoqwer-samplevcvpower.mp3" },
@@ -155,7 +155,7 @@ const singersData = {
         navColorDark: 'rgb(112, 231, 132)',
         voicebanks: {
             CVVC: {
-                url: "https://mega.nz/file/X75EUZbB#IsI5ufOYEJpIqtLLpYH-daxGFYzZjPxuFfA5YR4itTs",
+                url: "hhttps://drive.google.com/file/d/1NZWGl5bR8aCua8ILyzBnY63tlOsGsWPc/view?usp=sharing",
                 vocalModes: [
                     { name: "Normal", description: "Universal neutral tone", sample: "/samples/emerald/emerald_normalcvvc.mp3" },
                     { name: "Childish", description: "A light and ringing voice", sample: "/samples/emerald/emerald_childishcvvc.mp3" },
@@ -171,7 +171,7 @@ const singersData = {
                 recommendedBPM: "80-200",
             },
             "CVC RUS": {
-                url: "https://mega.nz/file/O2p0gShD#_J9erU9itDXAavdCytTjB7LczUWuS4_ebyX4jw58aFQ",
+                url: "https://drive.google.com/file/d/1e6EDpSA5zLykO_G3mmdp6fNT3iUfV1MD/view?usp=sharing",
                 vocalModes: [
                     { name: "Normal", description: "Standard expressive voice", sample: "/samples/emerald/emerald_normalcvcrus.mp3" },
                     { name: "Childish", description: "Bright and naive timbre", sample: "/samples/emerald/emerald_chldishcvcrus.mp3" },
@@ -226,7 +226,7 @@ const singersData = {
         navColorDark: 'rgb(255, 179, 104)',
         voicebanks: { 
             CVVC: {
-                url: "https://mega.nz/file/uyRyRBJT#eJm82-F24dcLjxmd_liIrk5MqsPcsY22vHTPMahRgyE",
+                url: "https://drive.google.com/file/d/1-1tiy9pEQzgkFWLbD6G_hfWGAMd274Zt/view?usp=sharing",
                 vocalModes: [
                     { name: "CVVC Normal", description: "Normal vocal tone", sample: "/samples/simon/simon-samplecvvc.mp3" },
                     { name: "CVVC Power", description: "Powerful voice", sample: "/samples/simon/simon-samplecvvcpower.mp3" },
@@ -279,7 +279,7 @@ const singersData = {
         navColorDark: 'rgb(255, 142, 76)',
         voicebanks: {
             CV: {
-                url: "https://mega.nz/file/ynIknCiZ#8N-5Ns9EKXKQMa-vBLz9ci2BszWTBwdZwFoI7OmYqnY",
+                url: "https://drive.google.com/file/d/17VhCr9xhFNu_kOXeotAAH7NNtVcaisci/view?usp=sharing",
                 vocalModes: [
                     { name: "Normal", description: "Standard expressive voice", sample: "/samples/mitsuo/mitsuo-samplecv.mp3" }
                 ],
