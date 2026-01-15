@@ -1,4 +1,3 @@
-import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { useTheme } from "@/components/ThemeProvider";
 import React, { useState, useRef } from "react";
@@ -322,7 +321,6 @@ const Gallery = () => {
       <FloatingElements theme={theme} />
       <StarryBackground theme={theme} />
       
-      <Navigation />
             
       <main className="container mx-auto px-4 py-20">
         <div className="max-w-5xl mx-auto">

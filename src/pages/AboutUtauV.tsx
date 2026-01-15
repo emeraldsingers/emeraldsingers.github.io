@@ -1,4 +1,3 @@
-import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { useTheme } from "@/components/ThemeProvider";
 import React, { useEffect, useState, useRef, useCallback } from "react";
@@ -188,7 +187,6 @@ const AboutUtauV = () => {
             <FloatingElements theme={theme} />
             <StarryBackground theme={theme} />
             
-            <Navigation />
             
             {/* Hero Section */}
             <motion.header 

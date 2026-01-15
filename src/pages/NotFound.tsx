@@ -6,7 +6,6 @@ import { Home, Users, RefreshCw, Disc, Music, Headphones, Mic, Radio, Zap, FileA
 import { useTheme } from "@/components/ThemeProvider";
 import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
-import Navigation from "@/components/Navigation";
 import { AnimatedBackground, FloatingElements, StarryBackground } from "@/components/AnimatedBackgrounds";
 const MatrixRain = ({ opacity = 0.2 }: { opacity?: number }) => {
   const characters = useMemo(() => {

@@ -1,4 +1,3 @@
-import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { useTheme } from "@/components/ThemeProvider";
 import React, { useRef, useState } from "react";
@@ -252,8 +251,6 @@ const AboutUs = () => {
       <FloatingElements theme={theme} />
       <StarryBackground theme={theme} />
       
-            <Navigation />
-            
       {/* Hero Section without Banner */}
       <motion.header 
         className="relative h-[35vh] flex items-center justify-center overflow-hidden pt-16 sm:pt-8"

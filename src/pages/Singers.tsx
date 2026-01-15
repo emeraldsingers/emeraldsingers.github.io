@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import Navigation from "@/components/Navigation";
 import SingerCard from "@/components/SingerCard";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { useTheme } from "@/components/ThemeProvider";
@@ -1023,7 +1022,6 @@ const Singers = () => {
       <StarryBackground theme={theme} />
       
       <div className="min-h-screen flex flex-col" ref={containerRef}>
-        <Navigation />
             
         <main className="container mx-auto px-4 py-8 md:py-24 flex-grow relative z-10">
           <div className="max-w-6xl mx-auto">

@@ -1,4 +1,3 @@
-import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { useTheme } from "@/components/ThemeProvider";
 import React, { useRef } from "react";
@@ -51,7 +50,6 @@ const Terms = () => {
       <FloatingElements theme={theme} />
       <StarryBackground theme={theme} />
       
-      <Navigation />
             
       {/* Hero Section */}
       <motion.header 

@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { useTheme } from "@/components/ThemeProvider";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -655,7 +654,6 @@ const Roadmap = () => {
             <FloatingElements theme={theme} />
             <StarryBackground theme={theme} />
             
-            <Navigation />
             
             <main className="flex-grow container mx-auto px-4 py-20 relative z-10">
                 {/* Header */}

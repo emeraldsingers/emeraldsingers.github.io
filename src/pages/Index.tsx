@@ -1,4 +1,3 @@
-import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import InfiniteScroll from "@/components/InfiniteScroll";
 import { Button } from "@/components/ui/button";
@@ -265,8 +264,6 @@ const Index = () => {
                 <FloatingElements theme={theme} />
                 
                 <StarryBackground theme={theme} />
-                
-                <Navigation />
                 
                 <div className="relative" ref={heroRef}>
                     <main className="container mx-auto px-4 py-8 md:py-16 relative z-10">

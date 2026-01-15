@@ -1,4 +1,3 @@
-import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/ThemeProvider";
@@ -193,7 +192,6 @@ const HowTo = () => {
       <FloatingElements theme={theme} />
       <StarryBackground theme={theme} />
 
-      <Navigation />
             
       <motion.main 
         className="flex-grow container mx-auto px-4 py-20 relative"

@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect, useCallback, useMemo } from "react";
-import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { useTheme } from "@/components/ThemeProvider";
 import {
@@ -388,7 +387,6 @@ const Faq = ({ initialFaqs = [] }: FaqPageProps) => {
             <FloatingElements theme={theme} />
             <StarryBackground theme={theme} />
             
-            <Navigation />
             
             {/* Hero Section */}
             <motion.header 

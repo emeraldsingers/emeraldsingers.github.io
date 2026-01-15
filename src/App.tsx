@@ -6,6 +6,8 @@ import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { HelmetProvider } from 'react-helmet-async';
 import GlobalSnowfall from "@/components/GlobalSnowfall";
+import Navigation from "@/components/Navigation";
+import { NavAccentProvider, useNavAccent } from "@/components/NavAccentContext";
 import Index from "./pages/Index";
 import SingerPage from "./components/SingerPage";
 import HowTo from "./pages/HowTo";
@@ -20,6 +22,30 @@ import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
 
+const AppLayout = () => {
+  const { accentColors } = useNavAccent();
+
+  return (
+    <>
+      <Navigation accentColors={accentColors ?? undefined} />
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/singers" element={<Singers />} />
+        <Route path="/singer/:slug" element={<SingerPage />} />
+        <Route path="/how-to" element={<HowTo />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/about-utauv" element={<AboutUtauV />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/faq" element={<Faq />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/roadmap" element={<Roadmap />} />
+        <Route path="/community-works" element={<Navigate to="/gallery" replace />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
+  );
+};
+
 const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
@@ -29,20 +55,9 @@ const App = () => (
           <Sonner />
           <GlobalSnowfall />
           <HashRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/singers" element={<Singers />} />
-              <Route path="/singer/:slug" element={<SingerPage />} />
-              <Route path="/how-to" element={<HowTo />} />
-              <Route path="/terms" element={<Terms />} />
-              <Route path="/about-utauv" element={<AboutUtauV />} />
-              <Route path="/about-us" element={<AboutUs />} />
-              <Route path="/faq" element={<Faq />} />
-              <Route path="/gallery" element={<Gallery />} />
-              <Route path="/roadmap" element={<Roadmap />} />
-              <Route path="/community-works" element={<Navigate to="/gallery" replace />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <NavAccentProvider>
+              <AppLayout />
+            </NavAccentProvider>
           </HashRouter>
         </TooltipProvider>
       </ThemeProvider>

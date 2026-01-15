@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useEffect } from "react";
+import React, { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Helmet } from 'react-helmet-async';
@@ -7,11 +7,8 @@ import {
     ChevronRight,
     Download,
     HelpCircle,
-    Home,
     Users,
     FileText,
-    Moon,
-    Sun,
     Brush,
     Cake,
     Ruler,
@@ -39,6 +36,7 @@ import {
     Music,
 } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
+import { useNavAccent } from "@/components/NavAccentContext";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
@@ -66,6 +64,7 @@ const singersData = {
             light: 'rgb(145, 36, 36)', 
             dark: 'rgb(255, 83, 83)', 
         },
+        navColorDark: 'rgb(253, 134, 134)',
         voicebanks: {
             CVVC: {
                 url: "https://mega.nz/file/z6wVAC4I#KzbDLjtkegUyKfMKyWdTIdVro0EqSa01vyq-zWEj8hM",
@@ -153,6 +152,7 @@ const singersData = {
             light: 'rgb(91, 139, 107)',
             dark: 'rgb(0, 255, 42)',
         },
+        navColorDark: 'rgb(112, 231, 132)',
         voicebanks: {
             CVVC: {
                 url: "https://mega.nz/file/X75EUZbB#IsI5ufOYEJpIqtLLpYH-daxGFYzZjPxuFfA5YR4itTs",
@@ -223,6 +223,7 @@ const singersData = {
             light: 'rgb(255, 136, 0)', 
             dark: 'rgb(255, 119, 0)', 
         },
+        navColorDark: 'rgb(255, 179, 104)',
         voicebanks: { 
             CVVC: {
                 url: "https://mega.nz/file/uyRyRBJT#eJm82-F24dcLjxmd_liIrk5MqsPcsY22vHTPMahRgyE",
@@ -275,6 +276,7 @@ const singersData = {
             light: 'rgb(59,162,228)', 
             dark: 'rgb(255, 85, 0)',
         },
+        navColorDark: 'rgb(255, 142, 76)',
         voicebanks: {
             CV: {
                 url: "https://mega.nz/file/ynIknCiZ#8N-5Ns9EKXKQMa-vBLz9ci2BszWTBwdZwFoI7OmYqnY",
@@ -390,6 +392,8 @@ const singersData = {
             light: 'rgb(255, 182, 193)', 
             dark: 'rgb(255, 105, 180)',
         },
+        navColorDark: 'rgb(255, 143, 199)',
+        navColorLight: 'rgb(255, 20, 147)',
         voicebanks: {
             CVVC: {
                 url: "https://drive.google.com/file/d/1aDjOj-FBu7rl-liJgenPe4t9ls7iZ7qG/view?usp=sharing",
@@ -438,6 +442,7 @@ const singersData = {
             light: 'rgb(218, 197, 161)', 
             dark: 'rgb(255, 197, 105)',
         },
+        navColorLight: 'rgb(218, 139, 14)',
         voicebanks: {
             CVVC: {
                 url: "https://drive.google.com/file/d/1ZTKrMeX0_Fn7y2Pg_3mvWk9gjQoSiIrH/view?usp=sharing",
@@ -1260,12 +1265,11 @@ const StarryBackground = ({ theme, singerColors }: { theme: string, singerColors
 interface SingerNotFoundDisplayProps {
     slug?: string;
     theme: string;
-    setTheme: (theme: string) => void;
     navigate: ReturnType<typeof useNavigate>;
     notFoundColors: { light: string; dark: string; };
 }
 
-const SingerNotFoundDisplay: React.FC<SingerNotFoundDisplayProps> = ({ slug, theme, setTheme, navigate, notFoundColors }) => {
+const SingerNotFoundDisplay: React.FC<SingerNotFoundDisplayProps> = ({ slug, theme, navigate, notFoundColors }) => {
     return (
         <>
             <Helmet>
@@ -1401,41 +1405,6 @@ const SingerNotFoundDisplay: React.FC<SingerNotFoundDisplayProps> = ({ slug, the
                     })}
                 </div>
                 
-                <nav className="fixed top-0 left-0 right-0 bg-white/10 dark:bg-black/20 backdrop-blur-sm z-50 border-b border-white/20">
-                    <div className="container mx-auto px-4">
-                        <div className="flex items-center justify-between h-16">
-                            <div className="flex items-center space-x-4">
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    onClick={() => navigate(-1)}
-                                    className="text-primary hover:text-primary/80 transition-colors"
-                                >
-                                    <ChevronLeft className="h-5 w-5" />
-                                </Button>
-                                <div className="flex items-center space-x-4">
-                                    <Link to="/" className="text-primary hover:text-primary/80 transition-colors">
-                                        <Home className="h-5 w-5" />
-                                    </Link>
-                                    <Link to="/singers" className="text-primary hover:text-primary/80 transition-colors">
-                                        <Users className="h-5 w-5" />
-                                    </Link>
-                                </div>
-                            </div>
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-                                className="rounded-full"
-                            >
-                                <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                                <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                                <span className="sr-only">Toggle theme</span>
-                            </Button>
-                        </div>
-                    </div>
-                </nav>
-
                 <main className="flex-grow container mx-auto px-4 py-20 flex flex-col items-center justify-center z-10">
                     <motion.div
                         className="max-w-2xl w-full text-center"
@@ -1562,7 +1531,8 @@ const SingerPage: React.FC = () => {
     const { slug } = useParams();
     const navigate = useNavigate();
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const { theme, setTheme } = useTheme();
+    const { theme } = useTheme();
+    const { setAccentColors } = useNavAccent();
     const currentSinger = singersData[slug as keyof typeof singersData];
     const imageRef = useRef<HTMLImageElement>(null);
     const voicebanksSectionRef = useRef<HTMLDivElement>(null);
@@ -1579,6 +1549,25 @@ const SingerPage: React.FC = () => {
     const [expandedVideo, setExpandedVideo] = useState<{ url: string; title: string } | null>(null);
 
     const [animationDirection, setAnimationDirection] = useState<'left' | 'right'>('right');
+
+    const navAccentColors = useMemo(() => {
+        if (!currentSinger) {
+            return null;
+        }
+        const singerWithNav = currentSinger as typeof currentSinger & {
+            navColorLight?: string;
+            navColorDark?: string;
+        };
+        return {
+            light: singerWithNav.navColorLight ?? singerWithNav.colors.light,
+            dark: singerWithNav.navColorDark ?? singerWithNav.colors.dark,
+        };
+    }, [currentSinger]);
+
+    useEffect(() => {
+        setAccentColors(navAccentColors);
+        return () => setAccentColors(null);
+    }, [navAccentColors, setAccentColors]);
     
     const pageTransitionVariants = {
         initial: { 
@@ -1785,13 +1774,14 @@ const SingerPage: React.FC = () => {
     };
     
     if (!currentSinger) {
-        return <SingerNotFoundDisplay 
-                    slug={slug} 
-                    theme={theme} 
-                    setTheme={setTheme} 
-                    navigate={navigate} 
-                    notFoundColors={notFoundColors} 
-                />;
+        return (
+            <SingerNotFoundDisplay 
+                slug={slug} 
+                theme={theme} 
+                navigate={navigate} 
+                notFoundColors={notFoundColors} 
+            />
+        );
     }
 
     const currentImagePath = currentSinger.images[currentImageIndex];
@@ -1817,7 +1807,7 @@ const SingerPage: React.FC = () => {
         }
     };
 
-    const handlePrevImage = useCallback(() => {
+    const handlePrevImage = () => {
         setImageOpacity(0);
         setTimeout(() => {
             setCurrentImageIndex((prevIndex) =>
@@ -1825,9 +1815,9 @@ const SingerPage: React.FC = () => {
             );
             setImageOpacity(1);
         }, 300);
-    }, [currentSinger.images.length]);
+    };
 
-    const handleNextImage = useCallback(() => {
+    const handleNextImage = () => {
         setImageOpacity(0);
         setTimeout(() => {
             setCurrentImageIndex((prevIndex) =>
@@ -1835,11 +1825,11 @@ const SingerPage: React.FC = () => {
             );
             setImageOpacity(1);
         }, 300);
-    }, [currentSinger.images.length]);
+    };
 
-    const scrollToVoicebanks = useCallback(() => {
+    const scrollToVoicebanks = () => {
         voicebanksSectionRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, []);
+    };
 
     const getSpeciesIcon = (species: string) => {
         switch (species.toLowerCase()) {
@@ -1866,7 +1856,7 @@ const SingerPage: React.FC = () => {
     };
 
 
-    const handlePlaySample = useCallback((sampleUrl: string) => {
+    const handlePlaySample = (sampleUrl: string) => {
         if (audioRef.current) {
             audioRef.current.pause();
             audioRef.current.onended = null;
@@ -1900,25 +1890,25 @@ const SingerPage: React.FC = () => {
                 setCurrentSampleUrl(null);
                 setCurrentVocalModeSampleUrl(null);
             });
-    }, [isPlaying, currentSampleUrl]);
+    };
 
-    const handlePauseSample = useCallback(() => {
+    const handlePauseSample = () => {
         if (audioRef.current && isPlaying) {
             audioRef.current.pause();
             setIsPlaying(false);
         }
-    }, [isPlaying]);
+    };
     
     const voicebankFormats = Object.keys(currentSinger.voicebanks || {});
     const currentVoicebankFormat = selectedVoicebankFormat || (voicebankFormats.length > 0 ? voicebankFormats[0] : null);
 
-    const handleVoicebankFormatClick = useCallback((format: string) => {
+    const handleVoicebankFormatClick = (format: string) => {
         const currentIndex = voicebankFormats.indexOf(selectedVoicebankFormat || (voicebankFormats.length > 0 ? voicebankFormats[0] : ''));
         const newIndex = voicebankFormats.indexOf(format);
         
         setAnimationDirection(newIndex > currentIndex ? 'right' : 'left');
         setSelectedVoicebankFormat(format);
-    }, [selectedVoicebankFormat, voicebankFormats]);
+    };
 
     
     const currentVoicebank = currentVoicebankFormat ? currentSinger.voicebanks[currentVoicebankFormat] : null;
@@ -1957,41 +1947,6 @@ const SingerPage: React.FC = () => {
             <StarryBackground theme={theme} singerColors={currentSinger.colors} />
                     
             <div className="min-h-screen relative">
-                <nav className="fixed top-0 left-0 right-0 bg-white/10 dark:bg-black/20 backdrop-blur-sm z-50 border-b border-white/20">
-                    <div className="container mx-auto px-4">
-                        <div className="flex items-center justify-between h-16">
-                            <div className="flex items-center space-x-4">
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    onClick={() => navigate(-1)}
-                                    className="text-primary hover:text-primary/80 transition-colors"
-                                >
-                                    <ChevronLeft className="h-5 w-5" />
-                                </Button>
-                                <div className="flex items-center space-x-4">
-                                    <Link to="/" className="text-primary hover:text-primary/80 transition-colors">
-                                        <Home className="h-5 w-5" />
-                                    </Link>
-                                    <Link to="/singers" className="text-primary hover:text-primary/80 transition-colors">
-                                        <Users className="h-5 w-5" />
-                                    </Link>
-                                </div>
-                            </div>
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-                                className="rounded-full"
-                            >
-                                <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                                <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                                <span className="sr-only">Toggle theme</span>
-                            </Button>
-                        </div>
-                    </div>
-                </nav>
-
                 <motion.main 
                     key={slug}
                     className="container mx-auto px-4 pb-20 pt-32 relative z-10"
