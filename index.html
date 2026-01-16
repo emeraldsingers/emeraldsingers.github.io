@@ -7,6 +7,27 @@
     <meta name="description" content="Emerald Project" />
     <meta name="author" content="asoqwer" />
     <meta property="og:image" content="/og-image.png" />
+    <script>
+      (function (l) {
+        if (l.hash && l.hash.startsWith("#/")) {
+          var hashPath = l.hash.slice(1);
+          var target = l.pathname.replace(/\/$/, "") + hashPath + l.search;
+          window.history.replaceState(null, "", target);
+          return;
+        }
+        if (l.search[1] === "/") {
+          var decoded = l.search
+            .slice(1)
+            .split("&")
+            .map(function (s) {
+              return s.replace(/~and~/g, "&");
+            })
+            .join("?");
+          var base = l.pathname.endsWith("/") ? l.pathname : l.pathname + "/";
+          window.history.replaceState(null, "", base.slice(0, -1) + decoded + l.hash);
+        }
+      })(window.location);
+    </script>
   </head>
 
   <body>
