@@ -155,7 +155,10 @@ const singersData = {
         navColorDark: 'rgb(112, 231, 132)',
         voicebanks: {
             CVVC: {
-                url: "hhttps://drive.google.com/file/d/1NZWGl5bR8aCua8ILyzBnY63tlOsGsWPc/view?usp=sharing",
+                url: "https://drive.google.com/file/d/1NZWGl5bR8aCua8ILyzBnY63tlOsGsWPc/view?usp=sharing",
+                history: {
+                    "CVVC v1 (legacy)": "https://example.com/emerald-cvvc-v1.zip",
+                    },
                 vocalModes: [
                     { name: "Normal", description: "Universal neutral tone", sample: "/samples/emerald/emerald_normalcvvc.mp3" },
                     { name: "Childish", description: "A light and ringing voice", sample: "/samples/emerald/emerald_childishcvvc.mp3" },
@@ -493,7 +496,22 @@ const singersData = {
         },
         voicebanks: {
             VCV: {
-                url: "https://mega.nz/folder/GtsDxQrD#DvzWGMexZtRSwkhlMuCOXg"
+                history: {
+                "Placeholder 1": "https://example.com/placeholder.zip",
+                "Placeholder 2": {
+                    url: "https://example.com/placeholderv2.zip",
+                    note: "Placeholder note for version 2"
+                }
+                },
+                                
+                url: "https://mega.nz/folder/GtsDxQrD#DvzWGMexZtRSwkhlMuCOXg",
+                type: "UTAU",
+                otoConfig: "Configured by Placeholder",
+                supportedLanguages: ["ja"],
+                vocalType: "Baritone",
+                recommendedRange: "Placeholder",
+                recommendedResampler: "Placeholder",
+                recommendedBPM: "Placeholder",
             },
             /* DiffSinger: {
                url: "Placeholder",
@@ -1726,18 +1744,24 @@ const SingerPage: React.FC = () => {
 
     const voicebankVariants = {
         initial: (direction: string) => ({
-            x: direction === 'right' ? 100 : -100,
-            opacity: 0
+            x: direction === 'right' ? 120 : -120,
+            opacity: 0,
+            filter: "blur(6px)",
+            scale: 0.98
         }),
         animate: {
             x: 0,
             opacity: 1,
-            transition: { duration: 0.3, ease: "easeOut" }
+            filter: "blur(0px)",
+            scale: 1,
+            transition: { duration: 0.45, ease: "easeOut" }
         },
         exit: (direction: string) => ({
-            x: direction === 'right' ? -100 : 100,
+            x: direction === 'right' ? -120 : 120,
             opacity: 0,
-            transition: { duration: 0.3, ease: "easeIn" }
+            filter: "blur(6px)",
+            scale: 0.98,
+            transition: { duration: 0.35, ease: "easeIn" }
         })
     };
 
@@ -1913,6 +1937,22 @@ const SingerPage: React.FC = () => {
     
     const currentVoicebank = currentVoicebankFormat ? currentSinger.voicebanks[currentVoicebankFormat] : null;
     const vocalModesToDisplay = currentVoicebank?.vocalModes || [];
+    const voicebankHistoryEntries = useMemo(() => {
+        if (!currentVoicebank?.history) return [];
+        return Object.entries(currentVoicebank.history)
+            .map(([name, value]) => {
+                if (typeof value === "string") {
+                    return { name, url: value };
+                }
+                if (value && typeof value === "object") {
+                    const historyValue = value as { url?: string; note?: string };
+                    if (!historyValue.url) return null;
+                    return { name, url: historyValue.url, note: historyValue.note };
+                }
+                return null;
+            })
+            .filter(Boolean) as Array<{ name: string; url: string; note?: string }>;
+    }, [currentVoicebank]);
     const videoDemos = currentSinger.videoDemos || []; 
 
     const languageDisplay = {
@@ -2078,7 +2118,7 @@ const SingerPage: React.FC = () => {
                                 variants={secondarySectionVariants}
                             >
                                 <h2 className="text-2xl font-semibold text-primary mb-6">Voicebanks</h2>
-                                
+
                                 <div className="flex flex-wrap gap-2 mb-6">
                                     {voicebankFormats.map((format) => (
                                         <Button
@@ -2347,12 +2387,42 @@ const SingerPage: React.FC = () => {
                                                                 </>
                                                             )}
                                                         </div>
+                                                        {voicebankHistoryEntries.length > 0 && (
+                                                            <div className="mt-6">
+                                                                <h4 className="text-lg font-medium text-primary mb-3">History</h4>
+                                                                <div className="grid grid-cols-1 gap-3">
+                                                                    {voicebankHistoryEntries.map((entry) => (
+                                                                        <div
+                                                                            key={entry.name}
+                                                                            className="bg-white/5 dark:bg-black/20 rounded-lg p-3 flex items-center justify-between gap-3"
+                                                                        >
+                                                                            <div>
+                                                                                <p className="text-sm font-medium text-primary">{entry.name}</p>
+                                                                                {entry.note && (
+                                                                                    <p className="text-xs text-muted-foreground">{entry.note}</p>
+                                                                                )}
+                                                                            </div>
+                                                                            <a
+                                                                                href={entry.url}
+                                                                                target="_blank"
+                                                                                rel="noopener noreferrer"
+                                                                                className="btn-primary flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-3 py-1.5 rounded-md text-xs transition-colors"
+                                                                            >
+                                                                                <Download className="h-3 w-3" />
+                                                                                Download
+                                                                            </a>
+                                                                        </div>
+                                                                    ))}
+                                                                </div>
+                                                            </div>
+                                                        )}
                                                     </div>
                                                 )}
                                             </div>
                                         </motion.div>
                                     )}
                                 </AnimatePresence>
+
                             </motion.div>
                         )}
 

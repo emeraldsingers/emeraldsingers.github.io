@@ -17,7 +17,6 @@ import AboutUtauV from "@/pages/AboutUtauV";
 import AboutUs from "@/pages/AboutUs";
 import Gallery from "@/pages/Gallery";
 import Faq from "@/pages/Faq";
-import Roadmap from "@/pages/Roadmap";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,7 +37,6 @@ const AppLayout = () => {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/gallery" element={<Gallery />} />
-        <Route path="/roadmap" element={<Roadmap />} />
         <Route path="/community-works" element={<Navigate to="/gallery" replace />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

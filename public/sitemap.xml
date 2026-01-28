@@ -1,59 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://emeraldsingers.github.io/#/</loc>
+    <loc>https://emeraldsingers.github.io/</loc>
     <priority>1.00</priority>
   </url>
   <url>
-    <loc>https://emeraldsingers.github.io/#/singers</loc>
+    <loc>https://emeraldsingers.github.io/singers</loc>
     <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://emeraldsingers.github.io/#/how-to</loc>
+    <loc>https://emeraldsingers.github.io/how-to</loc>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://emeraldsingers.github.io/#/terms</loc>
+    <loc>https://emeraldsingers.github.io/terms</loc>
     <priority>0.70</priority>
   </url>
   <url>
-    <loc>https://emeraldsingers.github.io/#/about-utauv</loc>
+    <loc>https://emeraldsingers.github.io/about-utauv</loc>
     <priority>0.70</priority>
   </url>
   <url>
-    <loc>https://emeraldsingers.github.io/#/about-us</loc>
+    <loc>https://emeraldsingers.github.io/about-us</loc>
     <priority>0.70</priority>
   </url>
   <url>
-    <loc>https://emeraldsingers.github.io/#/gallery</loc>
+    <loc>https://emeraldsingers.github.io/gallery</loc>
     <priority>0.70</priority>
   </url>
   <url>
-    <loc>https://emeraldsingers.github.io/#/faq</loc>
+    <loc>https://emeraldsingers.github.io/faq</loc>
     <priority>0.70</priority>
   </url>
   <url>
-    <loc>https://emeraldsingers.github.io/#/roadmap</loc>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://emeraldsingers.github.io/#/singer/asoqwer</loc>
+    <loc>https://emeraldsingers.github.io/singer/asoqwer</loc>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://emeraldsingers.github.io/#/singer/emerald</loc>
+    <loc>https://emeraldsingers.github.io/singer/emerald</loc>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://emeraldsingers.github.io/#/singer/simon-weber</loc>
+    <loc>https://emeraldsingers.github.io/singer/simon-weber</loc>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://emeraldsingers.github.io/#/singer/mitsuo</loc>
+    <loc>https://emeraldsingers.github.io/singer/mitsuo</loc>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://emeraldsingers.github.io/#/singer/toisku</loc>
+    <loc>https://emeraldsingers.github.io/singer/toisku</loc>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://emeraldsingers.github.io/singer/kira</loc>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://emeraldsingers.github.io/singer/douri</loc>
     <priority>0.85</priority>
   </url>
 </urlset> 

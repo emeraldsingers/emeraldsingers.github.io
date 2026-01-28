@@ -137,22 +137,12 @@ const HowTo = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeTab, setActiveTab] = useState("installation");
   const [prevTab, setPrevTab] = useState("installation");
-  const [isLoading, setIsLoading] = useState(true);
   const [expandedVideo, setExpandedVideo] = useState<{ url: string; title: string } | null>(null);
   
   const handleTabChange = (value: string) => {
     setPrevTab(activeTab);
     setActiveTab(value);
   };
-
-  useEffect(() => {
-    // Simulate loading state for animations
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   const utauVInterfacePlaceholder = "/images/UtauV.webp";
   const googleDocTutorialLink = "https://docs.google.com/document/d/1Eb43g7Tc616YRtyfLEqrwGKLS5af238-KsGQoY06oBs/edit?usp=sharing";
@@ -167,14 +157,6 @@ const HowTo = () => {
   const getTabIndex = (tabName: string) => {
     return tabs.indexOf(tabName);
   };
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-      </div>
-    );
-  }
 
   return (
     <div
