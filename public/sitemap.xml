@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://emeraldsingers.github.io/</loc>
     <priority>1.00</priority>
@@ -35,29 +36,50 @@
   <url>
     <loc>https://emeraldsingers.github.io/singer/asoqwer</loc>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://emeraldsingers.github.io/images/asoqwer_thumb.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://emeraldsingers.github.io/singer/emerald</loc>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://emeraldsingers.github.io/images/Emerald2025NoLogo_thumb.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://emeraldsingers.github.io/singer/simon-weber</loc>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://emeraldsingers.github.io/images/simon-weber-eu_thumb.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://emeraldsingers.github.io/singer/mitsuo</loc>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://emeraldsingers.github.io/images/mitsuo_thumb.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://emeraldsingers.github.io/singer/toisku</loc>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://emeraldsingers.github.io/images/toisku_thumb.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://emeraldsingers.github.io/singer/kira</loc>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://emeraldsingers.github.io/images/kira-thumb.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://emeraldsingers.github.io/singer/douri</loc>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://emeraldsingers.github.io/images/douri-thumb.webp</image:loc>
+    </image:image>
   </url>
 </urlset> 
