@@ -510,11 +510,11 @@ const AboutUtauV = () => {
                                             <div className="space-y-4 w-full">
                                                 <Button variant="default" size="lg" className="w-full" asChild>
                                                     <a 
-                                                        href="https://github.com/emeraldsingers/UtauV/releases/download/v1.1.0.0/UtauV.1.1.0.0.1.Installer.exe" 
+                                                        href="https://github.com/emeraldsingers/UtauV/releases/latest" 
                                                         target="_blank" 
                                                         rel="noopener noreferrer"
                                                     >
-                                                        Windows Installer
+                                                        Installer
                                                     </a>
                                                 </Button>
                                                 
