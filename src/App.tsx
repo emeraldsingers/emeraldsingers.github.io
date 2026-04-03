@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { HelmetProvider } from 'react-helmet-async';
-import GlobalSnowfall from "@/components/GlobalSnowfall";
 import Navigation from "@/components/Navigation";
 import { NavAccentProvider, useNavAccent } from "@/components/NavAccentContext";
 import Index from "./pages/Index";
@@ -51,7 +50,6 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <GlobalSnowfall />
           <BrowserRouter basename={import.meta.env.BASE_URL}>
             <NavAccentProvider>
               <AppLayout />
