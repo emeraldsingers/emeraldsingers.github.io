@@ -584,12 +584,13 @@ export type SingerTag =
   | 'cvvc' 
   | 'vcv' 
   | 'vccv' 
-  | 'cvc';
+  | 'cvc'
+  | 'nonbinary';
 
 const tagCategories = [
   { 
     name: 'Gender', 
-    tags: ['male', 'female'] 
+    tags: ['male', 'female', 'nonbinary'] 
   },
   { 
     name: 'Technology', 
@@ -619,7 +620,8 @@ const tagDisplay: Record<SingerTag, { label: string, color: string }> = {
   cvvc: { label: 'CVVC', color: 'bg-lime-100 text-lime-800 dark:bg-lime-900/30 dark:text-lime-300' },
   vcv: { label: 'VCV', color: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300' },
   vccv: { label: 'VCCV', color: 'bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300' },
-  cvc: { label: 'CVC', color: 'bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300' }
+  cvc: { label: 'CVC', color: 'bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300' },
+  nonbinary: { label: 'Non-binary', color: 'bg-violet-100 text-violet-800 dark:bg-violet-900/30 dark:text-violet-300' }
 };
 
 const singers = [
@@ -641,7 +643,7 @@ const singers = [
     name: "Fukuna Douri",
     image: "/images/douri-thumb.webp",
     slug: "douri",
-    tags: ['male', 'utau', 'ja', 'cvvc'] as SingerTag[],
+    tags: ['nonbinary', 'utau', 'ja', 'cvvc'] as SingerTag[],
     audioSample: "/samples/douri/douri-cvvc.mp3"
   },
   {
@@ -662,7 +664,7 @@ const singers = [
     name: "Rakuen Keigo",
     image: "/images/rakuen_keigo_thumb.webp",
     slug: "keigo",
-    tags: ['male', 'utau', 'ja', 'cvvc'] as SingerTag[],
+    tags: ['nonbinary', 'utau', 'ja', 'cvvc'] as SingerTag[],
     audioSample: "/samples/keigo/keigo-cvvc.mp3"
   },
   {
