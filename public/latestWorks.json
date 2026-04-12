@@ -1,4 +1,11 @@
-[   {
+[   
+    {
+        "youtubeVideoId": "pMsPdXXAciY",
+        "image": "/images/keigo_demo.webp",
+        "title": "【Keigo】 Living ghost is alive",
+        "description": "The ghost, the ghost, the ghost thought it died but, it’s living… 👻"
+    },
+    {
         "youtubeVideoId": "hl9B3T2m0tg",
         "image": "/images/nijiiro.webp",
         "title": "【ボカロ6人】 Nijiiro Stories",
@@ -9,11 +16,5 @@
         "image": "/images/snowman.webp",
         "title": "【Fukuna Kira & Douri】 Snowman (Rerec)",
         "description": "Happy New Year everyone! 💚✨"
-    }, 
-    {
-        "youtubeVideoId": "pMsPdXXAciY",
-        "image": "/images/mr.webp",
-        "title": "【ボカロ8人＋1】 Mr.シャーデンフロイデ",
-        "description": "Are you Mr. Schadenfreude? 🫵🎃"
     }
 ]

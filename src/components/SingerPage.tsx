@@ -474,6 +474,51 @@ const singersData = {
             }
         ]
     },
+    keigo: {
+        name: "Rakuen Keigo",
+        cv: "Keigo",
+        images: ["/images/rakuen_keigo.webp"],
+        authors: { "/images/rakuen_keigo.webp": "nedim04ka" },
+        description: "Hi",
+        audioSamples: [],
+        characterData: {
+            Species: "Angel",
+            Gender: "Nonbinary",
+            Age: "15 years old",
+            Height: "170 cm",
+            Weight: "50 kg",
+            Birthday: "03.03",
+            "Fav Item": "Chicken Nuggets",
+        },
+        colors: {
+            light: 'rgb(79, 70, 229)', 
+            dark: 'rgb(167, 139, 250)',
+        },
+        navColorLight: 'rgb(67, 56, 202)',
+        navColorDark: 'rgb(196, 181, 253)',
+        voicebanks: {
+            CVVC: {
+                url: "https://drive.google.com/file/d/13LpyZ7MCah6bO7a0kl6uJ1DiLpLdXPjQ/view?usp=sharing"   ,
+                vocalModes: [
+                    { name: "Normal", description: "Universal neutral tone", sample: "/samples/keigo/keigo-cvvc.mp3" },   
+                    { name: "Rock", description: "A sharp, expressive tone", sample: "/samples/keigo/keigo-cvvc-rock.mp3" },
+                ],
+                type: "UTAU",
+                otoConfig: "Configured by mnifl & DidiUwuw",
+                supportedLanguages: ["ja"],
+                vocalType: "Tenor",
+                recommendedRange: "C3-A5",
+                recommendedResampler: "TIPS, moresampler, hifisampler",
+                recommendedBPM: "80-200",
+            },
+        },
+        videoDemos: [
+            {
+                url: "https://www.youtube.com/embed/TfzrIbwAZv4",
+                title: "【Keigo】Living ghost is alive - UtsuP【Emerald Project UTAUカバー】"
+            }
+        ]
+    },
     shin: {
         name: "SHIN",
         cv: "DIVON",

@@ -659,6 +659,13 @@ const singers = [
     audioSample: "/samples/mitsuo/mitsuo-samplecv.mp3"
   },
   {
+    name: "Rakuen Keigo",
+    image: "/images/rakuen_keigo_thumb.webp",
+    slug: "keigo",
+    tags: ['male', 'utau', 'ja', 'cvvc'] as SingerTag[],
+    audioSample: "/samples/keigo/keigo-cvvc.mp3"
+  },
+  {
     name: "Simon Weber",
     image: "/images/simon-weber-eu_thumb.webp",
     slug: "simon-weber",
