@@ -585,9 +585,16 @@ export type SingerTag =
   | 'vcv' 
   | 'vccv' 
   | 'cvc'
-  | 'nonbinary';
+  | 'nonbinary'
+  | 'masculine'
+  | 'feminine'
+  | 'androgynous';
 
 const tagCategories = [
+  {
+    name: 'Vocal Type',
+    tags: ['masculine', 'feminine', 'androgynous']
+  },
   { 
     name: 'Gender', 
     tags: ['male', 'female', 'nonbinary'] 
@@ -621,7 +628,10 @@ const tagDisplay: Record<SingerTag, { label: string, color: string }> = {
   vcv: { label: 'VCV', color: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300' },
   vccv: { label: 'VCCV', color: 'bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300' },
   cvc: { label: 'CVC', color: 'bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300' },
-  nonbinary: { label: 'Non-binary', color: 'bg-violet-100 text-violet-800 dark:bg-violet-900/30 dark:text-violet-300' }
+  nonbinary: { label: 'Non-binary', color: 'bg-violet-100 text-violet-800 dark:bg-violet-900/30 dark:text-violet-300' },
+  masculine: { label: 'Masculine', color: 'bg-slate-100 text-slate-800 dark:bg-slate-900/40 dark:text-slate-300' },
+  feminine: { label: 'Feminine', color: 'bg-rose-100 text-rose-800 dark:bg-rose-900/40 dark:text-rose-300' },
+  androgynous: { label: 'Androgynous', color: 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900/40 dark:text-indigo-300' }
 };
 
 const singers = [
@@ -629,56 +639,56 @@ const singers = [
     name: "Asoqwer",
     image: "/images/asoqwer_thumb.webp",
     slug: "asoqwer",
-    tags: ['male', 'utau', 'ja', 'vcv', "cvvc", "rvc"] as SingerTag[],
+    tags: ['male', 'utau', 'ja', 'vcv', "cvvc", "rvc", 'masculine'] as SingerTag[],
     audioSample: "/samples/asoqwer/asoqwer-samplecvvcnormal.mp3"
   },
   {
     name: "Emerald",
     image: "/images/Emerald2025NoLogo_thumb.webp",
     slug: "emerald",
-    tags: ['male', 'utau', 'ja', 'cvvc', "rus", 'cvc'] as SingerTag[],
+    tags: ['male', 'utau', 'ja', 'cvvc', "rus", 'cvc', 'androgynous'] as SingerTag[],
     audioSample: "/samples/emerald/emerald_normalcvvc.mp3"
   },
-    {
+  {
     name: "Fukuna Douri",
     image: "/images/douri-thumb.webp",
     slug: "douri",
-    tags: ['nonbinary', 'utau', 'ja', 'cvvc'] as SingerTag[],
+    tags: ['nonbinary', 'utau', 'ja', 'cvvc', 'masculine'] as SingerTag[],
     audioSample: "/samples/douri/douri-cvvc.mp3"
   },
   {
     name: "Fukuna Kira",
     image: "/images/kira-thumb.webp",
     slug: "kira",
-    tags: ['female', 'utau', 'ja', 'cvvc'] as SingerTag[],
+    tags: ['female', 'utau', 'ja', 'cvvc', 'feminine'] as SingerTag[],
     audioSample: "/samples/kira/kira-cvvc.mp3"
   },
   {
     name: "Mitsuo",
     image: "/images/mitsuo_thumb.webp",
     slug: "mitsuo",
-    tags: ['male', 'cv', 'utau', 'rvc', 'ja'] as SingerTag[],
+    tags: ['male', 'cv', 'utau', 'rvc', 'ja', 'masculine'] as SingerTag[],
     audioSample: "/samples/mitsuo/mitsuo-samplecv.mp3"
   },
   {
     name: "Rakuen Keigo",
     image: "/images/rakuen_keigo_thumb.webp",
     slug: "keigo",
-    tags: ['nonbinary', 'utau', 'ja', 'cvvc'] as SingerTag[],
+    tags: ['nonbinary', 'utau', 'ja', 'cvvc', 'androgynous'] as SingerTag[],
     audioSample: "/samples/keigo/keigo-cvvc.mp3"
   },
   {
     name: "Simon Weber",
     image: "/images/simon-weber-eu_thumb.webp",
     slug: "simon-weber",
-    tags: ['male', 'utau', 'ja', 'cvvc'] as SingerTag[],
+    tags: ['male', 'utau', 'ja', 'cvvc', 'masculine'] as SingerTag[],
     audioSample: "/samples/simon/simon-samplecvvc.mp3"
   },
   {
     name: "Toisku",
     image: "/images/toisku_thumb.webp",
     slug: "toisku",
-    tags: ['male', 'utau', 'ja', 'cvvc', "rus", 'cvc'] as SingerTag[],
+    tags: ['male', 'utau', 'ja', 'cvvc', "rus", 'cvc', 'masculine'] as SingerTag[],
     audioSample: "/samples/toisku/toisku-cvvc.mp3"
   }
 
@@ -757,7 +767,10 @@ const SingerCardWithAudio = ({
         name={singer.name}
         image={singer.image}
         slug={singer.slug}
-        tags={singer.tags.map(tag => tagDisplay[tag].label).join(', ')}
+        tags={singer.tags
+          .filter(tag => !['masculine', 'feminine', 'androgynous'].includes(tag))
+          .map(tag => tagDisplay[tag].label)
+          .join(', ')}
       />
       <audio 
         ref={audioRef} 
