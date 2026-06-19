@@ -29,7 +29,6 @@ const singers = [
   { name: "Mitsuo", image: "/images/mitsuo_thumb.webp", slug: "mitsuo" },
   { name: "Rakuen Keigo", image: "/images/rakuen_keigo_thumb.webp", slug: "keigo" },
   { name: "Simon Weber", image: "/images/simon-weber-eu_thumb.webp", slug: "simon-weber" },
-  { name: "Toisku", image: "/images/toisku_thumb.webp", slug: "toisku" },
 
 ];
 

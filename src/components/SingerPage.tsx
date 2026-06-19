@@ -41,8 +41,6 @@ import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 import Footer from "@/components/Footer";
-import { url } from "inspector";
-
 const singersData = {
     asoqwer: {
         name: "Asoqwer",
@@ -314,66 +312,6 @@ const singersData = {
                 title: "【MITSUO DEMO】 虚無さん | Nihil-san - ¿?shimon 【Emerald Project Russian UTAUカバー】"
             }
         ]
-    },
-    toisku: {
-        name: "Toisku",
-        cv: "Leshy-P",
-        images: ["/images/toisku.webp"],
-        authors: { "/images/toisku.webp": "Zihiko" },
-        description: "Hi",
-        audioSamples: [],
-        characterData: {
-            Species: "Demon",
-            Gender: "Male",
-            Age: "Ageless",
-            Height: "175cm",
-            Weight: "65kg",
-            Birthday: "05.05",
-            Stone: "Charoite",
-            "Fav Item": "Cedar cone",
-        },
-        colors: {
-            light: 'rgb(17,96,98)', 
-            dark: 'rgb(191,119,246)',
-        },
-        voicebanks: {
-            CVVC: {
-                url: "https://drive.google.com/file/d/1zp_PXikkp0gVsg3t93gHFXaVBtPU0Otn/view?usp=sharing",
-                vocalModes: [
-                    { name: "Normal", description: "Universal neutral tone", sample: "/samples/toisku/toisku-cvvc.mp3" },
-                ],
-                type: "UTAU",
-                otoConfig: "Configured by mnifl",
-                supportedLanguages: ["ja"],
-                vocalType: "Baritone",
-                recommendedRange: "E2-C5",
-                recommendedResampler: "TIPS & moresampler",
-                recommendedBPM: "80-200",
-            },
-            "CVC RUS": {
-                url: "https://drive.google.com/file/d/1z5Zd8ehvemkyMD6ZbVeH1O0BmaMngdm4/view?usp=sharing",
-                vocalModes: [
-                    { name: "Normal", description: "Standard expressive voice", sample: "/samples/toisku/toisku-cvc.mp3" },
-                ],
-                type: "UTAU",
-                otoConfig: "Configured by SouЯ",
-                supportedLanguages: ["ru"],
-                vocalType: "Baritone",
-                recommendedRange: "E2-C5",
-                recommendedResampler: "TIPS & moresampler",
-                recommendedBPM: "80-200",
-            },
-            RVC: {
-                url: "https://www.weights.com/ru/models/cmgbd583300p30acxsspozsyc",
-                vocalModes: [
-                    { name: "RVC", description: "200e, 17800 steps", sample: "/samples/toisku/toiskurvc.mp3" },
-                ],
-                type: "RVC",
-                training: "Trained by Naska-P",
-            },
-            
-        },
-        videoDemos: []
     },
     kira: {
         name: "Fukuna Kira",

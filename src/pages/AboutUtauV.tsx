@@ -240,7 +240,7 @@ const AboutUtauV = () => {
                                 className="flex items-center"
                             >
                                 <Download className="mr-2 h-5 w-5" />
-                                Download for Windows
+                                Download from GitHub
                             </a>
                         </Button>
                         
@@ -252,7 +252,7 @@ const AboutUtauV = () => {
                                 className="flex items-center"
                             >
                                 <Github className="mr-2 h-5 w-5" />
-                                View on GitHub
+                                View releases on GitHub
                             </a>
                         </Button>
                     </motion.div>
@@ -263,13 +263,12 @@ const AboutUtauV = () => {
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.8 }}
                     >
-                        <Badge variant="outline" className="mr-2">v1.1.0.0</Badge>
-                        <Badge variant="secondary" className="mr-2">Free & Open Source</Badge>
+                        <Badge variant="outline" className="mr-2">v1.2.0.11</Badge>
                     </motion.div>
                 </div>
             </motion.header>
 
-            <main className="flex-grow container mx-auto px-4 py-20 relative">
+            <main className="flex-grow container mx-auto px-4 py-10 relative">
                 <Tabs 
                     defaultValue="features" 
                     value={activeTab}
@@ -534,7 +533,7 @@ const AboutUtauV = () => {
                                                         target="_blank" 
                                                         rel="noopener noreferrer"
                                                     >
-                                                        Source Code
+                                                        Source Code (Outdated)
                                                     </a>
                                                 </Button>
                                             </div>

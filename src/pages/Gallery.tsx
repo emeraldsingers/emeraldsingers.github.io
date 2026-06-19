@@ -99,17 +99,6 @@ const Gallery = () => {
       linkType: 'telegram'
     },
     {
-      id: "toisku",
-      type: "official",
-      image: "/images/toisku-artwork.webp",
-      title: "Toisku Artwork",
-      character: "Toisku",
-      artist: "Zihiko",
-      href: "https://t.me/zihiko_hikari",
-      linkLabel: "Artist's Telegram Channel",
-      linkType: 'telegram'
-    },
-    {
       id: "asoqwer1",
       type: "official",
       image: "/images/asoart.webp",

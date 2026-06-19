@@ -253,8 +253,8 @@ const HowTo = () => {
                             </motion.ol>
                             <motion.div variants={childItemVariants}>
                                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground" asChild>
-                                 <a href="https://github.com/emeraldsingers/UtauV/releases/download/v1.1.0.0/UtauV.1.1.0.0.1.Installer.exe" target="_blank" rel="noopener noreferrer">
-                                   Download UtauV (Windows)
+                                 <a href="https://github.com/emeraldsingers/UtauV/releases/latest" target="_blank" rel="noopener noreferrer">
+                                   Download UtauV (GitHub)
                                  </a>
                                </Button>
                              </motion.div>

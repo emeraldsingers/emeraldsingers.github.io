@@ -134,19 +134,6 @@ const teamMembers: TeamMember[] = [
     }
   },
   {
-    name: "Leshy-P",
-    role: "Voice Provider",
-    avatar: "/images/leshy.webp",
-    description: "Voice provider of Toisku.",
-
-    social: {
-      youtube: "https://youtube.com/@LeshyP",
-      telegram: "https://t.me/leshy_music",
-      twitter: "https://x.com/leshy_music",
-      tiktok: "https://www.tiktok.com/@leshy_music"
-    }
-  },
-  {
     name: "Yunna Forel",
     role: "Voice Provider",
     avatar: "/images/yunna.webp",
@@ -576,19 +563,6 @@ const AboutUs = () => {
                     Our enhanced fork of OpenUtau, designed specifically for the Emerald Project singers with unique styling and powerful features.
                   </motion.p>
                   
-                  <motion.div
-                    className={`mb-6 p-4 rounded-lg ${
-                      theme === 'dark' ? 'bg-amber-500/10 border-amber-500/30' : 'bg-amber-50 border-amber-200'
-                    } border text-center max-w-2xl mx-auto`}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 }}
-                  >
-                    <p className={`text-sm ${theme === 'dark' ? 'text-amber-300' : 'text-amber-700'}`}>
-                      ⚠️ UtauV is currently being updated. It works, but we recommend waiting for the new version based on the latest OpenUtau releases.
-                    </p>
-                  </motion.div>
-                  
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                     <motion.div
                       className="relative aspect-video rounded-lg overflow-hidden shadow-lg"
@@ -662,7 +636,7 @@ const AboutUs = () => {
                         <div className="flex flex-wrap gap-2 mt-2">
                           <Button variant="default" size="sm" className="w-full sm:w-auto" asChild>
                             <a 
-                              href="https://github.com/emeraldsingers/UtauV/releases/download/v1.1.0.0/UtauV.1.1.0.0.1.Installer.exe" 
+                              href="https://github.com/emeraldsingers/UtauV/releases/latest" 
                               target="_blank" 
                               rel="noopener noreferrer"
                             >

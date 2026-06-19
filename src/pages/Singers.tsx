@@ -683,13 +683,6 @@ const singers = [
     slug: "simon-weber",
     tags: ['male', 'utau', 'ja', 'cvvc', 'masculine'] as SingerTag[],
     audioSample: "/samples/simon/simon-samplecvvc.mp3"
-  },
-  {
-    name: "Toisku",
-    image: "/images/toisku_thumb.webp",
-    slug: "toisku",
-    tags: ['male', 'utau', 'ja', 'cvvc', "rus", 'cvc', 'masculine'] as SingerTag[],
-    audioSample: "/samples/toisku/toisku-cvvc.mp3"
   }
 
 ];
